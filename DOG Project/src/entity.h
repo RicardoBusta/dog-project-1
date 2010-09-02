@@ -1,5 +1,12 @@
-#ifndef ENTITY_H
-#define ENTITY_H
+/*
+ * entity.h
+ *	Padrões e Enumerações
+ *  Created on: 02/09/2010
+ *      Author: Ricardo
+ */
+
+#ifndef ENTITY_H_
+#define ENTITY_H_
 
 class entity{
 private:
@@ -61,4 +68,4 @@ public:
 	virtual void handle()=0;
 };
 
-#endif //ENTITY_H
+#endif /* ENTITY_H_ */
