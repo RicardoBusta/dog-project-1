@@ -1,15 +1,14 @@
 //============================================================================
-// Name        : DOG.cpp
+// Name        : DoG Project 1
 // Author      : DOG
-// Version     :
-// Copyright   : 
-// Description : Hello World in C++, Ansi-style
+// Version     : 1.0
+// Description : Spaceships vs Zombies
 //============================================================================
 
 #include <iostream>
 using namespace std;
 
 int main() {
-	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
+	cout << "F-CK YEA" << endl;
 	return 0;
 }

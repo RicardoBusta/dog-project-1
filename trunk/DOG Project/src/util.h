@@ -5,8 +5,8 @@
  *      Author: Cleóbulo
  */
 
-#ifndef UTIL_H_
-#define UTIL_H_
+#ifndef UTIL_H
+#define UTIL_H
 
 class SDL;
 
@@ -61,4 +61,4 @@ typedef struct ctr_{
 } Controller;
 
 
-#endif /* UTIL_H_ */
+#endif // UTIL_H
