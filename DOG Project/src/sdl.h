@@ -1,7 +1,7 @@
 /*
  * sdl.h
- *  Principal Interface de SDL
- *  Será utilizável sem a necessidade de instanciação
+ *  SDL Main Interface
+ *  Static Class
  *  Created on: 01/09/2010
  *      Author: Cleóbulo
  */

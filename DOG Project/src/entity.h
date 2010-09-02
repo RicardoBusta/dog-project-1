@@ -1,7 +1,8 @@
 /*
  * entity.h
- *	Padrões e Enumerações
- *  Created on: 02/09/2010
+ *	Entity Class, represents every entity inside the game.
+ *	This includes projectiles, camera, enemies and the controllable character.
+ *  Created on: Sep 2, 2010
  *      Author: Ricardo
  */
 

@@ -1,6 +1,6 @@
 /*
  * util.h
- *	Padrões e Enumerações
+ *	Enumerations and Patterns
  *  Created on: 01/09/2010
  *      Author: Cleóbulo
  */

@@ -1,6 +1,6 @@
 /*
  * scene.cpp
- *
+*	Base for the Game State. Main Loop Information Hiding.
  *  Created on: 01/09/2010
  *      Author: Cleóbulo
  */
