@@ -6,8 +6,8 @@
  *      Author: Cleóbulo
  */
 
-#ifndef SDL_H
-#define SDL_H
+#ifndef SDL_H_
+#define SDL_H_
 
 #include "util.h"
 #include <SDL/SDL.h>
@@ -83,4 +83,4 @@ class SDL{
 	static int timer_begin;
 };
 
-#endif // SDL_H
+#endif /* SDL_H_ */

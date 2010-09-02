@@ -6,8 +6,8 @@
  *      Author: Cleóbulo
  */
 
-#ifndef SCENE_H
-#define SCENE_H
+#ifndef SCENE_H_
+#define SCENE_H_
 
 #include "util.h"
 #include "sdl.h"
@@ -41,4 +41,4 @@ protected:
 	bool running;
 };
 
-#endif // SCENE_H
+#endif /* SCENE_H_ */
