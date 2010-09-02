@@ -11,22 +11,22 @@ private:
 	bool hasModel;
 	animatedModel *model;
 
-//Posição da entidade em relação ao pai.
+//Position (Parent Related)
 	struct position_{
 		float x,y,z;
 	}position;
 
-//Rotação da entidade em relação ao pai.
+//Rotation (Parent Related)
 	struct rotation_{
 			float x,y,z;
 	}rotation;
 
-//Escala do objeto em relação ao pai.
+//Scale (Parent Related)
 	struct scale_{
 			float x,y,z;
 	}scale;
 
-//Déficit de cor em relação ao pai. Default: (1,1,1) = cor normal. (0,0,0) preto.
+//Color Usage (Default is (1,1,1)=Original Color, (0,0,0) stands for black)
 	struct color_{
 			float r,g,b;
 	}color;
@@ -35,6 +35,7 @@ public:
 	entity(entity &parent=NULL);
 	~entity();
 
+	//Sets
 	void setPosition(float x, float y, float z);
 	void move(float x, float y, float z);
 
@@ -49,11 +50,12 @@ public:
 
 	void setModel(animatedModel* model);
 
+	//Toggles
 	void toggleVisible();
 	void toggleLive();
 	void toggleFrozen();
 
-//funções virtuais:
+	//Virtual Functions:
 	virtual void draw()=0;
 	virtual void
 	virtual void handle()=0;
