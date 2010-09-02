@@ -3,6 +3,10 @@
 
 class entity{
 private:
+	bool visible; //É visivel (vai ser desenhada)
+	bool frozen; //Não faz nada nem interage com outras entidades, mas ainda é desenhado na tela.
+	bool live; //Está viva (caso não esteja será removida de seu respectivo grupo)
+
 //3D Model.
 	bool hasModel;
 	animatedModel *model;
@@ -28,10 +32,31 @@ private:
 	}color;
 
 public:
-	entity(entity &parent);
+	entity(entity &parent=NULL);
+	~entity();
 
-//Função que desenha a entidade, caso ela possua um modelo.
-	draw();
+	void setPosition(float x, float y, float z);
+	void move(float x, float y, float z);
+
+	void setRotation(float x, float y, float z);
+	void rotate(float x, float y, float z);
+
+	void setScale(float x, float y, float z);
+	void resize(float x, float y, float z);
+
+	void setColor(float r, float g, float b);
+	void colorize(float r, float g, float b);
+
+	void setModel(animatedModel* model);
+
+	void toggleVisible();
+	void toggleLive();
+	void toggleFrozen();
+
+//funções virtuais:
+	virtual void draw()=0;
+	virtual void
+	virtual void handle()=0;
 };
 
 #endif //ENTITY_H
