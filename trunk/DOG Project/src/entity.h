@@ -9,6 +9,10 @@
 #ifndef ENTITY_H_
 #define ENTITY_H_
 
+#include <list>
+
+using namespace std;
+
 class entity{
 private:
 	bool visible; //É visivel (vai ser desenhada)
@@ -39,21 +43,30 @@ private:
 			float r,g,b;
 	}color;
 
+	void drawSons();
+	void handleSons();
+	void killSons();
+
+	list<entity*> sons;
 public:
 	entity(entity &parent=NULL);
 	~entity();
 
 	//Sets
 	void setPosition(float x, float y, float z);
+	void setPosition(entity *e);
 	void move(float x, float y, float z);
 
 	void setRotation(float x, float y, float z);
+	void setRotation(entity *e);
 	void rotate(float x, float y, float z);
 
 	void setScale(float x, float y, float z);
+	void setScale(entity *e);
 	void resize(float x, float y, float z);
 
 	void setColor(float r, float g, float b);
+	void setColor(entity *e);
 	void colorize(float r, float g, float b);
 
 	void setModel(animatedModel* model);
@@ -65,7 +78,6 @@ public:
 
 	//Virtual Functions:
 	virtual void draw()=0;
-	virtual void
 	virtual void handle()=0;
 };
 
