@@ -3,7 +3,7 @@
  *  SDL Main Interface
  *  Static Class
  *  Created on: 01/09/2010
- *      Author: Cle�bulo
+ *      Author: Cleóbulo
  */
 #include "sdl.h"
 
@@ -17,7 +17,6 @@ int SDL::timer_begin;
 SDL_Event SDL::eventos;
 list<ControllerStatus> SDL::acoes;
 
-// Class implementation
 SDL::SDL(){}
 
 bool SDL::initialize()

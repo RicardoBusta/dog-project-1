@@ -11,22 +11,25 @@ Scene::Scene(){
 	running = true;
 }
 
+Scene::~Scene(){
+}
+/*
 SceneMessage Scene::run(){
-
 	// Read necessary data
-	load();
+	//load();
 
 	// Main loop
 	while( Scene::running ){
 
 		//inputs();
-		logic();
-		render();
+		//logic();
+		//render();
 	}
 
 	// Destroy the unecessary data
-	unload();
+	//unload();
 
 	// Return the next request
-	return result();
+	//return result();
 }
+*/

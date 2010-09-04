@@ -3,7 +3,7 @@
  *  SDL Main Interface
  *  Static Class
  *  Created on: 01/09/2010
- *      Author: Cleóbulo
+ *      Author: CleÃ³bulo
  */
 
 #ifndef SDL_H_
@@ -13,7 +13,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_opengl.h>
-#include <SDL/SDL_TTF.h>
+#include <SDL/SDL_ttf.h>
 
 #include <list>
 using namespace std;
