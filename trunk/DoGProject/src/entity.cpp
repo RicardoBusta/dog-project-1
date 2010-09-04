@@ -12,10 +12,10 @@ entity::entity() {
 	frozen = true;
 	live = true;
 
-	setPosition(0,0,0);
-	setRotation(0,0,0);
-	setScale(1,1,1);
-	setColor(1,1,1);
+	//setPosition(0,0,0);
+	//setRotation(0,0,0);
+	//setScale(1,1,1);
+	//setColor(1,1,1);
 }
 
 entity::~entity() {
@@ -45,7 +45,7 @@ void entity::killSons(){
 		sons.pop_front();
 	}
 //or this
-	list<entity*>::iterator it;
+	//list<entity*>::iterator it;
 	for(it = sons.begin(); it!=sons.end(); it++){
 		delete (*it);
 	}

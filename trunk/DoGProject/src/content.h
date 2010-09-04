@@ -17,9 +17,9 @@ enum {CONTENT_TEXTURE,CONTENT_MODEL,CONTENT_SOUND};
 class content {
 private:
 	string label;
-	int type; //enum CONTENT_
+	int type; /* enum CONTENT_ */
 public:
-	content(string label="");
+	content();
 	virtual ~content();
 
 	string getLabel();
