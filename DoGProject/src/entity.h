@@ -13,11 +13,13 @@
 
 using namespace std;
 
+class animatedModel;
+
 class entity{
 private:
-	bool visible; //É visivel (vai ser desenhada)
-	bool frozen; //Não faz nada nem interage com outras entidades, mas ainda é desenhado na tela.
-	bool live; //Está viva (caso não esteja será removida de seu respectivo grupo)
+	bool visible; //ï¿½ visivel (vai ser desenhada)
+	bool frozen; //Nï¿½o faz nada nem interage com outras entidades, mas ainda ï¿½ desenhado na tela.
+	bool live; //Estï¿½ viva (caso nï¿½o esteja serï¿½ removida de seu respectivo grupo)
 
 //3D Model.
 	bool hasModel;
@@ -49,7 +51,8 @@ private:
 
 	list<entity*> sons;
 public:
-	entity(entity &parent=NULL);
+	entity();
+	//entity(entity *parent=NULL);
 	~entity();
 
 	//Sets

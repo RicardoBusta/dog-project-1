@@ -2,7 +2,7 @@
  * util.h
  *	Enumerations and Patterns
  *  Created on: 01/09/2010
- *      Author: Cleóbulo
+ *      Author: Cleï¿½bulo
  */
 
 #ifndef UTIL_H_
@@ -31,16 +31,16 @@ class SDL;
 
 // Enumerations
 
-enum GameStatus{ RUNNING , PAUSED , GAME_OVER , END_OF_STAGE , LAST_GAME_STATUS};
+enum GameStatus{ GAME_RUNNING , GAME_PAUSED , GAME_OVER , GAME_END_OF_STAGE , GAME_LAST_GAME_STATUS};
 
 enum SceneMessage{ SCN_INITIAL_STATE , SCN_END_GAME , SCN_MAIN_MENU , SCN_OPTIONS_MENU ,
 					SCN_STAGE_1 ,
 					SCN_DEBUG_STAGE };
 
-enum ControllerStatus{ STANDBY , RIGHT_ON , RIGHT_OFF , LEFT_ON , LEFT_OFF ,
-		UP_ON , UP_OFF , DOWN_ON , DOWN_OFF , SHOTING_ON , SHOTING_OFF , LAST_CONTROLLER_STATUS };
+enum ControllerStatus{ CON_STANDBY , CON_RIGHT_ON , CON_RIGHT_OFF , CON_LEFT_ON , CON_LEFT_OFF ,
+	CON_UP_ON , CON_UP_OFF , CON_DOWN_ON , CON_DOWN_OFF , CON_SHOTING_ON , CON_SHOTING_OFF , CON_LAST_CONTROLLER_STATUS };
 
-enum PersonagemStatus{ STANDBY , MOVING , SHOTING , DEAD , LAST_PERSONAGEM_STATUS };
+enum PersonagemStatus{ PER_STANDBY , PER_MOVING , PER_SHOTING , PER_DEAD , PER_LAST_PERSONAGEM_STATUS };
 
 // Useful Structures
 

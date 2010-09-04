@@ -2,12 +2,14 @@
  * scene.cpp
 *	Base for the Game State. Main Loop Information Hiding.
  *  Created on: 01/09/2010
- *      Author: Cleóbulo
+ *      Author: CleÃ³bulo
  */
 
 #include "scene.h"
 
-Scene::Scene() { running = true; }
+Scene::Scene(){
+	running = true;
+}
 
 SceneMessage Scene::run(){
 
@@ -17,7 +19,7 @@ SceneMessage Scene::run(){
 	// Main loop
 	while( Scene::running ){
 
-		inputs();
+		//inputs();
 		logic();
 		render();
 	}

@@ -3,7 +3,7 @@
  *  SDL Main Interface
  *  Static Class
  *  Created on: 01/09/2010
- *      Author: Cleóbulo
+ *      Author: Cleï¿½bulo
  */
 #include "sdl.h"
 
@@ -29,7 +29,7 @@ bool SDL::initialize()
 	SDL::height 	 = SCREEN_HEIGHT;
 	SDL::bpp    	 = SCREEN_BPP;
 	SDL::FPS    	 = DEFAULT_FPS;
-	SDL::total_acoes = 0;
+	//SDL::total_acoes = 0; ???
 
 	// Initializing the subsystems
 	if( !setVideo() )
@@ -152,16 +152,17 @@ void SDL::toggleFullScreen()
 int SDL::actionsLeft()
 {
 	// Put the actions in a queue
+
 	while( SDL_PollEvent( &eventos )){
-		acoes.push_back( STANDBY ); // Add the action
+		acoes.push_back( CON_STANDBY ); // Add the action
 	}
 
 	// Return the size of the queue
 	return (int) acoes.size();
 }
 
-static ControllerStatus SDL::nextAction(){
 
+ControllerStatus SDL::nextAction(){
 	// Returns the first action done
-	return acao;
+	return CON_STANDBY;
 }
