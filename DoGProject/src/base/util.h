@@ -2,7 +2,7 @@
  * util.h
  *	Enumerations and Patterns
  *  Created on: 01/09/2010
- *      Author: Cle�bulo
+ *      Author: Cleobulo
  */
 
 #ifndef UTIL_H_

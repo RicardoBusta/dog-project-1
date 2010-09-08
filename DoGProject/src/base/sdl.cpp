@@ -3,7 +3,7 @@
  *  SDL Main Interface
  *  Static Class
  *  Created on: 01/09/2010
- *      Author: Cleóbulo
+ *      Author: Cleobulo
  */
 #include "sdl.h"
 
