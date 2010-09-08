@@ -8,8 +8,8 @@
 #ifndef SCENE_H_
 #define SCENE_H_
 
-#include "util.h"
-#include "sdl.h"
+#include "../base/util.h"
+#include "../base/sdl.h"
 
 class Scene {
 public:
@@ -17,20 +17,20 @@ public:
 	virtual ~Scene();
 
 	// Data preparation
-	virtual bool load();
-	virtual bool prepare();
-	virtual bool unload();
+	virtual bool load()    = 0;
+	virtual bool prepare() = 0;
+	virtual bool unload()  = 0;
 
 	// Main call
 	SceneMessage run();
 
 	// GameLoop
-	void inputs();
-	virtual void logic();
-	virtual void render();
+	virtual void inputs() = 0;
+	virtual void logic()  = 0;
+	virtual void render() = 0;
 
 	// Result of the scene
-	virtual SceneMessage result();
+	virtual SceneMessage result() = 0;
 
 	// Play a subscene
 	/*static SceneMessage playScene( Scene* , LoopState );
