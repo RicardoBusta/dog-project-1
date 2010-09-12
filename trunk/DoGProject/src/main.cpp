@@ -8,9 +8,22 @@
 #include <iostream>
 using namespace std;
 
-int main() {
+#include "base/sdl.h"
 
-	//ERA BOM A GENTE COMEÇAR A ESCREVER ESSA BAGAÇA LOGO< QUERO VER ISSO FUNFANDO SEMANA QE VEM!!1!
-	cout << "F-CK YEA" << endl;
+int main( int argc , char* argv[] ) {
+
+	SDL::initialize();
+
+	bool sair = false;
+	while( !sair ){
+
+		while( SDL::actionsLeft() ){
+			if( SDL::nextAction() == CON_QUIT_GAME )
+				sair = true;
+		}
+	}
+
+	SDL::close();
+
 	return 0;
 }

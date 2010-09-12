@@ -21,9 +21,13 @@ SceneMessage Scene::run(){
 	// Main loop
 	while( Scene::running ){
 
+		SDL::timerStart();	// Start the frame rate control
+
 		inputs();
 		logic();
 		render();
+
+		SDL::timerStop(); 	// Keeps the frame rate control
 	}
 
 	// Destroy the unecessary data
