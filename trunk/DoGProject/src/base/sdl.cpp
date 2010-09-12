@@ -14,7 +14,8 @@ int SDL::height;
 int SDL::bpp;
 int SDL::FPS;
 int SDL::timer_begin;
-SDL_Event SDL::eventos;
+bool SDL::quit;
+SDL_Event SDL::evento;
 list<ControllerStatus> SDL::acoes;
 
 SDL::SDL(){}
@@ -28,6 +29,8 @@ bool SDL::initialize()
 	SDL::height 	 = SCREEN_HEIGHT;
 	SDL::bpp    	 = SCREEN_BPP;
 	SDL::FPS    	 = DEFAULT_FPS;
+	SDL::quit		 = false;
+	//SDL::total_acoes = 0; ???
 
 	// Initializing the subsystems
 	if( !setVideo() )
@@ -40,8 +43,8 @@ bool SDL::initialize()
 	if( !setAudio() )
 		return false;
 
-	// Initializes the opengl
-	initOpenGL();
+	if( !initOpenGL() )
+		return false;
 
 	// At the ending
 	atexit(SDL_Quit);
@@ -84,7 +87,7 @@ bool SDL::setAudio()
     return true;
 }
 
-void SDL::initOpenGL()
+bool SDL::initOpenGL()
 {
 	// Initializing the properties
 	glClearColor(0.0, 0.0, 0.0, 1.0);
@@ -92,6 +95,7 @@ void SDL::initOpenGL()
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_POLYGON_OFFSET_FILL);
 	glEnable(GL_NORMALIZE);
+	return false;
 }
 
 void SDL::projection( int width , int height )
@@ -161,6 +165,7 @@ void SDL::refresh()
 
 void SDL::resize( int width , int height )
 {
+
 }
 
 void SDL::toggleFullScreen()
@@ -175,8 +180,7 @@ bool SDL::actionsLeft()
 	while( SDL_PollEvent( &eventos )){
 
 		switch( eventos.type ){
-
-		case SDL_QUIT:
+case SDL_QUIT:
 
 			// Quit the game
 			acoes.push_back( CON_QUIT_GAME );
@@ -209,4 +213,42 @@ ControllerStatus SDL::nextAction(){
 		acoes.pop_front();
 		return nxt;
 	}
+}
+
+void SDL::events(){
+    while (SDL_PollEvent(&evento)) {
+        switch (evento.type) {
+        case SDL_QUIT:
+            quit = true;
+            break;
+        }
+    }
+
+}
+
+bool SDL::exec(){
+
+	SDL::initialize();
+
+	bool sair = false;
+	while( !sair ){
+
+		while( SDL::actionsLeft() ){
+			if( SDL::nextAction() == CON_QUIT_GAME )
+				sair = true;
+		}
+	}
+
+	SDL::close();
+
+
+
+	initialize();
+	resize(640,480);
+	while (!quit) {
+		events();
+		paint();
+	}
+	SDL_Quit();
+	return 0;
 }
