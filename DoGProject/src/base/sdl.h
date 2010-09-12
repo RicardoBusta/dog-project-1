@@ -62,7 +62,7 @@ class SDL{
 	static void toggleFullScreen();
 
 	// Events interface
-	static int actionsLeft();
+	static bool actionsLeft();
 	static ControllerStatus nextAction();
 
     private:
