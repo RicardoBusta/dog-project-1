@@ -8,15 +8,15 @@
 #include "sdl.h"
 
 // Static Members
-IMAGEM* SDL::tela;
+IMAGEM* SDL::screen;
 int SDL::width;
 int SDL::height;
 int SDL::bpp;
 int SDL::FPS;
 int SDL::timer_begin;
 bool SDL::quit;
-SDL_Event SDL::evento;
-list<ControllerStatus> SDL::acoes;
+SDL_Event SDL::event;
+list<ControllerStatus> SDL::actions;
 
 SDL::SDL(){}
 
@@ -66,11 +66,11 @@ bool SDL::setVideo()
 	}
 
 	// Main properties
-	tela = SDL_SetVideoMode( width , height , bpp,
+	screen = SDL_SetVideoMode( width , height , bpp,
 			SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_OPENGL );
 
 	// If failed to create a screen surface
-	if( tela == NULL )
+	if( screen == NULL )
 	{
 		return false;
 	}
@@ -179,12 +179,12 @@ bool SDL::actionsLeft()
 {
 	// Put the actions in a queue
 
-	while( SDL_PollEvent( &evento )){
+	while( SDL_PollEvent( &event )){
 
-		switch( evento.type ){
+		switch( event.type ){
 		case SDL_QUIT:
 			// Quit the game
-			acoes.push_back( CON_QUIT_GAME );
+			actions.push_back( CON_QUIT_GAME );
 			break;
 
 		case SDL_KEYDOWN:
@@ -200,37 +200,50 @@ bool SDL::actionsLeft()
 	}
 
 	// Return the size of the queue
-	return (int)acoes.size() > 0;
+	return (int)actions.size() > 0;
 }
 
 
 ControllerStatus SDL::nextAction(){
 	// Returns the first action done
-	if( 0 == (int)acoes.size() )
+	if( 0 == (int)actions.size() )
 		return CON_STANDBY;
 	else{
 		// Returns the first and take it out of the pile
-		ControllerStatus nxt = acoes.front();
-		acoes.pop_front();
+		ControllerStatus nxt = actions.front();
+		actions.pop_front();
 		return nxt;
 	}
 }
 
+//Paint the canvas
 void SDL::paint(){
 
 }
 
+//The event catching function. While there's an event in the event list, handle it.
 void SDL::events(){
-    while (SDL_PollEvent(&evento)) {
-        switch (evento.type) {
+    while (SDL_PollEvent(&event)) {
+        switch (event.type) {
         case SDL_QUIT:
             quit = true;
             break;
+        case SDL_KEYDOWN:
+        	switch(event.key.keysym.sym){
+				case SDLK_ESCAPE:
+					quit = true;
+					break;
+        	}
+        	break;
+        default:
+        	//Do Nothing
+			break;
         }
     }
 
 }
 
+//The Main SDL execution LOOP. Returns 0 if no errors occurs.
 bool SDL::exec(){
 	initialize();
 	while( !quit ){
