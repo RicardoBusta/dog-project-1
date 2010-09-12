@@ -68,11 +68,11 @@ class SDL{
 
     private:
 	// Screen surface
-	static IMAGEM* tela;
+	static IMAGEM* screen;
 
 	// Events input and returns parameters
-	static SDL_Event evento;
-	static list<ControllerStatus> acoes;
+	static SDL_Event event;
+	static list<ControllerStatus> actions; //depois me explica pra que serve isso
 
 	// Properties
 	static int width;
