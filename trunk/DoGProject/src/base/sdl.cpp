@@ -53,7 +53,9 @@ bool SDL::initialize()
 	return true;
 }
 
-void SDL::close(){}
+void SDL::close(){
+	SDL_Quit();
+}
 
 bool SDL::setVideo()
 {
@@ -177,11 +179,10 @@ bool SDL::actionsLeft()
 {
 	// Put the actions in a queue
 
-	while( SDL_PollEvent( &eventos )){
+	while( SDL_PollEvent( &evento )){
 
-		switch( eventos.type ){
-case SDL_QUIT:
-
+		switch( evento.type ){
+		case SDL_QUIT:
 			// Quit the game
 			acoes.push_back( CON_QUIT_GAME );
 			break;
@@ -215,6 +216,10 @@ ControllerStatus SDL::nextAction(){
 	}
 }
 
+void SDL::paint(){
+
+}
+
 void SDL::events(){
     while (SDL_PollEvent(&evento)) {
         switch (evento.type) {
@@ -227,28 +232,11 @@ void SDL::events(){
 }
 
 bool SDL::exec(){
-
-	SDL::initialize();
-
-	bool sair = false;
-	while( !sair ){
-
-		while( SDL::actionsLeft() ){
-			if( SDL::nextAction() == CON_QUIT_GAME )
-				sair = true;
-		}
-	}
-
-	SDL::close();
-
-
-
 	initialize();
-	resize(640,480);
-	while (!quit) {
+	while( !quit ){
 		events();
 		paint();
 	}
-	SDL_Quit();
+	close();
 	return 0;
 }
