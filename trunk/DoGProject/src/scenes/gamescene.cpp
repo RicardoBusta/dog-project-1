@@ -2,10 +2,10 @@
  * gameScene.cpp
  *
  *  Created on: 08/09/2010
- *      Author: Cleóbulo
+ *      Author: Cleï¿½bulo
  */
 
-#include "gameScene.h"
+#include "gamescene.h"
 
 GameScene::GameScene() {
 	// TODO Auto-generated constructor stub

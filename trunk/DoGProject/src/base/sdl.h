@@ -41,7 +41,7 @@ class SDL{
 	static bool setAudio();
 
 	// OpenGL Interface
-	static void initOpenGL();
+	static bool initOpenGL();
 	static void projection( int width , int height );
 
 
@@ -59,6 +59,7 @@ class SDL{
 
 	// Extra
 	static void resize( int width , int height );
+	static void paint();
 	static void toggleFullScreen();
 
 	// Events interface
@@ -70,7 +71,7 @@ class SDL{
 	static IMAGEM* tela;
 
 	// Events input and returns parameters
-	static SDL_Event eventos;
+	static SDL_Event evento;
 	static list<ControllerStatus> acoes;
 
 	// Properties
@@ -81,6 +82,13 @@ class SDL{
 	// FPS control
 	static int FPS;
 	static int timer_begin;
+
+
+	//by Ricardo <sei lá, queria ver funcionando e fiz isso>
+public:
+	static bool exec(void);
+	static void events(void);
+	static bool quit;
 };
 
 #endif /* SDL_H_ */

@@ -2,10 +2,10 @@
  * debugscene.cpp
  *
  *  Created on: 08/09/2010
- *      Author: Cleóbulo
+ *      Author: Cleï¿½bulo
  */
 
-#include "debugScene.h"
+#include "debugscene.h"
 
 DebugScene::DebugScene() {
 	// TODO Auto-generated constructor stub
