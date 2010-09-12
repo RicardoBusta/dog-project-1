@@ -84,7 +84,7 @@ class SDL{
 	static int timer_begin;
 
 
-	//by Ricardo <sei lá, queria ver funcionando e fiz isso>
+//by Ricardo, só para testes.
 public:
 	static bool exec(void);
 	static void events(void);
