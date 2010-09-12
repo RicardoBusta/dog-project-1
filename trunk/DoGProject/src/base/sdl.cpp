@@ -165,9 +165,20 @@ void SDL::refresh()
    SDL_GL_SwapBuffers();
 }
 
-void SDL::resize( int width , int height )
+void SDL::resize( int nwidth , int nheight )
 {
-
+	width = nwidth;
+	height = nheight;
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	//int side=min(screen.width,screen.height);
+	//glViewport((side-screen.width)/-2,(side-screen.height)/-2,side,side);
+	glViewport(0,0,width, height);
+	//adjust_frustum();
+	//adjust_camera();
+	glMatrixMode(GL_TEXTURE);
+	//adjust_texture();
+	glMatrixMode(GL_MODELVIEW);
 }
 
 void SDL::toggleFullScreen()
@@ -218,7 +229,10 @@ ControllerStatus SDL::nextAction(){
 
 //Paint the canvas
 void SDL::paint(){
-
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glLoadIdentity();
+    //calls the scene paint function here
+    SDL_GL_SwapBuffers();
 }
 
 //The event catching function. While there's an event in the event list, handle it.
@@ -232,6 +246,9 @@ void SDL::events(){
         	switch(event.key.keysym.sym){
 				case SDLK_ESCAPE:
 					quit = true;
+					break;
+				default:
+					//Do Nothing
 					break;
         	}
         	break;
