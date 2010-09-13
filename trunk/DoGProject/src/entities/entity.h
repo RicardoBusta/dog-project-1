@@ -1,7 +1,7 @@
 /*
  * entity.h
  *	Entity Class, represents every entity inside the game.
- *	This includes projectiles, camera, enemies and the controllable character.
+ *	This includes projectiles, enemies and the controllable character.
  *  Created on: Sep 2, 2010
  *      Author: Ricardo
  */
@@ -13,9 +13,9 @@
 
 using namespace std;
 
-class animatedModel;
+class AnimatedModel;
 
-class entity{
+class Entity{
 private:
 	bool visible; //� visivel (vai ser desenhada)
 	bool frozen; //N�o faz nada nem interage com outras entidades, mas ainda � desenhado na tela.
@@ -49,11 +49,11 @@ private:
 	void handleSons();
 	void killSons();
 
-	list<entity*> sons;
+	list<Entity*> sons;
 public:
-	entity();
+	Entity();
 	//entity(entity *parent=NULL);
-	~entity();
+	~Entity();
 
 	//Sets
 	void setPosition(float x, float y, float z);
