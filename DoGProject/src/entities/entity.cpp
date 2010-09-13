@@ -7,7 +7,7 @@
 
 #include "entity.h"
 
-entity::entity() {
+Entity::Entity() {
 	visible = false;
 	frozen = true;
 	live = true;
@@ -18,25 +18,25 @@ entity::entity() {
 	//setColor(1,1,1);
 }
 
-entity::~entity() {
+Entity::~Entity() {
 	killSons();
 }
 
-void entity::drawSons(){
+void Entity::drawSons(){
 	list<entity*>::iterator it;
 	for(it = sons.begin(); it!=sons.end(); it++){
 		(*it)->draw();
 	}
 }
 
-void entity::handleSons(){
+void Entity::handleSons(){
 	list<entity*>::iterator it;
 	for(it = sons.begin(); it!=sons.end(); it++){
 		(*it)->handle();
 	}
 }
 
-void entity::killSons(){
+void Entity::killSons(){
 //this
 	list<entity*>::iterator it;
 	while (!sons.empty()){
