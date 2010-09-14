@@ -110,8 +110,8 @@ void DebugScene::logic()
 	// Moving the camera
 	camera.moveOriginW( Vector3(0,0,-5) );
 
-	if( up ) camera.setRotationY(3);
-	if( down ) camera.setRotationY(-3);
+	if( up ) camera.setRotationX(10);
+	if( down ) camera.setRotationY(-10);
 	if( right ) ship->move( Vector3(3,0,0) );
 	if( left ) ship->move( Vector3(-3,0,0) );
 
