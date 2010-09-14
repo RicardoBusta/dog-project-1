@@ -24,6 +24,9 @@ public:
 	// Main call
 	SceneMessage run();
 
+	// Verify if its running
+	bool isRunning();
+
 	// GameLoop
 	virtual void inputs() = 0;
 	virtual void logic()  = 0;

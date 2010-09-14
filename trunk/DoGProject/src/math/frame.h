@@ -48,6 +48,11 @@ public:
     void setRotationY( int );
     void setRotationZ( int );
 
+    // Getters of rotations
+    int getRotationX();
+    int getRotationY();
+    int getRotationZ();
+
     // It's here when the matrix is actually calculated
     void calculateRotation();		// Actually calculates the rotation
     void resetRotation();			// Reset the rotation to the original position

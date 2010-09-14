@@ -8,7 +8,6 @@
 #include "gamescene.h"
 
 GameScene::GameScene() {
-	// TODO Auto-generated constructor stub
 
 }
 

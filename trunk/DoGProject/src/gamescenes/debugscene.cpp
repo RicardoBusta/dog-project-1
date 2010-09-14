@@ -7,11 +7,47 @@
 
 #include "debugscene.h"
 
-DebugScene::DebugScene() {
-	// TODO Auto-generated constructor stub
-
+DebugScene::DebugScene()
+{
 }
 
 DebugScene::~DebugScene() {
-	// TODO Auto-generated destructor stub
+}
+
+bool DebugScene::load()
+{
+
+	return true;
+}
+
+bool DebugScene::prepare()
+{
+
+	return true;
+}
+
+bool DebugScene::unload()
+{
+
+	return true;
+}
+
+void DebugScene::inputs()
+{
+
+}
+
+void DebugScene::logic()
+{
+
+}
+
+void DebugScene::render()
+{
+
+}
+
+SceneMessage DebugScene::result()
+{
+
 }

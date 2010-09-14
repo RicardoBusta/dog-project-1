@@ -14,7 +14,7 @@ class GameScene : public Scene
 {
 public:
 	GameScene();
-	virtual ~GameScene();
+	~GameScene();
 
 private:
 	// Cenario
