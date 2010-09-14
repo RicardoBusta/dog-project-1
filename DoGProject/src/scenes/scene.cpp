@@ -18,6 +18,9 @@ SceneMessage Scene::run(){
 	// Read necessary data
 	load();
 
+	// Position all the elements as they might be
+	prepare();
+
 	// Main loop
 	while( Scene::running ){
 
@@ -35,4 +38,9 @@ SceneMessage Scene::run(){
 
 	// Return the next request
 	return result();
+}
+
+bool Scene::isRunning()
+{
+	return Scene::running;
 }

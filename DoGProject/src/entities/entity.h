@@ -9,6 +9,10 @@
 #ifndef ENTITY_H_
 #define ENTITY_H_
 
+#include "../base/sdl.h"
+#include "../math/frame.h"
+#include "../math/point3.h"
+#include "../math/vector3.h"
 #include <list>
 
 using namespace std;
@@ -16,24 +20,18 @@ using namespace std;
 class AnimatedModel;
 
 class Entity{
-private:
+
+protected:
 	bool visible; //ï¿½ visivel (vai ser desenhada)
 	bool frozen; //Nï¿½o faz nada nem interage com outras entidades, mas ainda ï¿½ desenhado na tela.
 	bool live; //Estï¿½ viva (caso nï¿½o esteja serï¿½ removida de seu respectivo grupo)
 
 //3D Model.
 	bool hasModel;
-	animatedModel *model;
+	AnimatedModel *model;
 
-//Position (Parent Related)
-	struct position_{
-		float x,y,z;
-	}position;
-
-//Rotation (Parent Related)
-	struct rotation_{
-			float x,y,z;
-	}rotation;
+	// Frame
+	Frame coords;
 
 //Scale (Parent Related)
 	struct scale_{
@@ -45,43 +43,50 @@ private:
 			float r,g,b;
 	}color;
 
-	void drawSons();
-	void handleSons();
 	void killSons();
 
 	list<Entity*> sons;
 public:
+
+	// Comentei tudo o que ainda não sei como seria implementado,
+	// ou não é necessário para a primeira versão
+
+
 	Entity();
 	//entity(entity *parent=NULL);
-	~Entity();
+	virtual ~Entity();
 
 	//Sets
-	void setPosition(float x, float y, float z);
-	void setPosition(entity *e);
-	void move(float x, float y, float z);
+	void setPosition( Point3 position );
+	//void setPosition(entity *e);
+	void move( Vector3 delta );
 
 	void setRotation(float x, float y, float z);
-	void setRotation(entity *e);
+	//void setRotation(entity *e);
 	void rotate(float x, float y, float z);
 
 	void setScale(float x, float y, float z);
-	void setScale(entity *e);
+	//void setScale(entity *e);
 	void resize(float x, float y, float z);
 
 	void setColor(float r, float g, float b);
-	void setColor(entity *e);
-	void colorize(float r, float g, float b);
+	//void setColor(entity *e);
+	//void colorize(float r, float g, float b);
 
-	void setModel(animatedModel* model);
+	//void setModel(AnimatedModel* model);
 
 	//Toggles
 	void toggleVisible();
 	void toggleLive();
 	void toggleFrozen();
 
+	// Main operations
+	void render();
+	void handler();
+
 	//Virtual Functions:
 	virtual void draw()=0;
-	virtual void handle()=0;
+	virtual void selfHandler()=0;
 };
 
 #endif /* ENTITY_H_ */

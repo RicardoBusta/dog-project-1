@@ -231,3 +231,18 @@ void Frame::resetRotation()
     angleY = 0;
     angleZ = 0;
 }
+
+int Frame::getRotationX()
+{
+	return angleX;
+}
+
+int Frame::getRotationY()
+{
+	return angleY;
+}
+
+int Frame::getRotationZ()
+{
+	return angleZ;
+}
