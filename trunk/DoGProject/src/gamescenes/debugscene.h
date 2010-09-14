@@ -12,6 +12,9 @@
 #include "../scenes/gamescene.h"
 #include "../entities/hero.h"
 #include "../math/frame.h"
+#include "../entities/box.h"
+#include <vector>
+using namespace std;
 
 class DebugScene : public GameScene
 {
@@ -35,7 +38,10 @@ public:
 private:
 	// Some test info
 	Frame camera;
-	Hero ship;
+	Hero* ship;
+	vector<Entity*> entidades;
+
+	bool up,down,left,right;
 };
 
 #endif /* DEBUGSCENE_H_ */

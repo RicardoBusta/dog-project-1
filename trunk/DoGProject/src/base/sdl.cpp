@@ -13,7 +13,7 @@ int SDL::width;
 int SDL::height;
 int SDL::bpp;
 int SDL::FPS;
-int SDL::timer_begin;
+unsigned int SDL::timer_begin;
 bool SDL::quit;
 SDL_Event SDL::event;
 list<ControllerStatus> SDL::actions;
@@ -97,6 +97,10 @@ bool SDL::initOpenGL()
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_POLYGON_OFFSET_FILL);
 	glEnable(GL_NORMALIZE);
+
+	glShadeModel( GL_SMOOTH );
+
+	projection( 640 , 480 );
 	return false;
 }
 
@@ -105,8 +109,8 @@ void SDL::projection( int width , int height )
 	glMatrixMode( GL_PROJECTION );
 
 	glLoadIdentity();
-	glOrtho( 0.0	,	640.0,
-             0.0	,	480.0,
+	glOrtho( 0.0	,	640.0 ,
+             0.0	,	480.0 ,
             -1000.0	,	1000.0);
 
    glMatrixMode(GL_MODELVIEW);
@@ -189,7 +193,6 @@ void SDL::toggleFullScreen()
 bool SDL::actionsLeft()
 {
 	// Put the actions in a queue
-
 	while( SDL_PollEvent( &event )){
 
 		switch( event.type ){
@@ -199,9 +202,49 @@ bool SDL::actionsLeft()
 			break;
 
 		case SDL_KEYDOWN:
+        	switch(event.key.keysym.sym){
+				case SDLK_ESCAPE:
+					// Quit the game
+					actions.push_back( CON_QUIT_GAME );
+					break;
+				case SDLK_UP:
+					actions.push_back( CON_UP_ON );
+					break;
+				case SDLK_DOWN:
+					actions.push_back( CON_DOWN_ON );
+					break;
+				case SDLK_RIGHT:
+					actions.push_back( CON_RIGHT_ON );
+					break;
+				case SDLK_LEFT:
+					actions.push_back( CON_LEFT_ON );
+					break;
+				default:
+					//Do Nothing
+					break;
+        	}
 			break;
 
 		case SDL_KEYUP:
+        	switch(event.key.keysym.sym){
+
+        		// Directional
+				case SDLK_UP:
+					actions.push_back( CON_UP_OFF );
+					break;
+				case SDLK_DOWN:
+					actions.push_back( CON_DOWN_OFF );
+					break;
+				case SDLK_RIGHT:
+					actions.push_back( CON_RIGHT_OFF );
+					break;
+				case SDLK_LEFT:
+					actions.push_back( CON_LEFT_OFF );
+					break;
+				default:
+					//Do Nothing
+					break;
+        	}
 			break;
 
 		case SDL_MOUSEMOTION:
@@ -216,6 +259,7 @@ bool SDL::actionsLeft()
 
 
 ControllerStatus SDL::nextAction(){
+
 	// Returns the first action done
 	if( 0 == (int)actions.size() )
 		return CON_STANDBY;
@@ -269,4 +313,20 @@ bool SDL::exec(){
 	}
 	close();
 	return 0;
+}
+
+void SDL::prepareRender()
+{
+	// Clear the screen
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    // Put the correct matrix mode and current matrix
+    glMatrixMode( GL_MODELVIEW );
+    glLoadIdentity();
+}
+
+void SDL::switchBuffers()
+{
+	// Swap the buffers
+	SDL_GL_SwapBuffers();
 }

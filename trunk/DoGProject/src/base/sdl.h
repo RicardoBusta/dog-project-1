@@ -66,6 +66,10 @@ class SDL{
 	static bool actionsLeft();
 	static ControllerStatus nextAction();
 
+	// Render functions
+	static void prepareRender();
+	static void switchBuffers();
+
     private:
 	// Screen surface
 	static IMAGEM* screen;
@@ -81,7 +85,7 @@ class SDL{
 
 	// FPS control
 	static int FPS;
-	static int timer_begin;
+	static unsigned int timer_begin;
 
 
 //by Ricardo, só para testes.
