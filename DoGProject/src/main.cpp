@@ -6,7 +6,18 @@
 //============================================================================
 
 #include "base/sdl.h"
+#include "gamescenes/debugscene.h"
 
 int main( int argc , char* argv[] ) {
-	return SDL::exec();
+	//return SDL::exec();
+
+	SDL::initialize();
+
+	DebugScene *teste = new DebugScene;
+
+	teste->run();
+
+	SDL::close();
+
+	return 0;
 }

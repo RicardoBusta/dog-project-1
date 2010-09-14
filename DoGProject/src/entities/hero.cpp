@@ -30,36 +30,45 @@ void Hero::draw()
 
 	// Pyramid like
 	glBegin( GL_TRIANGLE_FAN );
-		glVertex3f( coords.getOrigin()->getX() ,
-					coords.getOrigin()->getY() ,
-					coords.getOrigin()->getZ() - 25.0f );
-		glVertex3f( coords.getOrigin()->getX() -25.0f,
-					coords.getOrigin()->getY() +25.0f,
-					coords.getOrigin()->getZ() +25.0f);
-		glVertex3f( coords.getOrigin()->getX() +25.0f,
-					coords.getOrigin()->getY() +25.0f,
-					coords.getOrigin()->getZ() +25.0f);
-		glVertex3f( coords.getOrigin()->getX() +25.0f,
-					coords.getOrigin()->getY() -25.0f,
-					coords.getOrigin()->getZ() +25.0f);
-		glVertex3f( coords.getOrigin()->getX() -25.0f,
-					coords.getOrigin()->getY() -25.0f,
-					coords.getOrigin()->getZ() +25.0f);
+		glColor3f( 0.4 , 0.4 , 0.4 );
+		glVertex3f(  0,
+					 0,
+					-25.0f );
+		glColor3f( 0.7 , 0.7 , 0.7 );
+		glVertex3f( -25.0f,
+					 25.0f,
+					 25.0f);
+		glColor3f( 0.6 , 0.6 , 0.6 );
+		glVertex3f(  25.0f,
+					 25.0f,
+					 25.0f);
+		glColor3f( 0.5 , 0.5 , 0.5 );
+		glVertex3f(  25.0f,
+					-25.0f,
+					 25.0f);
+		glColor3f( 0.8 , 0.8 , 0.8 );
+		glVertex3f( -25.0f,
+					-25.0f,
+					 25.0f);
+		glColor3f( 0.7 , 0.7 , 0.7 );
+		glVertex3f( -25.0f,
+					 25.0f,
+					 25.0f);
 	glEnd();
 
 	// The bottom of the pyramid
 	glBegin( GL_QUADS );
-	glVertex3f( coords.getOrigin()->getX() -25.0f,
-				coords.getOrigin()->getY() -25.0f,
-				coords.getOrigin()->getZ() +25.0f);
-	glVertex3f( coords.getOrigin()->getX() +25.0f,
-				coords.getOrigin()->getY() -25.0f,
-				coords.getOrigin()->getZ() +25.0f);
-	glVertex3f( coords.getOrigin()->getX() +25.0f,
-				coords.getOrigin()->getY() +25.0f,
-				coords.getOrigin()->getZ() +25.0f);
-	glVertex3f( coords.getOrigin()->getX() -25.0f,
-				coords.getOrigin()->getY() +25.0f,
-				coords.getOrigin()->getZ() +25.0f);
+		glVertex3f( -25.0f,
+					-25.0f,
+					 25.0f);
+		glVertex3f(  25.0f,
+					-25.0f,
+					 25.0f);
+		glVertex3f(	 25.0f,
+					 25.0f,
+					 25.0f);
+		glVertex3f( -25.0f,
+					 25.0f,
+					 25.0f);
 	glEnd();
 }

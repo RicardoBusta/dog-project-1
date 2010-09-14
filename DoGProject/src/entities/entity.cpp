@@ -16,7 +16,9 @@ Entity::Entity() {
 	//setPosition(0,0,0);
 	//setRotation(0,0,0);
 	//setScale(1,1,1);
-	//setColor(1,1,1);
+
+	// Set white the color
+	setColor(1.0f,1.0f,1.0f);
 }
 
 Entity::~Entity() {
