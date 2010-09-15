@@ -20,8 +20,10 @@ using namespace std;
 class AnimatedModel;
 
 class Entity{
+private:
 
 protected:
+	Entity *parent;
 	bool visible; //It is visible and will be drawn
 	bool frozen; //Does not interact with other entities, but is still drawn in the screen.
 	bool live; //If it's alive by the end of it's handling, will not be removed.
@@ -47,8 +49,8 @@ protected:
 
 	list<Entity*> sons;
 public:
-	Entity();
-	//Entity(Entity *parent=NULL);
+	//Entity();
+	Entity(Entity *parent=NULL);
 	virtual ~Entity();
 
 	//Sets

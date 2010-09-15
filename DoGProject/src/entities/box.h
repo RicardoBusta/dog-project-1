@@ -14,7 +14,7 @@
 
 class Box : public Entity {
 public:
-	Box();
+	Box(Entity* parent=NULL);
 	~Box();
 
 	void randomColors();
