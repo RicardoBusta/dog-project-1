@@ -22,9 +22,10 @@ Problemas:
 		o eixo escolhido para o cenÃ¡rio atual nÃ£o Ã© o mais apropriado.
 		wtf, ele tÃ¡ movendo a camera e a nave pra cima. os blocos Ã© que deveriam se mover pra baixo oO
 		
-		Réplica: Na verdade, não está movendo nada, na verdade, nesse momento ele está só posicionando
+		Réplica: Na verdade, não está movendo nada, nesse momento ele está só posicionando
 		a nave, a câmera e os objetos no espaço, a movimentação da câmera e da nave
-		ocorre toda sobre o eixo z. No caso, no sentido de fora para dentro da tela.
+		ocorre toda sobre o eixo z mas é em outra parte do código.
+		No caso, no sentido de fora para dentro da tela.
 	
 	frame.cpp
 		modificar a forma que ele armazena/calcula as rotaÃ§Ãµes, pois do jeito
