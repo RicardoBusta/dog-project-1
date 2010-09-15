@@ -14,7 +14,7 @@
 class Hero : public Entity
 {
 public:
-	Hero();
+	Hero(Entity* parent=NULL);
 	~Hero();
 
 	void addAction( ControllerStatus control );

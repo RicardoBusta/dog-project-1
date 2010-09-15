@@ -7,7 +7,7 @@
 
 #include "hero.h"
 
-Hero::Hero() {
+Hero::Hero(Entity* p):Entity(p) {
 }
 
 Hero::~Hero() {

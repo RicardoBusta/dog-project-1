@@ -5,9 +5,16 @@ Ricardo:
 Modificado:
 	Traduzido/corrigido vários nomes de variáveis/funções que não refletiam
 	sua verdadeira natureza.
+	
 	Vector de entities de debugscene para uma lista, visto que novas entities
 	podem surgir a todo momento (particulas, projéteis etc) e a lista é mais apropriada
 	para este tipo de operação.
+	
+	entity.cpp
+		propriedades frozen e visible agora funcionam devidamente. entidades agora podem
+		receber outra entidade como pai, não sendo necessário nesse caso adicionar ela na lista
+		de entidades do cenário.
+		
 
 Problemas:
 	debugscene.cpp 

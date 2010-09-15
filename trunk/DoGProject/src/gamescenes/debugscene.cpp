@@ -27,13 +27,20 @@ bool DebugScene::prepare()
 	ship = new Hero;
 	this->entities.push_back( ship );
 
+	Box *gun = new Box(ship);
+	gun->randomColors();
+	gun->setData(20,1,20);
+	gun->move(Vector3(0,0,10));
+	gun->toggleFrozen(); //Freezes the box in place
+	gun->setPosition( Point3(0,40,-10) );
+
 	// Posicionando a c�mera
 	camera.moveOriginW( Vector3( -320.0f , -240.0f , 100.0f ) );
 	camera.setRotationX( -90*16 );
 	//camera.setRotationX( 30 );
 
 	Box* cen;
-	for( int i = 0 ; i < 100 ; i++ ){
+	for( int i = 0 ; i < 3 ; i++ ){
 		cen = new Box;
 		cen->randomColors();
 		cen->setData(70,20,130);
@@ -46,6 +53,8 @@ bool DebugScene::prepare()
 
 bool DebugScene::unload()
 {
+	list<Entity*>::iterator it;
+	for(it=entities.begin();it!=entities.end();it++)
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	//ele não tá apagando as entidades, só removendo os ponteiros da lista
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
