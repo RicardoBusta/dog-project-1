@@ -52,11 +52,6 @@ void Entity::killSons(){
 		delete (*it);
 		sons.pop_front();
 	}
-//or this
-	//list<entity*>::iterator it;
-	for(it = sons.begin(); it!=sons.end(); it++){
-		delete (*it);
-	}
 	sons.clear();
 //chose one please
 }

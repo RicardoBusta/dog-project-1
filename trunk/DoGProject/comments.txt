@@ -21,10 +21,15 @@ Problemas:
 		linha 48 ler coment√°rios
 		o eixo escolhido para o cen√°rio atual n√£o √© o mais apropriado.
 		wtf, ele t√° movendo a camera e a nave pra cima. os blocos √© que deveriam se mover pra baixo oO
-	entity.cpp linha 40
-		a fun√ß√£o est√° deletando a lista de duas formas diferentes. escolher a melhor		
+		
+		RÈplica: Na verdade, n„o est· movendo nada, na verdade, nesse momento ele est· sÛ posicionando
+		a nave, a c‚mera e os objetos no espaÁo, a movimentaÁ„o da c‚mera e da nave
+		ocorre toda sobre o eixo z. No caso, no sentido de fora para dentro da tela.
+	
 	frame.cpp
 		modificar a forma que ele armazena/calcula as rota√ß√µes, pois do jeito
 		que est√° atualmente ele s√≥ permite uma sequencia de rota√ß√µes tornando
 		menos flexivel a manipula√ß√£o dos objetos nos 3 eixos.
+		
+		RÈplica: Qual seria uma possÌvel limitaÁ„o de usar aquele esquema de rotaÁıes?
 D√∫vidas
