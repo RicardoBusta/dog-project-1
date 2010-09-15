@@ -28,7 +28,7 @@ public:
 	bool unload();
 
 	// GameLoop
-	void inputs();
+	void input();
 	void logic();
 	void render();
 

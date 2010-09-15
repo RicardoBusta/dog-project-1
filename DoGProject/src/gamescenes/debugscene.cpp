@@ -9,7 +9,7 @@
 
 DebugScene::DebugScene()
 {
-	up = down = false;
+	up = down = left = right = false;
 }
 
 DebugScene::~DebugScene() {
@@ -45,12 +45,16 @@ bool DebugScene::prepare()
 
 bool DebugScene::unload()
 {
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	//ele não tá apagando as entidades, só removendo os ponteiros da lista
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	//tem que chamar delete (*it) pra todos os elementos da lista antes.
 	entities.clear();
 
 	return true;
 }
 
-void DebugScene::inputs()
+void DebugScene::input()
 {
 	// The main inputs
 	while( SDL::actionsLeft() ){
@@ -110,8 +114,10 @@ void DebugScene::logic()
 	// Moving the camera
 	camera.moveOriginW( Vector3(0,0,-5) );
 
-	if( up ) camera.setRotationX(10);
-	if( down ) camera.setRotationY(-10);
+	//if( up ) camera.setRotationX(10);
+	//if( down ) camera.setRotationY(-10);
+	if( up ) ship->move( Vector3(0,0,-3) );
+	if( down ) ship->move( Vector3(0,0,3) );
 	if( right ) ship->move( Vector3(3,0,0) );
 	if( left ) ship->move( Vector3(-3,0,0) );
 

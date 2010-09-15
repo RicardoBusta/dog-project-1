@@ -26,7 +26,7 @@ SceneMessage Scene::run(){
 
 		SDL::timerStart();	// Start the frame rate control
 
-		inputs();
+		input();
 		logic();
 		render();
 
