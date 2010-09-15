@@ -27,13 +27,13 @@ Entity::~Entity() {
 
 void Entity::handle(){
 
-	// This entity react
+	// Handle itself
 	this->handleSelf();
 
-	// Propagate the reaction to its sons
+	// Handle sons
 	list<Entity*>::iterator it;
 	for(it = sons.begin(); it!=sons.end(); it++){
-		(*it)->handleSelf();
+		(*it)->handle();
 	}
 }
 

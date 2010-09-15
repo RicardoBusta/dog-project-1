@@ -28,7 +28,7 @@ public:
 	bool isRunning();
 
 	// GameLoop
-	virtual void inputs() = 0;
+	virtual void input() = 0;
 	virtual void logic()  = 0;
 	virtual void render() = 0;
 

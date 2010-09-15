@@ -1,0 +1,21 @@
+Aqui vão ficar algumas anotações que surgiram durante a modificação de alguma versão.
+
+Ricardo:
+
+Resolvido:
+	Traduzido/corrigido vários nomes de variáveis/funções que não refletiam
+	sua verdadeira natureza.
+
+Problemas:
+	debugscene.cpp linha 48
+		ler comentários
+	entity.cpp linha 40
+		a função está deletando a lista de duas formas diferentes. escolher a melhor
+	debugscene.cpp
+		o eixo escolhido para o cenário atual não é o mais apropriado.
+	frame.cpp
+		modificar a forma que ele armazena/calcula as rotações, pois do jeito
+		que está atualmente ele só permite uma sequencia de rotações tornando
+		menos flexivel a manipulação dos objetos nos 3 eixos.
+Dúvidas
+	Onde diabos tá a função que move os blocos? deveria ser a handleSelf, mas não tem nada lá.
