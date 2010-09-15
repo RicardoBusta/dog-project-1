@@ -13,7 +13,7 @@
 #include "../entities/hero.h"
 #include "../math/frame.h"
 #include "../entities/box.h"
-#include <vector>
+#include <list>
 using namespace std;
 
 class DebugScene : public GameScene
@@ -39,7 +39,8 @@ private:
 	// Some test info
 	Frame camera;
 	Hero* ship;
-	vector<Entity*> entities;
+	list<Entity*> entities;
+	void handleEntities();
 
 	bool up,down,left,right;
 };

@@ -2,20 +2,22 @@ Aqui vão ficar algumas anotações que surgiram durante a modificação de algu
 
 Ricardo:
 
-Resolvido:
+Modificado:
 	Traduzido/corrigido vários nomes de variáveis/funções que não refletiam
 	sua verdadeira natureza.
+	Vector de entities de debugscene para uma lista, visto que novas entities
+	podem surgir a todo momento (particulas, projéteis etc) e a lista é mais apropriada
+	para este tipo de operação.
 
 Problemas:
-	debugscene.cpp linha 48
-		ler comentários
-	entity.cpp linha 40
-		a função está deletando a lista de duas formas diferentes. escolher a melhor
-	debugscene.cpp
+	debugscene.cpp 
+		linha 48 ler comentários
 		o eixo escolhido para o cenário atual não é o mais apropriado.
+		wtf, ele tá movendo a camera e a nave pra cima. os blocos é que deveriam se mover pra baixo oO
+	entity.cpp linha 40
+		a função está deletando a lista de duas formas diferentes. escolher a melhor		
 	frame.cpp
 		modificar a forma que ele armazena/calcula as rotações, pois do jeito
 		que está atualmente ele só permite uma sequencia de rotações tornando
 		menos flexivel a manipulação dos objetos nos 3 eixos.
 Dúvidas
-	Onde diabos tá a função que move os blocos? deveria ser a handleSelf, mas não tem nada lá.

@@ -30,6 +30,7 @@ bool DebugScene::prepare()
 	// Posicionando a c�mera
 	camera.moveOriginW( Vector3( -320.0f , -240.0f , 100.0f ) );
 	camera.setRotationX( -90*16 );
+	//camera.setRotationX( 30 );
 
 	Box* cen;
 	for( int i = 0 ; i < 100 ; i++ ){
@@ -112,7 +113,7 @@ void DebugScene::input()
 void DebugScene::logic()
 {
 	// Moving the camera
-	camera.moveOriginW( Vector3(0,0,-5) );
+	//camera.moveOriginW( Vector3(0,0,-5) );
 
 	//if( up ) camera.setRotationX(10);
 	//if( down ) camera.setRotationY(-10);
@@ -121,7 +122,8 @@ void DebugScene::logic()
 	if( right ) ship->move( Vector3(3,0,0) );
 	if( left ) ship->move( Vector3(-3,0,0) );
 
-	ship->move( Vector3(0,0,-5) );
+	//ship->move( Vector3(0,0,-5) );
+	handleEntities();
 }
 
 void DebugScene::render()
@@ -133,9 +135,10 @@ void DebugScene::render()
 	glMultMatrixf( camera.getMatrixToThis() );
 
 	// Render all the elements of the scene
-	for( unsigned int i = 0 ; i < entities.size() ; i++ )
-		entities[i]->render();
-
+	list<Entity*>::iterator it;
+	for(it=entities.begin();it!=entities.end();it++){
+		(*it)->render();
+	}
 	// Switch the buffers
 	SDL::switchBuffers();
 }
@@ -144,4 +147,11 @@ SceneMessage DebugScene::result()
 {
 	// End the execution of the game
 	return SCN_END_GAME;
+}
+
+void DebugScene::handleEntities(){
+	list<Entity*>::iterator it;
+	for(it=entities.begin();it!=entities.end();it++){
+		(*it)->handle();
+	}
 }
