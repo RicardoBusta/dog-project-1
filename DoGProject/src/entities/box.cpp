@@ -43,7 +43,7 @@ void Box::setData( float width , float height , float depth )
 
 void Box::handleSelf()
 {
-
+	this->move( Vector3(0,0,5) );
 }
 
 void Box::drawFace( int a , int b , int c , int d ){
