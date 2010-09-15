@@ -40,7 +40,7 @@ bool DebugScene::prepare()
 	//camera.setRotationX( 30 );
 
 	Box* cen;
-	for( int i = 0 ; i < 3 ; i++ ){
+	for( int i = 0 ; i < 100 ; i++ ){
 		cen = new Box;
 		cen->randomColors();
 		cen->setData(70,20,130);
@@ -54,12 +54,12 @@ bool DebugScene::prepare()
 bool DebugScene::unload()
 {
 	list<Entity*>::iterator it;
-	for(it=entities.begin();it!=entities.end();it++)
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	//ele não tá apagando as entidades, só removendo os ponteiros da lista
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	//tem que chamar delete (*it) pra todos os elementos da lista antes.
-	entities.clear();
+
+	while (!entities.empty()){
+			it = entities.begin();
+			delete (*it);
+			entities.pop_front();
+		}
 
 	return true;
 }
