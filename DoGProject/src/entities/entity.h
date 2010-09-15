@@ -22,9 +22,9 @@ class AnimatedModel;
 class Entity{
 
 protected:
-	bool visible; //ï¿½ visivel (vai ser desenhada)
-	bool frozen; //Nï¿½o faz nada nem interage com outras entidades, mas ainda ï¿½ desenhado na tela.
-	bool live; //Estï¿½ viva (caso nï¿½o esteja serï¿½ removida de seu respectivo grupo)
+	bool visible; //It is visible and will be drawn
+	bool frozen; //Does not interact with other entities, but is still drawn in the screen.
+	bool live; //If it's alive by the end of it's handling, will not be removed.
 
 //3D Model.
 	bool hasModel;
@@ -47,13 +47,8 @@ protected:
 
 	list<Entity*> sons;
 public:
-
-	// Comentei tudo o que ainda não sei como seria implementado,
-	// ou não é necessário para a primeira versão
-
-
 	Entity();
-	//entity(entity *parent=NULL);
+	//Entity(Entity *parent=NULL);
 	virtual ~Entity();
 
 	//Sets
@@ -82,11 +77,11 @@ public:
 
 	// Main operations
 	void render();
-	void handler();
+	void handle();
 
 	//Virtual Functions:
 	virtual void draw()=0;
-	virtual void selfHandler()=0;
+	virtual void handleSelf()=0;
 };
 
 #endif /* ENTITY_H_ */

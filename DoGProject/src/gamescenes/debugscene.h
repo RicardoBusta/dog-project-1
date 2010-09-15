@@ -1,9 +1,9 @@
 /*
  * debugScene.h
- *	Caixa preta com a nave e alguns inimigos
- *	Servirá como a cena de testes mais básica
+ *	Box with the airship and some enemies.
+ *	Basic test scene.
  *  Created on: 08/09/2010
- *      Author: Cleóbulo
+ *      Author: Cleï¿½bulo
  */
 
 #ifndef DEBUGSCENE_H_
@@ -39,7 +39,7 @@ private:
 	// Some test info
 	Frame camera;
 	Hero* ship;
-	vector<Entity*> entidades;
+	vector<Entity*> entities;
 
 	bool up,down,left,right;
 };

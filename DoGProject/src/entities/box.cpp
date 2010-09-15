@@ -2,7 +2,7 @@
  * box.cpp
  *
  *  Created on: 14/09/2010
- *      Author: Cleóbulo
+ *      Author: Cleï¿½bulo
  */
 
 #include "box.h"
@@ -41,7 +41,7 @@ void Box::setData( float width , float height , float depth )
 	vertex[7].setPosition( -width/2.0f ,  height/2.0f , -depth/2.0f );
 }
 
-void Box::selfHandler()
+void Box::handleSelf()
 {
 
 }

@@ -2,7 +2,7 @@
  * hero.h
  *	The main hero ship
  *  Created on: 13/09/2010
- *      Author: Cleóbulo
+ *      Author: Cleï¿½bulo
  */
 
 #ifndef HERO_H_
@@ -19,12 +19,12 @@ public:
 
 	void addAction( ControllerStatus control );
 
-	// The main "reaction" function
-	void selfHandler();
-
-	// The main rendering function
+	// The drawing function
 	void draw();
 
+private:
+	// The main "reaction" function
+	void handleSelf();
 };
 
 #endif /* HERO_H_ */
