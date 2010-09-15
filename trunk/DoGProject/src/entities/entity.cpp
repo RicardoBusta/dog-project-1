@@ -25,15 +25,15 @@ Entity::~Entity() {
 	killSons();
 }
 
-void Entity::handler(){
+void Entity::handle(){
 
 	// This entity react
-	this->selfHandler();
+	this->handleSelf();
 
 	// Propagate the reaction to its sons
 	list<Entity*>::iterator it;
 	for(it = sons.begin(); it!=sons.end(); it++){
-		(*it)->selfHandler();
+		(*it)->handleSelf();
 	}
 }
 

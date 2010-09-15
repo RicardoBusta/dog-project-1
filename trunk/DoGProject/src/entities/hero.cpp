@@ -2,7 +2,7 @@
  * hero.cpp
  *
  *  Created on: 13/09/2010
- *      Author: Cleóbulo
+ *      Author: Cleï¿½bulo
  */
 
 #include "hero.h"
@@ -17,14 +17,13 @@ void Hero::addAction( ControllerStatus control ){
 
 }
 
-void Hero::selfHandler()
+void Hero::handleSelf()
 {
 
 }
 
 void Hero::draw()
 {
-
 	// The entity color
 	glColor3f( this->color.r , this->color.g , this->color.b );
 

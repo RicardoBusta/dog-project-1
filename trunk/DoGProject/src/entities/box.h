@@ -2,7 +2,7 @@
  * box.h
  *  Um bloco qualquer
  *  Created on: 14/09/2010
- *      Author: Cleóbulo
+ *      Author: Cleï¿½bulo
  */
 
 #ifndef BOX_H_
@@ -19,13 +19,13 @@ public:
 
 	void randomColors();
 
-	// box properties
+	//Box Properties
 	void setData( float width , float height , float depth );
 
-	// Main reaction
-	void selfHandler();
+	//Main reaction
+	void handleSelf();
 
-	// This render
+	//The drawing function
 	void draw();
 
 private:

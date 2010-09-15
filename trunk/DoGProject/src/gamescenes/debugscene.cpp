@@ -25,9 +25,9 @@ bool DebugScene::prepare()
 {
 	// Preparando os elementos
 	ship = new Hero;
-	this->entidades.push_back( ship );
+	this->entities.push_back( ship );
 
-	// Posicionando a câmera
+	// Posicionando a cï¿½mera
 	camera.moveOriginW( Vector3( -320.0f , -240.0f , 100.0f ) );
 	camera.setRotationX( -90*16 );
 
@@ -37,7 +37,7 @@ bool DebugScene::prepare()
 		cen->randomColors();
 		cen->setData(70,20,130);
 		cen->move(Vector3(0,-100, -i*260));
-		this->entidades.push_back( cen );
+		this->entities.push_back( cen );
 	}
 
 	return true;
@@ -45,7 +45,7 @@ bool DebugScene::prepare()
 
 bool DebugScene::unload()
 {
-	entidades.clear();
+	entities.clear();
 
 	return true;
 }
@@ -127,8 +127,8 @@ void DebugScene::render()
 	glMultMatrixf( camera.getMatrixToThis() );
 
 	// Render all the elements of the scene
-	for( unsigned int i = 0 ; i < entidades.size() ; i++ )
-		entidades[i]->render();
+	for( unsigned int i = 0 ; i < entities.size() ; i++ )
+		entities[i]->render();
 
 	// Switch the buffers
 	SDL::switchBuffers();
