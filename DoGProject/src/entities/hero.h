@@ -21,6 +21,8 @@ public:
 	// The drawing function
 	void draw();
 
+	//Shooting CoolDown
+	int shootCoolDown;
 private:
 	// The main "reaction" function
 	void handleSelf();

@@ -27,7 +27,7 @@ Entity::Entity(Entity* p) {
 }
 
 Entity::~Entity() {
-	killSons();
+	//killSons();
 }
 
 void Entity::handle(){
@@ -53,7 +53,6 @@ void Entity::killSons(){
 		sons.pop_front();
 	}
 	sons.clear();
-//chose one please
 }
 
 void Entity::setPosition( Point3 position )
@@ -148,4 +147,12 @@ void Entity::render()
 
 bool Entity::isLive(){
 	return live;
+}
+
+bool Entity::isVisible(){
+	return visible;
+}
+
+bool Entity::isFrozen(){
+	return frozen;
 }

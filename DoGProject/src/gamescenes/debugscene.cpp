@@ -43,19 +43,19 @@ bool DebugScene::prepare()
 	Box* cen;
 	for( int i = 0 ; i < 3 ; i++ ){
 		cen = new Box;
-		//cen->randomColors();
+		cen->randomColors();
 		cen->setData(70,20,130);
 		cen->move(Vector3(0,-100, -i*260));
 		this->entities.push_back( cen );
 
 		cen = new Box;
-		//cen->randomColors();
+		cen->randomColors();
 		cen->setData(70,20,130);
 		cen->move(Vector3(80,-100, -i*260-100));
 		this->entities.push_back( cen );
 
 		cen = new Box;
-		//cen->randomColors();
+		cen->randomColors();
 		cen->setData(70,20,130);
 		cen->move(Vector3(-80,-100, -i*260-100));
 		this->entities.push_back( cen );
@@ -145,19 +145,21 @@ void DebugScene::logic()
 	// Moving the camera
 	//camera.moveOriginW( Vector3(0,0,-5) );
 
-	//if( up ) camera.setRotationX(10);
-	//if( down ) camera.setRotationY(-10);
+	if( up ) camera.setRotationX(10);
+	if( down ) camera.setRotationX(-10);
 	float speed = 5;
-	if( up ) ship->move( Vector3(0,0,-speed) );
-	if( down ) ship->move( Vector3(0,0,speed) );
+	//if( up ) ship->move( Vector3(0,0,-speed) );
+	//if( down ) ship->move( Vector3(0,0,speed) );
 	if( right ) ship->move( Vector3(speed,0,0) );
 	if( left ) ship->move( Vector3(-speed,0,0) );
 
 	if( shooting ){
-		Projectile *p = new Projectile( Vector3(0,0,-10) );
-		p->setPosition( *ship->getPosition() );
-		this->entities.push_back( p );
-		shooting = false;
+		if(ship->shootCoolDown<=0){
+			Projectile *p = new Projectile( Vector3(0,0,-10) );
+			p->setPosition( *ship->getPosition() );
+			this->entities.push_back( p );
+			ship->shootCoolDown = 10;
+		}
 	}
 	//ship->move( Vector3(0,0,-5) );
 	handleEntities();
@@ -190,8 +192,12 @@ void DebugScene::handleEntities(){
 	list<Entity*>::iterator it;
 	for(it=entities.begin();it!=entities.end();it++){
 		if( !(*it)->isLive() ){
+			if((*it)->isVisible()){
+				(*it)->toggleVisible();
+			}
 			//delete (*it);
-			//entities.remove( (*it) );
+			//entities.remove(it);
+			//delete aux;
 		}else{
 			(*it)->handle();
 		}
