@@ -7,9 +7,11 @@
 
 #include "debugscene.h"
 
+#include "../entities/projectile.h"
+
 DebugScene::DebugScene()
 {
-	up = down = left = right = false;
+	up = down = left = right = shooting = false;
 }
 
 DebugScene::~DebugScene() {
@@ -30,7 +32,6 @@ bool DebugScene::prepare()
 	Box *gun = new Box(ship);
 	gun->randomColors();
 	gun->setData(20,1,20);
-	gun->move(Vector3(0,0,10));
 	gun->toggleFrozen(); //Freezes the box in place
 	gun->setPosition( Point3(0,40,-10) );
 
@@ -40,11 +41,23 @@ bool DebugScene::prepare()
 	//camera.setRotationX( 30 );
 
 	Box* cen;
-	for( int i = 0 ; i < 100 ; i++ ){
+	for( int i = 0 ; i < 3 ; i++ ){
 		cen = new Box;
-		cen->randomColors();
+		//cen->randomColors();
 		cen->setData(70,20,130);
 		cen->move(Vector3(0,-100, -i*260));
+		this->entities.push_back( cen );
+
+		cen = new Box;
+		//cen->randomColors();
+		cen->setData(70,20,130);
+		cen->move(Vector3(80,-100, -i*260-100));
+		this->entities.push_back( cen );
+
+		cen = new Box;
+		//cen->randomColors();
+		cen->setData(70,20,130);
+		cen->move(Vector3(-80,-100, -i*260-100));
 		this->entities.push_back( cen );
 	}
 
@@ -111,6 +124,14 @@ void DebugScene::input()
 				right = false;
 				ship->addAction( CON_RIGHT_OFF );
 				break;
+			case CON_SHOOTING_ON:
+				shooting = true;
+				ship->addAction( CON_SHOOTING_ON );
+				break;
+			case CON_SHOOTING_OFF:
+				shooting = false;
+				ship->addAction( CON_SHOOTING_OFF );
+				break;
 
 			default:
 				// Standby
@@ -126,11 +147,18 @@ void DebugScene::logic()
 
 	//if( up ) camera.setRotationX(10);
 	//if( down ) camera.setRotationY(-10);
-	if( up ) ship->move( Vector3(0,0,-3) );
-	if( down ) ship->move( Vector3(0,0,3) );
-	if( right ) ship->move( Vector3(3,0,0) );
-	if( left ) ship->move( Vector3(-3,0,0) );
+	float speed = 5;
+	if( up ) ship->move( Vector3(0,0,-speed) );
+	if( down ) ship->move( Vector3(0,0,speed) );
+	if( right ) ship->move( Vector3(speed,0,0) );
+	if( left ) ship->move( Vector3(-speed,0,0) );
 
+	if( shooting ){
+		Projectile *p = new Projectile( Vector3(0,0,-10) );
+		p->setPosition( *ship->getPosition() );
+		this->entities.push_back( p );
+		shooting = false;
+	}
 	//ship->move( Vector3(0,0,-5) );
 	handleEntities();
 }
@@ -161,6 +189,11 @@ SceneMessage DebugScene::result()
 void DebugScene::handleEntities(){
 	list<Entity*>::iterator it;
 	for(it=entities.begin();it!=entities.end();it++){
-		(*it)->handle();
+		if( !(*it)->isLive() ){
+			//delete (*it);
+			//entities.remove( (*it) );
+		}else{
+			(*it)->handle();
+		}
 	}
 }

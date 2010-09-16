@@ -9,7 +9,6 @@
 #define HERO_H_
 
 #include "entity.h"
-#include "../base/util.h"
 
 class Hero : public Entity
 {

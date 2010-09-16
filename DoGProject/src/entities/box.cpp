@@ -8,6 +8,11 @@
 #include "box.h"
 
 Box::Box(Entity* p):Entity(p) {
+	for( int i = 0 ; i < 8 ; i++ ){
+		vr[i] = 1;
+		vg[i] = 1;
+		vb[i] = 1;
+	}
 }
 
 Box::~Box() {
@@ -41,11 +46,6 @@ void Box::setData( float width , float height , float depth )
 	vertex[7].setPosition( -width/2.0f ,  height/2.0f , -depth/2.0f );
 }
 
-void Box::handleSelf()
-{
-	this->move( Vector3(0,0,5) );
-}
-
 void Box::drawFace( int a , int b , int c , int d ){
 
 	glColor3f( vr[a] , vg[a] , vb[a] );
@@ -68,4 +68,12 @@ void Box::draw()
 		drawFace(7,3,2,6);
 		drawFace(0,4,5,1);
 	glEnd();
+}
+
+void Box::handleSelf()
+{
+	this->move( Vector3(0,0,10) );
+	if( coords.getOrigin()->getZ() > 400){
+		this->setPosition( Point3(coords.getOrigin()->getX(),coords.getOrigin()->getY(),-400) );
+	}
 }

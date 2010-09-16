@@ -2,7 +2,7 @@
  * vector3.h
  *	Abstraction of a 3D vector
  *  Created on: Sep 8, 2010
- *      Author: Cleóbulo
+ *      Author: Cleï¿½bulo
  */
 
 #ifndef VECTOR_H
@@ -34,6 +34,7 @@ public:
     Vector3 getInverso();
 
     // Operators overload
+    Vector3 operator=  ( Vector3 );
     Vector3 operator+  ( Vector3 );
     Vector3 operator+= ( Vector3 );
     Vector3 operator-  ( Vector3 );
