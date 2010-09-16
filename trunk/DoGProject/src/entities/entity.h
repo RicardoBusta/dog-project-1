@@ -13,6 +13,7 @@
 #include "../math/frame.h"
 #include "../math/point3.h"
 #include "../math/vector3.h"
+#include "../base/util.h"
 #include <list>
 
 using namespace std;
@@ -57,6 +58,7 @@ public:
 	void setPosition( Point3 position );
 	//void setPosition(entity *e);
 	void move( Vector3 delta );
+	Point3 *getPosition();
 
 	void setRotation(float x, float y, float z);
 	//void setRotation(entity *e);
@@ -76,6 +78,11 @@ public:
 	void toggleVisible();
 	void toggleLive();
 	void toggleFrozen();
+
+	//Check status
+	bool isLive();
+	bool isFrozen();
+	bool isVisible();
 
 	// Main operations
 	void render();

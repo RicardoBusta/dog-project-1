@@ -2,7 +2,7 @@
  * content.cpp
  *
  *  Created on: Sep 3, 2010
- *      Author: Cleóbulo
+ *      Author: Cleï¿½bulo
  */
 #include "point3.h"
 #include "vector3.h"
@@ -81,6 +81,13 @@ Vector3 Vector3::getInverso()
     Vector3 temp;
     temp.setVector3( -this->x , -this->y , -this->z );
     return temp;
+}
+
+Vector3 Vector3::operator= 	( Vector3 b ){
+	this->x = b.x;
+	this->y = b.y;
+	this->z = b.z;
+	this->norma = b.norma;
 }
 
 Vector3 Vector3::operator+  ( Vector3 b )

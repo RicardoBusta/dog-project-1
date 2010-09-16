@@ -22,15 +22,25 @@ Problemas:
 		o eixo escolhido para o cenÃ¡rio atual nÃ£o Ã© o mais apropriado.
 		wtf, ele tÃ¡ movendo a camera e a nave pra cima. os blocos Ã© que deveriam se mover pra baixo oO
 		
-		Réplica: Na verdade, não está movendo nada, nesse momento ele está só posicionando
-		a nave, a câmera e os objetos no espaço, a movimentação da câmera e da nave
-		ocorre toda sobre o eixo z mas é em outra parte do código.
+		Rï¿½plica: Na verdade, nï¿½o estï¿½ movendo nada, nesse momento ele estï¿½ sï¿½ posicionando
+		a nave, a cï¿½mera e os objetos no espaï¿½o, a movimentaï¿½ï¿½o da cï¿½mera e da nave
+		ocorre toda sobre o eixo z mas ï¿½ em outra parte do cï¿½digo.
 		No caso, no sentido de fora para dentro da tela.
+		
+		new* logica das entidades deveria ficar interna.
+		
+		new* entities e handleentities deveria fazer parte de gamescene e nÃ£o debugscene, pois
+		Ã© uma coisa de uso geral.
+		
+	sdl.cpp
+		new* detecÃ§Ã£o de teclas no sdl.cpp dificulta a flexibilidade de qual tecla estÃ¡ relacionada
+		com algum comando. SugestÃ£o: criar uma estrutura para guardar a associaÃ§Ã£o tecla-comando
+		ex: tecla SDLK_W associado ao CON_UP 
 	
 	frame.cpp
 		modificar a forma que ele armazena/calcula as rotaÃ§Ãµes, pois do jeito
 		que estÃ¡ atualmente ele sÃ³ permite uma sequencia de rotaÃ§Ãµes tornando
 		menos flexivel a manipulaÃ§Ã£o dos objetos nos 3 eixos.
 		
-		Réplica: Qual seria uma possível limitação de usar aquele esquema de rotações?
+		Rï¿½plica: Qual seria uma possï¿½vel limitaï¿½ï¿½o de usar aquele esquema de rotaï¿½ï¿½es?
 DÃºvidas

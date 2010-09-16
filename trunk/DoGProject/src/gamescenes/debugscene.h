@@ -42,7 +42,7 @@ private:
 	list<Entity*> entities;
 	void handleEntities();
 
-	bool up,down,left,right;
+	bool up,down,left,right,shooting;
 };
 
 #endif /* DEBUGSCENE_H_ */

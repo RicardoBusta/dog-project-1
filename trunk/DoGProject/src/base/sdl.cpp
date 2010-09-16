@@ -219,6 +219,9 @@ bool SDL::actionsLeft()
 				case SDLK_LEFT:
 					actions.push_back( CON_LEFT_ON );
 					break;
+				case SDLK_SPACE:
+					actions.push_back( CON_SHOOTING_ON );
+					break;
 				default:
 					//Do Nothing
 					break;
@@ -240,6 +243,9 @@ bool SDL::actionsLeft()
 					break;
 				case SDLK_LEFT:
 					actions.push_back( CON_LEFT_OFF );
+					break;
+				case SDLK_SPACE:
+					actions.push_back( CON_SHOOTING_OFF );
 					break;
 				default:
 					//Do Nothing

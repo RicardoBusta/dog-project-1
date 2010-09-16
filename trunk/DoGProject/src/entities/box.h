@@ -9,8 +9,6 @@
 #define BOX_H_
 
 #include "entity.h"
-#include "../base/sdl.h"
-#include "../math/point3.h"
 
 class Box : public Entity {
 public:

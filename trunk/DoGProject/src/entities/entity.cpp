@@ -67,6 +67,10 @@ void Entity::move( Vector3 delta ){
 	coords.moveOriginT( delta );
 }
 
+Point3* Entity::getPosition(){
+	return coords.getOrigin();
+}
+
 void Entity::setRotation(float x, float y, float z)
 {
 	//Set the rotation of the object
@@ -140,4 +144,8 @@ void Entity::render()
 		}
 	}
 	glPopMatrix();
+}
+
+bool Entity::isLive(){
+	return live;
 }
