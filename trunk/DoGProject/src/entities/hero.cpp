@@ -8,6 +8,7 @@
 #include "hero.h"
 
 Hero::Hero(Entity* p):Entity(p) {
+	shootCoolDown = 0;
 }
 
 Hero::~Hero() {
@@ -19,7 +20,8 @@ void Hero::addAction( ControllerStatus control ){
 
 void Hero::handleSelf()
 {
-
+	if(shootCoolDown>=0)
+		shootCoolDown--;
 }
 
 void Hero::draw()

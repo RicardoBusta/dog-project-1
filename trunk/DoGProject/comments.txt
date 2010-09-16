@@ -19,18 +19,10 @@ Modificado:
 Problemas:
 	debugscene.cpp 
 		linha 48 ler comentários
-		o eixo escolhido para o cenário atual não é o mais apropriado.
-		wtf, ele tá movendo a camera e a nave pra cima. os blocos é que deveriam se mover pra baixo oO
-		
-		R�plica: Na verdade, n�o est� movendo nada, nesse momento ele est� s� posicionando
-		a nave, a c�mera e os objetos no espa�o, a movimenta��o da c�mera e da nave
-		ocorre toda sobre o eixo z mas � em outra parte do c�digo.
-		No caso, no sentido de fora para dentro da tela.
-		
 		new* logica das entidades deveria ficar interna.
-		
 		new* entities e handleentities deveria fazer parte de gamescene e não debugscene, pois
 		é uma coisa de uso geral.
+		new* a parte que apaga os objetos da lista caso eles estejam mortos não está funcionando corretamente. UHU
 		
 	sdl.cpp
 		new* detecção de teclas no sdl.cpp dificulta a flexibilidade de qual tecla está relacionada
@@ -43,4 +35,5 @@ Problemas:
 		menos flexivel a manipulação dos objetos nos 3 eixos.
 		
 		R�plica: Qual seria uma poss�vel limita��o de usar aquele esquema de rota��es?
+		
 Dúvidas
