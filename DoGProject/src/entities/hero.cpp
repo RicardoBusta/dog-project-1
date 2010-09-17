@@ -58,7 +58,6 @@ void Hero::draw()
 	glEnd();
 
 	// The bottom of the pyramid
-	glColor3f( this->color.r , this->color.g , this->color.b );
 	glBegin( GL_QUADS );
 
 		glVertex3f( -25.0f,
