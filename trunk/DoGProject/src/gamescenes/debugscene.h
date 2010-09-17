@@ -3,7 +3,7 @@
  *	Box with the airship and some enemies.
  *	Basic test scene.
  *  Created on: 08/09/2010
- *      Author: Cle�bulo
+ *      Author: Cleóbulo
  */
 
 #ifndef DEBUGSCENE_H_
