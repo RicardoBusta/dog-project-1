@@ -84,10 +84,10 @@ Vector3 Vector3::getInverso()
 }
 
 Vector3 Vector3::operator= 	( Vector3 b ){
-	this->x = b.x;
-	this->y = b.y;
-	this->z = b.z;
-	this->norma = b.norma;
+	Vector3 temp;
+	temp.setVector3(b.x,b.y,b.z);
+	temp.norma = b.norma;
+	return temp;
 }
 
 Vector3 Vector3::operator+  ( Vector3 b )
