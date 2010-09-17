@@ -39,26 +39,26 @@ void Vector3::setVector3( long double x , long double y , long double z )
     this->x = x;
     this->y = y;
     this->z = z;
-    norma = sqrt( produtoEscalar( (*this) , (*this) ) );
+    length = sqrt( (*this)*(*this) );
 }
 
 void Vector3::setUnitary()
 {
-    if( norma != 0){
-        this->x = this->x/norma;
-        this->y = this->y/norma;
-        this->z = this->z/norma;
+    if( length != 0){
+        this->x = this->x/length;
+        this->y = this->y/length;
+        this->z = this->z/length;
     }else{
         this->x = 0;
         this->y = 0;
         this->z = 0;
     }
-    this->norma = 0;
+    this->length = 0;
 }
 
-long double Vector3::getNorma()
+long double Vector3::getLength()
 {
-    return this->norma;
+    return this->length;
 }
 
 long double Vector3::getX()
@@ -76,7 +76,7 @@ long double Vector3::getZ()
     return this->z;
 }
 
-Vector3 Vector3::getInverso()
+Vector3 Vector3::getInverse()
 {
     Vector3 temp;
     temp.setVector3( -this->x , -this->y , -this->z );
@@ -84,36 +84,37 @@ Vector3 Vector3::getInverso()
 }
 
 Vector3 Vector3::operator= 	( Vector3 b ){
-	Vector3 temp;
-	temp.setVector3(b.x,b.y,b.z);
-	temp.norma = b.norma;
-	return temp;
+	this->x = b.x;
+	this->y = b.y;
+	this->z = b.z;
+	this->length = b.length;
+	return *this;
 }
 
 Vector3 Vector3::operator+  ( Vector3 b )
 {
     Vector3 temp;
-    temp.setVector3( x + b.getX() , y + b.getY() , z + b.getZ() );
+    temp.setVector3( x + b.x , y + b.y , z + b.z );
     return temp;
 }
 
 Vector3 Vector3::operator-  ( Vector3 b )
 {
     Vector3 temp;
-    temp.setVector3( x - b.getX() , y - b.getY() , z - b.getZ() );
+    temp.setVector3( x - b.x , y - b.y , z - b.z );
     return temp;
 }
 
-Vector3 Vector3::operator*  ( long double Numero )
+Vector3 Vector3::operator*  ( long double n )
 {
     Vector3 temp;
-    temp.setVector3(Numero*this->x , Numero*this->y , Numero*this->z );
+    temp.setVector3(n*this->x , n*this->y , n*this->z );
     return temp;
 }
 
 Vector3 Vector3::operator+= ( Vector3 b )
 {
-    this->setVector3( x + b.getX() , y + b.getY() , z + b.getZ() );
+    this->setVector3( x + b.x , y + b.y , z + b.z );
     return (*this);
 }
 
@@ -127,4 +128,18 @@ Vector3 Vector3::operator*= ( long double Numero )
 {
     this->setVector3(Numero*this->x , Numero*this->y , Numero*this->z );
     return (*this);
+}
+
+float Vector3::operator* ( Point3 v ){
+	return  ( this->x*v.getX()+this->y*v.getY()+this->z*v.getZ() );
+}
+
+Vector3 Vector3::operator^ ( Vector3 v ){
+	Vector3 temp;
+	temp.setXYZ(
+			y*v.z - z*v.y,
+			z*v.x - x*v.z,
+			x*v.y - y*v.x
+    );
+	return temp;
 }

@@ -36,4 +36,6 @@ Problemas:
 		
 		R�plica: Qual seria uma poss�vel limita��o de usar aquele esquema de rota��es?
 		
+		Treplica: fazer uma rotação num eixo arbitrário (por exemplo nas cenas de transição de tela) 
+		
 Dúvidas

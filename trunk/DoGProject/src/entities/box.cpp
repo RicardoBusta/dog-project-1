@@ -35,15 +35,15 @@ void Box::setData( float width , float height , float depth )
 	this->depth  = depth;
 
 	// Set the vertex positions
-	vertex[0].setPosition( -width/2.0f , -height/2.0f ,  depth/2.0f );
-	vertex[1].setPosition(  width/2.0f , -height/2.0f ,  depth/2.0f );
-	vertex[2].setPosition(  width/2.0f ,  height/2.0f ,  depth/2.0f );
-	vertex[3].setPosition( -width/2.0f ,  height/2.0f ,  depth/2.0f );
+	vertex[0].setXYZ( -width/2.0f , -height/2.0f ,  depth/2.0f );
+	vertex[1].setXYZ(  width/2.0f , -height/2.0f ,  depth/2.0f );
+	vertex[2].setXYZ(  width/2.0f ,  height/2.0f ,  depth/2.0f );
+	vertex[3].setXYZ( -width/2.0f ,  height/2.0f ,  depth/2.0f );
 
-	vertex[4].setPosition( -width/2.0f , -height/2.0f , -depth/2.0f );
-	vertex[5].setPosition(  width/2.0f , -height/2.0f , -depth/2.0f );
-	vertex[6].setPosition(  width/2.0f ,  height/2.0f , -depth/2.0f );
-	vertex[7].setPosition( -width/2.0f ,  height/2.0f , -depth/2.0f );
+	vertex[4].setXYZ( -width/2.0f , -height/2.0f , -depth/2.0f );
+	vertex[5].setXYZ(  width/2.0f , -height/2.0f , -depth/2.0f );
+	vertex[6].setXYZ(  width/2.0f ,  height/2.0f , -depth/2.0f );
+	vertex[7].setXYZ( -width/2.0f ,  height/2.0f , -depth/2.0f );
 }
 
 void Box::drawFace( int a , int b , int c , int d ){

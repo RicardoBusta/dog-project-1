@@ -9,9 +9,9 @@
 #define VECTOR_H
 #include <cmath>
 
-class Point3;
+#include "point3.h"
 
-class Vector3
+class Vector3:public Point3
 {
 public:
     Vector3();
@@ -25,27 +25,27 @@ public:
     void setUnitary();
 
     // Getters
-    long double getNorma();
+    long double getLength();
     long double getX();
     long double getY();
     long double getZ();
 
     // Get the symmetric vector
-    Vector3 getInverso();
+    Vector3 getInverse();
 
     // Operators overload
-    Vector3 operator=  ( Vector3 );
-    Vector3 operator+  ( Vector3 );
-    Vector3 operator+= ( Vector3 );
-    Vector3 operator-  ( Vector3 );
-    Vector3 operator-= ( Vector3 );
-    Vector3 operator*  ( long double  );
-    Vector3 operator*= ( long double  );
-
+    Vector3 operator=  	( Vector3 );
+    Vector3 operator+  	( Vector3 );
+    Vector3 operator+= 	( Vector3 );
+    Vector3 operator- 	( Vector3 );
+    Vector3 operator-=	( Vector3 );
+    Vector3 operator* 	( long double  );
+    Vector3 operator*=	( long double  );
+    float   operator*	( Point3 ); //dotProduct
+    Vector3 operator^	( Vector3 ); //crossProduct
 private:
     // Main properties
-    long double x , y , z;
-    long double norma;		// This way we avoid recalculating it, everytime we use it
+    long double length;
 
 };
 

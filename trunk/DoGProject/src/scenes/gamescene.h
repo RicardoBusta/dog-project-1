@@ -2,25 +2,30 @@
  * gameScene.h
  *
  *  Created on: 08/09/2010
- *      Author: Cleóbulo
+ *      Author: Cleï¿½bulo
  */
 
 #ifndef GAMESCENE_H_
 #define GAMESCENE_H_
 
 #include "scene.h"
+#include <list>
+using namespace std;
+
+#include "../entities/entity.h"
 
 class GameScene : public Scene
 {
 public:
 	GameScene();
 	~GameScene();
+protected:
+	Frame* camera;
 
+	list<Entity*> entities;
+	void handleEntities();
 private:
-	// Cenario
-	// Inimigos
-	// Herói
-	// Câmera
+
 };
 
 #endif /* GAMESCENE_H_ */

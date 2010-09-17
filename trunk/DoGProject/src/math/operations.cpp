@@ -2,13 +2,13 @@
  * operations.cpp
  *	The implementation of the operations
  *  Created on: 08/09/2010
- *      Author: Cleóbulo
+ *      Author: Cleï¿½bulo
  */
 #include "operations.h"
 #include "point3.h"
 #include "vector3.h"
 
-Vector3 produtoVetorial( Vector3 a , Vector3 b )
+Vector3 crossProduct( Vector3 a , Vector3 b )
 {
     Vector3 temp;
     temp.setVector3((a.getY()*b.getZ()) - (a.getZ()*b.getY()),
@@ -25,14 +25,14 @@ Vector3 normalize( Vector3 a )
     return temp;
 }
 
-long double produtoEscalar( Vector3 a , Vector3 b )
+long double dotProduct( Vector3 a , Vector3 b )
 {
     return (a.getX()*b.getX()) +
            (a.getY()*b.getY()) +
            (a.getZ()*b.getZ());
 }
 
-long double produtoEscalar( Vector3 a , Point3 b )
+long double dotProduct( Vector3 a , Point3 b )
 {
     return (a.getX()*b.getX()) +
            (a.getY()*b.getY()) +

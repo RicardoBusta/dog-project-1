@@ -2,7 +2,7 @@
  * point3.cpp
  *
  *  Created on: Sep 8, 2010
- *      Author: Cleóbulo
+ *      Author: CleÃ³bulo
  */
 #include "point3.h"
 #include "vector3.h"
@@ -17,66 +17,65 @@ Point3::Point3()
 
 Point3::Point3( long double x , long double y , long double z )
 {
-    setPosition( x , y , z );
+    setXYZ( x , y , z );
 }
 
-Point3 Point3::operator*( long double escalar )
+Point3 Point3::operator*( long double n )
 {
     Point3 temp;
-    temp.setX( x * escalar );
-    temp.setY( y * escalar );
-    temp.setZ( z * escalar );
+    temp.setX( x * n );
+    temp.setY( y * n );
+    temp.setZ( z * n );
     return temp;
 }
 
-Point3 Point3::operator*=( long double escalar )
+Point3 Point3::operator*=( long double n )
 {
-    x = x * escalar;
-    y = y * escalar;
-    z = z * escalar;
+    x = x * n;
+    y = y * n;
+    z = z * n;
     return *this;
 }
 
 Point3 Point3::operator+( Point3 ponto )
 {
     Point3 temp;
-    temp.setX( this->x + ponto.getX() );
-    temp.setY( this->y + ponto.getY() );
-    temp.setZ( this->z + ponto.getZ() );
+    temp.setX( this->x + ponto.x );
+    temp.setY( this->y + ponto.y );
+    temp.setZ( this->z + ponto.z );
     return temp;
 }
 
-Vector3 Point3::operator- ( Point3 ponto )
+Vector3 Point3::operator- ( Point3 p )
 {
     Vector3 temp;
-    temp.setVector3( this->x - ponto.getX() , this->y - ponto.getY() , this->z - ponto.getZ() );
+    temp.setVector3( this->x - p.x , this->y - p.y , this->z - p.z );
     return temp;
 }
 
-Point3 Point3::operator+ ( Vector3 vetor )
+Point3 Point3::operator+ ( Vector3 v )
 {
     Point3 temp;
-    temp.setX( vetor.getX() + this->x );
-    temp.setY( vetor.getY() + this->y );
-    temp.setZ( vetor.getZ() + this->z );
+    temp.setX( this->x + v.getX() );
+    temp.setY( v.getY() + this->y );
+    temp.setZ( v.getZ() + this->z );
     return temp;
 }
 
-Point3 Point3::operator- ( Vector3 vetor )
+Point3 Point3::operator- ( Vector3 v )
 {
     Point3 temp;
-    vetor = vetor.getInverso();
-    temp.setX( vetor.getX() + this->x );
-    temp.setY( vetor.getY() + this->y );
-    temp.setZ( vetor.getZ() + this->z );
+    temp.setX( this->x - v.x );
+    temp.setY( this->y - v.y );
+    temp.setZ( this->z - v.z );
     return temp;
 }
 
-bool Point3::operator== ( Point3 ponto ){
+bool Point3::operator== ( Point3 p ){
 
-    if( this->getX() == ponto.getX() and
-        this->getY() == ponto.getY() and
-        this->getZ() == ponto.getZ() )
+    if( this->x == p.x and
+        this->y == p.y and
+        this->z == p.z )
         return true;
 
     return false;
@@ -97,31 +96,31 @@ long double Point3::getZ()
     return this->z;
 }
 
-void Point3::setX( long double x )
+void Point3::setX( long double nx )
 {
-    this->x = x;
+    this->x = nx;
 }
 
-void Point3::setY( long double y )
+void Point3::setY( long double ny )
 {
-    this->y = y;
+    this->y = ny;
 }
 
-void Point3::setZ( long double z )
+void Point3::setZ( long double nz )
 {
-    this->z = z;
+    this->z = nz;
 }
 
-void Point3::setPosition( long double x , long double y , long double z )
+void Point3::setXYZ( long double nx , long double ny , long double nz )
 {
-    this->x = x;
-    this->y = y;
-    this->z = z;
+    this->x = nx;
+    this->y = ny;
+    this->z = nz;
 }
 
-void Point3::setPosition( Point3 coords )
+void Point3::setXYZ( Point3 p )
 {
-    this->x = coords.getX();
-    this->y = coords.getY();
-    this->z = coords.getZ();
+    this->x = p.x;
+    this->y = p.y;
+    this->z = p.z;
 }
