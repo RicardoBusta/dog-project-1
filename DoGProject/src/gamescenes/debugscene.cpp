@@ -8,6 +8,8 @@
 #include "debugscene.h"
 
 #include "../entities/projectile.h"
+#include "../entities/hero.h"
+#include "../entities/box.h"
 
 DebugScene::DebugScene()
 {
@@ -36,8 +38,8 @@ bool DebugScene::prepare()
 	gun->setPosition( Point3(0,40,-10) );
 
 	// Posicionando a c�mera
-	camera.moveOriginW( Vector3( -320.0f , -240.0f , 100.0f ) );
-	camera.setRotationX( -90*16 );
+	camera->moveOriginW( Vector3( -320.0f , -240.0f , 100.0f ) );
+	camera->setRotationX( -90*16 );
 	//camera.setRotationX( 30 );
 
 	Box* cen;
@@ -145,11 +147,11 @@ void DebugScene::logic()
 	// Moving the camera
 	//camera.moveOriginW( Vector3(0,0,-5) );
 
-	if( up ) camera.setRotationX(10);
-	if( down ) camera.setRotationX(-10);
+	//if( up ) ship->rotate(-10,0,0);
+	//if( down ) ship->rotate(10,0,0);
 	float speed = 5;
-	//if( up ) ship->move( Vector3(0,0,-speed) );
-	//if( down ) ship->move( Vector3(0,0,speed) );
+	if( up ) ship->move( Vector3(0,0,-speed) );
+	if( down ) ship->move( Vector3(0,0,speed) );
 	if( right ) ship->move( Vector3(speed,0,0) );
 	if( left ) ship->move( Vector3(-speed,0,0) );
 
@@ -171,7 +173,7 @@ void DebugScene::render()
 	SDL::prepareRender();
 
 	//Position the objects in the camera
-	glMultMatrixf( camera.getMatrixToThis() );
+	glMultMatrixf( camera->getMatrixToThis() );
 
 	// Render all the elements of the scene
 	list<Entity*>::iterator it;
@@ -188,18 +190,4 @@ SceneMessage DebugScene::result()
 	return SCN_END_GAME;
 }
 
-void DebugScene::handleEntities(){
-	list<Entity*>::iterator it;
-	for(it=entities.begin();it!=entities.end();it++){
-		if( !(*it)->isLive() ){
-			if((*it)->isVisible()){
-				(*it)->toggleVisible();
-			}
-			//delete (*it);
-			//entities.remove(it);
-			//delete aux;
-		}else{
-			(*it)->handle();
-		}
-	}
-}
+

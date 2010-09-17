@@ -58,7 +58,7 @@ void Entity::killSons(){
 void Entity::setPosition( Point3 position )
 {
 	//Set the position of the object
-	coords.getOrigin()->setPosition( position );
+	coords.getOrigin()->setXYZ( position );
 }
 
 void Entity::move( Vector3 delta ){

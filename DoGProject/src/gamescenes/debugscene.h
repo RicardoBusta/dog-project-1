@@ -10,11 +10,10 @@
 #define DEBUGSCENE_H_
 
 #include "../scenes/gamescene.h"
-#include "../entities/hero.h"
-#include "../math/frame.h"
-#include "../entities/box.h"
-#include <list>
-using namespace std;
+
+
+class Hero;
+class Box;
 
 class DebugScene : public GameScene
 {
@@ -37,10 +36,8 @@ public:
 
 private:
 	// Some test info
-	Frame camera;
+
 	Hero* ship;
-	list<Entity*> entities;
-	void handleEntities();
 
 	bool up,down,left,right,shooting;
 };
