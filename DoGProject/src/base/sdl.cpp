@@ -174,6 +174,82 @@ MODELO* SDL::loadModel( char* filename )
 	return novo;
 }
 
+// Carrega texturas e retorna um handle
+// Lembrete: criar um gerenciador de texturas, isso aqui sÃ³ carrega
+GLuint SDL::loadTexture(char *fileName)
+{
+	SDL_Surface *texSurface = NULL;		// Imagem da textura
+	GLuint textureHandle = NULL;		// Id opengl da textura
+	GLenum texFormat = NULL;			// Formato da imagem
+	GLint nColors = NULL;				// RGB ou RGBA?
+
+	// Carrega a surface com a imagem
+	texSurface = loadImage(fileName);
+
+	if(texSurface)	// Carregou?
+	{
+		// Opcional: verificar se é NPOT(non power of two)
+		// Acho descenessário, pelo que li só placas muito antigas
+		// tem problemas com isso
+		nColors = texSurface->format->BytesPerPixel;
+		if(nColors == 4)	// Alpha
+		{
+			if(texSurface->format->Rmask == 0x000000ff)
+			{
+				texFormat = GL_RGBA;
+			}
+			else
+			{
+				texFormat = GL_BGRA;
+			}
+		}
+		else if(nColors == 3)	// Sem Alpha
+		{
+			if(texSurface->format->Rmask == 0x000000ff)
+			{
+				texFormat = GL_RGB;
+			}
+			else
+			{
+				texFormat = GL_BGR;
+			}
+
+		}
+		// Opcional: verificar se não é truecolor. Necessário?
+		// Podemos, gerar o handle, caso queiram.
+		// Acho melhor deixar o opengl fazer isso.
+
+		// Quantidade de handles gerados e variável que armazenará.
+		glGenTextures(1, &textureHandle);
+		// Torna aquele target um alias para a textura.
+		// Até que outra seja bound ou essa seja deleted
+		glBindTexture(GL_TEXTURE_2D, textureHandle);
+
+		// Vamos usar MIPMAP?
+		glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR );
+		glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR );
+
+		// Tem que ver se quer que a textura seja repetida ou "clampeada"
+		// Modificar aqui com glTexParameterf usando o parametro GL_TEXTURE_WRAP_ S   e   T
+
+		// Carrega a surface na textura e gera mipmaps automaticamente
+		int result = gluBuild2DMipmaps(GL_TEXTURE_2D, nColors, texSurface->w, texSurface->h,
+							texFormat, GL_UNSIGNED_BYTE, texSurface->pixels);
+
+		if(result)
+			printf("Falha ao carregar textura.\nGLU Error: %s\n", gluErrorString(result));
+		// Limpa memória
+		SDL_FreeSurface(texSurface);
+
+		printf("Sucesso no carregamento da textura.\n");
+	}
+	else	// Erro ao carregar surface
+	{
+		printf("Falha ao carregar imagem.\n");
+		return NULL;		// PODE ser necessário criar uma flag
+	}
+}
+
 void SDL::timerStart()
 {
    // Get the current ticks
