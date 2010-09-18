@@ -175,7 +175,12 @@ MODELO* SDL::loadModel( char* filename )
 }
 
 // Carrega texturas e retorna um handle
-// Lembrete: criar um gerenciador de texturas, isso aqui sÃ³ carrega
+// Lembrete: criar um gerenciador de texturas, isso aqui só carrega
+// Deve ser necessário criar parametros opcionais para o carregamento de textura
+// Clamp, mipmap etc
+// Sugestão: pra reduzir o tamanho da função, pode criar um parametro alpha, e
+// quem carregar a textura(provavelmente sabe se tem transparencia) passa pra função
+// Outro ponto: podemos retirar a verificação se é ou não BGR
 GLuint SDL::loadTexture(char *fileName)
 {
 	SDL_Surface *texSurface = NULL;		// Imagem da textura
@@ -189,8 +194,6 @@ GLuint SDL::loadTexture(char *fileName)
 	if(texSurface)	// Carregou?
 	{
 		// Opcional: verificar se é NPOT(non power of two)
-		// Acho descenessário, pelo que li só placas muito antigas
-		// tem problemas com isso
 		nColors = texSurface->format->BytesPerPixel;
 		if(nColors == 4)	// Alpha
 		{
@@ -216,9 +219,9 @@ GLuint SDL::loadTexture(char *fileName)
 
 		}
 		// Opcional: verificar se não é truecolor. Necessário?
+
 		// Podemos, gerar o handle, caso queiram.
 		// Acho melhor deixar o opengl fazer isso.
-
 		// Quantidade de handles gerados e variável que armazenará.
 		glGenTextures(1, &textureHandle);
 		// Torna aquele target um alias para a textura.
@@ -248,6 +251,7 @@ GLuint SDL::loadTexture(char *fileName)
 		printf("Falha ao carregar imagem.\n");
 		return NULL;		// PODE ser necessário criar uma flag
 	}
+	return textureHandle;
 }
 
 void SDL::timerStart()

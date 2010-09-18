@@ -37,7 +37,7 @@ void Box::setData( float width , float height , float depth )
 	this->height = height;
 	this->depth  = depth;
 	//Gambiarra pra testar textures
-	textura = SDL::loadTexture("logo.png");
+	textura = SDL::loadTexture("squareTex.jpg");
 	// Set the vertex positions
 	vertex[0].setXYZ( -width/2.0f , -height/2.0f ,  depth/2.0f );
 	vertex[1].setXYZ(  width/2.0f , -height/2.0f ,  depth/2.0f );
@@ -52,29 +52,30 @@ void Box::setData( float width , float height , float depth )
 
 void Box::drawFace( int a , int b , int c , int d )
 {
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, textura);
 
 	glTexCoord2d(0.0, 0.0);
-	glColor3f( vr[a] , vg[a] , vb[a] );
+	//glColor3f( vr[a] , vg[a] , vb[a] );
 	glVertex3f( vertex[a].getX() ,  vertex[a].getY() ,  vertex[a].getZ() );
 
 	glTexCoord2d(1.0,0.0);
-	glColor3f( vr[b] , vg[b] , vb[b] );
+	//glColor3f( vr[b] , vg[b] , vb[b] );
 	glVertex3f( vertex[b].getX() ,  vertex[b].getY() ,  vertex[b].getZ() );
 
 	glTexCoord2d(1.0,1.0);
-	glColor3f( vr[c] , vg[c] , vb[c] );
+	//glColor3f( vr[c] , vg[c] , vb[c] );
 	glVertex3f( vertex[c].getX() ,  vertex[c].getY() ,  vertex[c].getZ() );
 
 	glTexCoord2d(0.0,1.0);
-	glColor3f( vr[d] , vg[d] , vb[d] );
+	//glColor3f( vr[d] , vg[d] , vb[d] );
 	glVertex3f( vertex[d].getX() ,  vertex[d].getY() ,  vertex[d].getZ() );
 
 }
 
 void Box::draw()
 {
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, textura);
+
 	glBegin( GL_QUADS );
 		drawFace(0,1,2,3);
 		drawFace(4,7,6,5);
@@ -83,6 +84,7 @@ void Box::draw()
 		drawFace(7,3,2,6);
 		drawFace(0,4,5,1);
 	glEnd();
+	glDisable(GL_TEXTURE_2D);
 }
 
 void Box::handleSelf()
