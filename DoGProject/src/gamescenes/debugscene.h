@@ -11,7 +11,6 @@
 
 #include "../scenes/gamescene.h"
 
-
 class Hero;
 class Box;
 
@@ -36,7 +35,6 @@ public:
 
 private:
 	// Some test info
-
 	Hero* ship;
 
 	bool up,down,left,right,shooting;

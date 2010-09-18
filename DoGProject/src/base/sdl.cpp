@@ -85,6 +85,23 @@ bool SDL::setAudio()
     {
         return false;
     }
+
+    //initialize SDL_Mix sound system
+    if( Mix_OpenAudio(DEFAULT_SOUND_FREQUENCY, MIX_DEFAULT_FORMAT, 2, DEFAULT_CHUNK_SIZE) < 0)
+    {
+    	return false;
+    }
+
+    /*
+    //set mp3 support for SDL_Mix
+    if( Mix_Init(MIX_INIT_MP3) & MIX_INIT_MP3 != MIX_INIT_MP3 )
+    {
+    	return false;
+    }
+    */
+
+    atexit(Mix_CloseAudio);
+
     // Audio initialized with sucess
     return true;
 }
@@ -131,15 +148,29 @@ IMAGEM* SDL::loadImage( char* filename )
     return otm;
 }
 
-MUSICA* SDL::loadMusic( char* filename )
+//loads background music from the "filename" ile
+MUSICA* SDL::loadBackgroundMusic( char* filename )
 {
-	MUSICA* nova;
+	MUSICA* nova = NULL;
+
+	//obs: the file type **MUST** be WAVE, AIFF, RIFF, OGG or VOC
+	nova = Mix_LoadMUS(filename);
 	return nova;
+}
+
+//loads a sound from the "filename" file
+SOM* SDL::loadSound( char *filename )
+{
+	SOM* novo = NULL;
+
+	//obs: the file type **MUST** be WAVE, MOD, RIFF, OGG, MP3 or VOC
+	novo = Mix_LoadWAV(filename);
+	return novo;
 }
 
 MODELO* SDL::loadModel( char* filename )
 {
-	MODELO* novo;
+	MODELO* novo = NULL;
 	return novo;
 }
 
@@ -335,4 +366,33 @@ void SDL::switchBuffers()
 {
 	// Swap the buffers
 	SDL_GL_SwapBuffers();
+}
+
+//plays a background music defined by "music" argument
+bool SDL::playBackgroundMusic(MUSICA *music)
+{
+	//plays "music" in loop
+	if(Mix_PlayMusic(music, -1) < 0)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+//stops the execution of the currently set music
+void SDL::stopBackgroundMusic()
+{
+	Mix_HaltMusic();
+}
+
+//plays the sound defined by "som" argument
+bool SDL::playSound(SOM* som)
+{
+	if(Mix_PlayChannel(-1, som, 0) < 0)
+	{
+		return false;
+	}
+
+	return true;
 }

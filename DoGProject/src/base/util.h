@@ -20,7 +20,10 @@ class SDL;
 #define DEFAULT_FPS 60
 #define IMAGEM SDL_Surface
 #define CARREGAR_IMAGEM IMG_load
-#define MUSICA void*
+#define MUSICA Mix_Music
+#define SOM Mix_Chunk
+#define DEFAULT_SOUND_FREQUENCY 22050
+#define DEFAULT_CHUNK_SIZE 1024
 #define MODELO void*
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
