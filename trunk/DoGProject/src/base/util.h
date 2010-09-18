@@ -4,16 +4,6 @@
  *  Created on: 01/09/2010
  *      Author: Cleobulo
  */
-#define DEBUG 1				// Ainda estamos debugando, sugestão do bustamante
-
-void debug(char *data)
-{
-	#ifdef DEBUG
-	printf("%s", data);
-	#endif
-}
-
-
 
 #ifndef UTIL_H_
 #define UTIL_H_
@@ -21,6 +11,8 @@ void debug(char *data)
 class SDL;
 
 #include <list>
+#include <iostream>
+using namespace std;
 
 // Redefinitions
 #ifndef REDEFINITIONS_HERE
@@ -42,6 +34,9 @@ class SDL;
 
 #endif
 
+#define DEBUG 1				// Ainda estamos debugando, sugestão do bustamante
+
+void debug(string s0="",string s1="", string s2="", string s3="", string s4="", string s5="", string s6="", string s7="", string s8="", string s9="");
 
 // Enumerations
 

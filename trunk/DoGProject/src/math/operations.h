@@ -2,8 +2,8 @@
  * operations.h
  *	The main operations manipulating points and vectors
  *  Created on: 08/09/2010
- *      Author: Cleóbulo
- */
+ *      Author: Cleï¿½bulo
+ *
 
 #ifndef OPERATIONS_H_
 #define OPERATIONS_H_
@@ -25,5 +25,6 @@ long double produtoEscalar( Vector3 a , Vector3 b);
 
 // Dot-Product overload
 long double produtoEscalar( Vector3 a , Point3 b);
+*/
+//#endif /* OPERATIONS_H_ */
 
-#endif /* OPERATIONS_H_ */

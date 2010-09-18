@@ -14,6 +14,8 @@ class SoundEffect: public Content {
 public:
 	SoundEffect();
 	virtual ~SoundEffect();
+
+	bool load();
 };
 
 #endif /* SOUNDEFFECT_H_ */
