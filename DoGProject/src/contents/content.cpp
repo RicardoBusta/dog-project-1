@@ -7,11 +7,11 @@
 
 #include "content.h"
 
-content::content() {
+Content::Content() {
 	// TODO Auto-generated constructor stub
 
 }
 
-content::~content() {
+Content::~Content() {
 	// TODO Auto-generated destructor stub
 }
