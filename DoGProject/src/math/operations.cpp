@@ -3,7 +3,7 @@
  *	The implementation of the operations
  *  Created on: 08/09/2010
  *      Author: Cle�bulo
- */
+ *
 #include "operations.h"
 #include "point3.h"
 #include "vector3.h"
@@ -38,3 +38,4 @@ long double dotProduct( Vector3 a , Point3 b )
            (a.getY()*b.getY()) +
            (a.getZ()*b.getZ());
 }
+*/

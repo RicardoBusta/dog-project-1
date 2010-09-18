@@ -17,28 +17,28 @@ Frame::Frame()
     angleX = angleY = angleZ = 0;
 }
 
-Frame::Frame( Point3 origin , Vector3 i , Vector3 j , Vector3 k )
+Frame::Frame( Point3 no , Vector3 ni , Vector3 nj , Vector3 nk )
 {
 	//The non-default initializer
-    this->origin = origin;
-    this->i = i;
-    this->j = j;
-    this->k = k;
+    this->origin = no;
+    this->i = ni;
+    this->j = nj;
+    this->k = nk;
 }
 
-void Frame::setI( Vector3 i )
+void Frame::setI( Vector3 ni )
 {
-    this->i = i;
+    this->i = ni;
 }
 
-void Frame::setJ( Vector3 )
+void Frame::setJ( Vector3 nj )
 {
-    this->j = j;
+    this->j = nj;
 }
 
-void Frame::setK( Vector3 )
+void Frame::setK( Vector3 nk )
 {
-    this->k = k;
+    this->k = nk;
 }
 
 Vector3* Frame::getI()
@@ -84,7 +84,7 @@ Point3 Frame::convertP( Point3 old , GLfloat* matrix )
 void Frame::calculateRotation()
 {
 	// #-------------------------------------------------------------------------------------#
-	// This must be redone
+	//This must be redone
     GLfloat aux[16];
     glMatrixMode(GL_MODELVIEW_MATRIX);
 

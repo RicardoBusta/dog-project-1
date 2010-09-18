@@ -15,3 +15,7 @@ Model::Model() {
 Model::~Model() {
 	// TODO Auto-generated destructor stub
 }
+
+bool Model::load(){
+
+}

@@ -14,6 +14,10 @@ class Model: public Content {
 public:
 	Model();
 	virtual ~Model();
+
+	void draw();
+
+	bool load();
 };
 
 #endif /* MODEL_H_ */

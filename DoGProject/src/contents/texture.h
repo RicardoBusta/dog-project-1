@@ -14,6 +14,8 @@ class Texture: public Content {
 public:
 	Texture();
 	virtual ~Texture();
+
+	bool load();
 };
 
 #endif /* TEXTURE_H_ */

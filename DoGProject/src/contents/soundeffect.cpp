@@ -15,3 +15,7 @@ SoundEffect::SoundEffect() {
 SoundEffect::~SoundEffect() {
 	// TODO Auto-generated destructor stub
 }
+
+bool SoundEffect::load(){
+
+}
