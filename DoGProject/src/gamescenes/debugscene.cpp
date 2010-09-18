@@ -2,7 +2,7 @@
  * debugscene.cpp
  *
  *  Created on: 08/09/2010
- *      Author: Cle�bulo
+ *      Author: Everybody
  */
 
 #include "debugscene.h"
