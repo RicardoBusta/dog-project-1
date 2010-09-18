@@ -22,11 +22,20 @@ DebugScene::~DebugScene() {
 
 bool DebugScene::load()
 {
+#ifdef LINUX
 	//carregando musica de fundo
-	this->backgroundMusic = SDL::loadBackgroundMusic("sounds/background.ogg");
+	this->backgroundMusic = SDL::loadBackgroundMusic("../sounds/background.ogg");
 
 	//carrega efeito sonoro de tiro
-	this->efeitosSonoros.push_back(SDL::loadSound("sounds/laser.ogg"));
+	this->efeitosSonoros.push_back(SDL::loadSound("../sounds/laser.ogg"));
+#endif
+#ifdef WIN
+	//carregando musica de fundo
+	this->backgroundMusic = SDL::loadBackgroundMusic("..\sounds\background.ogg");
+
+	//carrega efeito sonoro de tiro
+	this->efeitosSonoros.push_back(SDL::loadSound("..\sounds\laser.ogg"));
+#endif
 
 	return true;
 }
