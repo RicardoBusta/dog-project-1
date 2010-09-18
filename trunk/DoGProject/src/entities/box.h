@@ -33,6 +33,8 @@ private:
 
 	float vr[8],vg[8],vb[8];
 	Point3 vertex[8];
+	// Gambiarra pra texturas
+	GLuint textura;
 };
 
 #endif /* BOX_H_ */

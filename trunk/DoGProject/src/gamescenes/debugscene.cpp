@@ -24,17 +24,17 @@ bool DebugScene::load()
 {
 #ifdef LINUX
 	//carregando musica de fundo
-	this->backgroundMusic = SDL::loadBackgroundMusic("../sounds/background.ogg");
+	this->backgroundMusic = SDL::loadBackgroundMusic("/sounds/background.ogg");
 
 	//carrega efeito sonoro de tiro
-	this->efeitosSonoros.push_back(SDL::loadSound("../sounds/laser.ogg"));
+	this->efeitosSonoros.push_back(SDL::loadSound("/sounds/laser.ogg"));
 #endif
 #ifdef WIN
 	//carregando musica de fundo
-	this->backgroundMusic = SDL::loadBackgroundMusic("..\sounds\background.ogg");
+	this->backgroundMusic = SDL::loadBackgroundMusic("\sounds\background.ogg");
 
 	//carrega efeito sonoro de tiro
-	this->efeitosSonoros.push_back(SDL::loadSound("..\sounds\laser.ogg"));
+	this->efeitosSonoros.push_back(SDL::loadSound("\sounds\laser.ogg"));
 #endif
 
 	return true;
@@ -175,10 +175,10 @@ void DebugScene::logic()
 
 	if( shooting ){
 		//toca o efeito sonoro de tiro
-		if(!(SDL::playSound(efeitosSonoros[0])))
+		/*if(!(SDL::playSound(efeitosSonoros[0])))
 		{
 			printf("Erro ao tocar o som\n");
-		}
+		}*/
 
 		if(ship->shootCoolDown<=0){
 			Projectile *p = new Projectile( Vector3(0,0,-10) );

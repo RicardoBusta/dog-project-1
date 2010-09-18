@@ -51,6 +51,7 @@ class SDL{
 	static MUSICA* loadBackgroundMusic( char* filename );
 	static SOM* loadSound(char *filename);
 	static MODELO* loadModel( char* filename );
+	static GLuint loadTexture(char *fileName);
 
 	// Timer Interface
 	static void timerStart();
