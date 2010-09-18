@@ -14,6 +14,7 @@
 #include <SDL/SDL_opengl.h>
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_ttf.h>
+#include <SDL/SDL_mixer.h>
 
 #include <list>
 using namespace std;
@@ -47,7 +48,8 @@ class SDL{
 
 	// Carregando Arquivos
 	static IMAGEM* loadImage( char* filename );
-	static MUSICA* loadMusic( char* filename );
+	static MUSICA* loadBackgroundMusic( char* filename );
+	static SOM* loadSound(char *filename);
 	static MODELO* loadModel( char* filename );
 
 	// Timer Interface
@@ -69,6 +71,11 @@ class SDL{
 	// Render functions
 	static void prepareRender();
 	static void switchBuffers();
+
+	//sound and music functions
+	static bool playBackgroundMusic(MUSICA* );
+	static void stopBackgroundMusic();
+	static bool playSound(SOM* );
 
     private:
 	// Screen surface

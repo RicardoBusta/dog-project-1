@@ -10,6 +10,7 @@
 
 #include "scene.h"
 #include <list>
+#include <vector>
 using namespace std;
 
 #include "../entities/entity.h"
@@ -23,6 +24,9 @@ protected:
 	Frame* camera;
 
 	list<Entity*> entities;
+	MUSICA *backgroundMusic;  //musica de background
+	vector<SOM*> efeitosSonoros; //vetor de efeitos sonoros usados na fase
+
 	void handleEntities();
 private:
 

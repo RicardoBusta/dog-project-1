@@ -14,6 +14,7 @@
 DebugScene::DebugScene()
 {
 	up = down = left = right = shooting = false;
+	backgroundMusic = NULL;
 }
 
 DebugScene::~DebugScene() {
@@ -21,6 +22,11 @@ DebugScene::~DebugScene() {
 
 bool DebugScene::load()
 {
+	//carregando musica de fundo
+	this->backgroundMusic = SDL::loadBackgroundMusic("sounds/background.ogg");
+
+	//carrega efeito sonoro de tiro
+	this->efeitosSonoros.push_back(SDL::loadSound("sounds/laser.ogg"));
 
 	return true;
 }
@@ -62,6 +68,9 @@ bool DebugScene::prepare()
 		cen->move(Vector3(-80,-100, -i*260-100));
 		this->entities.push_back( cen );
 	}
+
+	//inicia a execucao da musica de fundo
+	SDL::playBackgroundMusic(backgroundMusic);
 
 	return true;
 }
@@ -156,6 +165,12 @@ void DebugScene::logic()
 	if( left ) ship->move( Vector3(-speed,0,0) );
 
 	if( shooting ){
+		//toca o efeito sonoro de tiro
+		if(!(SDL::playSound(efeitosSonoros[0])))
+		{
+			printf("Erro ao tocar o som\n");
+		}
+
 		if(ship->shootCoolDown<=0){
 			Projectile *p = new Projectile( Vector3(0,0,-10) );
 			p->setPosition( *ship->getPosition() );
