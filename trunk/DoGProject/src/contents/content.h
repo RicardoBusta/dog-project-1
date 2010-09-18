@@ -12,15 +12,15 @@
 
 using namespace std;
 
-enum {CONTENT_TEXTURE,CONTENT_MODEL,CONTENT_SOUND};
+enum CONTENT_{CONTENT_TEXTURE,CONTENT_MODEL,CONTENT_SOUND};
 
-class content {
+class Content {
 private:
 	string label;
-	int type; /* enum CONTENT_ */
+	enum CONTENT_ type; /* enum CONTENT_ */
 public:
-	content();
-	virtual ~content();
+	Content();
+	virtual ~Content();
 
 	string getLabel();
 	virtual void load()=0; //Calls SDL::load functions depending on the type of information needed
