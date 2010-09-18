@@ -4,6 +4,16 @@
  *  Created on: 01/09/2010
  *      Author: Cleobulo
  */
+#define DEBUG 1				// Ainda estamos debugando, sugestão do bustamante
+
+void debug(char *data)
+{
+	#ifdef DEBUG
+	printf("%s", data);
+	#endif
+}
+
+
 
 #ifndef UTIL_H_
 #define UTIL_H_
