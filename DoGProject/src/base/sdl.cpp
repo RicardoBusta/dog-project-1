@@ -133,7 +133,7 @@ void SDL::projection( int width , int height )
    glMatrixMode(GL_MODELVIEW);
 }
 
-IMAGE* SDL::loadImage( char* filename )
+IMAGE* SDL::loadImage( const char* filename )
 {
     IMAGE *temp = NULL, *otm = NULL;
 
@@ -181,7 +181,7 @@ MODEL* SDL::loadModel( char* filename )
 // Sugestão: pra reduzir o tamanho da função, pode criar um parametro alpha, e
 // quem carregar a textura(provavelmente sabe se tem transparencia) passa pra função
 // Outro ponto: podemos retirar a verificação se é ou não BGR
-GLuint SDL::loadTexture(char *fileName)
+GLuint SDL::loadTexture(const char *fileName)
 {
 	SDL_Surface *texSurface = NULL;		// Imagem da textura
 	GLuint textureHandle = NULL;		// Id opengl da textura
@@ -252,6 +252,13 @@ GLuint SDL::loadTexture(char *fileName)
 		return NULL;		// PODE ser necessário criar uma flag
 	}
 	return textureHandle;
+}
+
+void SDL::removeTexture(GLsizei n, const GLuint *textures)
+{
+	// Não nulo e maior que 0
+	if(textures && n > 0)
+		glDeleteTextures(n, textures);
 }
 
 void SDL::timerStart()

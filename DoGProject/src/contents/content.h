@@ -10,6 +10,8 @@
 
 #include <string>
 #include <list>
+#include "../base/sdl.h"
+
 using namespace std;
 
 class Scene;
@@ -39,7 +41,8 @@ public:
 	string getLabel(); //Obtain the string that identifies this content.
 	void setLabel(string label);
 
-	virtual bool load()=0; //Calls SDL::load functions depending on the type of information needed
+	virtual bool load(std::string &)=0; //Calls SDL::load functions depending on the type of information needed
+
 };
 
 #endif /* CONTENT_H_ */

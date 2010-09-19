@@ -9,6 +9,8 @@
 #define BOX_H_
 
 #include "entity.h"
+#include "../contents/contentmanager.h"
+#include "../contents/texture.h"
 
 class Box : public Entity {
 public:
@@ -34,7 +36,7 @@ private:
 	float vr[8],vg[8],vb[8];
 	Point3 vertex[8];
 	// Gambiarra pra texturas
-	GLuint textura;
+	Content *woodTex;
 };
 
 #endif /* BOX_H_ */

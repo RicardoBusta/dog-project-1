@@ -8,14 +8,19 @@
 #ifndef TEXTURE_H_
 #define TEXTURE_H_
 
+#include <SDL/SDL_opengl.h>
 #include "content.h"
 
 class Texture: public Content {
 public:
-	Texture();
+	Texture(std::string label, std::string path = "");	// identificador do content e caminho da textura
+	bool load(std::string &path);						// Carrega textura
+	GLuint getHandle();
 	virtual ~Texture();
 
-	bool load();
+
+private:
+	GLuint handle;	// handle para o identificador da textura
 };
 
 #endif /* TEXTURE_H_ */

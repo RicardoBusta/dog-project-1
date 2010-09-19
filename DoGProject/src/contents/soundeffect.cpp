@@ -16,7 +16,7 @@ SoundEffect::~SoundEffect() {
 	// TODO Auto-generated destructor stub
 }
 
-bool SoundEffect::load(){
+bool SoundEffect::load(std::string &){
 	// TODO Load a sound effect
 	return false;
 }

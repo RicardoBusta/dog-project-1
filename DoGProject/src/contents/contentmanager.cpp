@@ -5,13 +5,13 @@
  *      Author: fernando
  */
 
-#include "ContentManager.h"
+#include "contentmanager.h"
 
 list<Content*> ContentManager::contents;
 list<Content*>::iterator ContentManager::it;
 
 // Retorna um content, NULL caso inexistente
-Content* ContentManager::getContent(CONTENT_ type, std::string &label)
+Content* ContentManager::getContent(CONTENT_ type, std::string label)
 {
 	bool success = searchContent(type, label);
 	if(success)
@@ -19,13 +19,21 @@ Content* ContentManager::getContent(CONTENT_ type, std::string &label)
 	return NULL;
 }
 
-bool ContentManager::removeContent(CONTENT_ type, std::string &label)	// Remove um content, false caso nao remova
+bool ContentManager::removeContent(CONTENT_ type, std::string label)	// Remove um content, false caso nao remova
 {
 	bool success = searchContent(type, label);
-	if(success && (*it)->used() == false)
+	if(success)
 	{
-		contents.erase(it);
-		return true;
+		if((*it)->used() == false)
+		{
+			contents.erase(it);
+			return true;
+		}
+		else
+		{
+			(*it)->removeUser();
+			return false;
+		}
 	}
 	return false;
 }
@@ -33,16 +41,20 @@ bool ContentManager::removeContent(CONTENT_ type, std::string &label)	// Remove 
 bool ContentManager::addContent(Content *content)
 {
 	bool found = searchContent(content->getType(), content->getLabel());
-	if(content and found == false)
+	if(content)
 	{
-		contents.push_back(content);
-		return true;
+		if(found == false)
+		{
+			contents.push_back(content);
+			return true;
+		}
+		else
+		{
+			if(content) (*it)->addUser();
+			return false;
+		}
 	}
-	else
-	{
-		if(content) (*it)->addUser();
-		return false;
-	}
+	return false;
 }
 
 // Busca um Content, NULL caso inexistente

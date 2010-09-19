@@ -17,7 +17,7 @@ public:
 
 	void draw();
 
-	bool load();
+	bool load(std::string &);
 };
 
 #endif /* MODEL_H_ */
