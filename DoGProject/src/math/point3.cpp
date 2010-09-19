@@ -6,7 +6,6 @@
  */
 #include "point3.h"
 #include "vector3.h"
-#include "operations.h"
 
 Point3::Point3()
 {
@@ -15,12 +14,12 @@ Point3::Point3()
     this->z = 0.0;
 }
 
-Point3::Point3( long double x , long double y , long double z )
+Point3::Point3( float x , float y , float z )
 {
     setXYZ( x , y , z );
 }
 
-Point3 Point3::operator*( long double n )
+Point3 Point3::operator*( float n )
 {
     Point3 temp;
     temp.setX( x * n );
@@ -29,11 +28,40 @@ Point3 Point3::operator*( long double n )
     return temp;
 }
 
-Point3 Point3::operator*=( long double n )
+Point3 Point3::operator/( float n )
+{
+    Point3 temp;
+    if(n!=0){
+    	temp.setX( x / n );
+    	temp.setY( y / n );
+    	temp.setZ( z / n );
+    }else{
+    	temp.setX( 0 );
+    	temp.setY( 0 );
+    	temp.setZ( 0 );
+    }
+    return temp;
+}
+
+Point3 Point3::operator*=( float n )
 {
     x = x * n;
     y = y * n;
     z = z * n;
+    return *this;
+}
+
+Point3 Point3::operator/=( float n )
+{
+	if(n!=0){
+		x = x / n;
+		y = y / n;
+		z = z / n;
+	}else{
+		x = 0;
+		y = 0;
+		z = 0;
+	}
     return *this;
 }
 
@@ -81,37 +109,37 @@ bool Point3::operator== ( Point3 p ){
     return false;
 }
 
-long double Point3::getX()
+float Point3::getX()
 {
     return this->x;
 }
 
-long double Point3::getY()
+float Point3::getY()
 {
     return this->y;
 }
 
-long double Point3::getZ()
+float Point3::getZ()
 {
     return this->z;
 }
 
-void Point3::setX( long double nx )
+void Point3::setX( float nx )
 {
     this->x = nx;
 }
 
-void Point3::setY( long double ny )
+void Point3::setY( float ny )
 {
     this->y = ny;
 }
 
-void Point3::setZ( long double nz )
+void Point3::setZ( float nz )
 {
     this->z = nz;
 }
 
-void Point3::setXYZ( long double nx , long double ny , long double nz )
+void Point3::setXYZ( float nx , float ny , float nz )
 {
     this->x = nx;
     this->y = ny;
