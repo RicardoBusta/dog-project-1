@@ -62,7 +62,7 @@ bool ContentManager::searchContent(CONTENT_ type, std::string label)
 {
 	for (it = contents.begin(); it != contents.end(); it++)
 	{
-		if(type == (*it)->getType() && label.compare((*it)->getLabel()))
+		if(type == (*it)->getType() && label == (*it)->getLabel())
 			return true;
 	}
 	return false;
