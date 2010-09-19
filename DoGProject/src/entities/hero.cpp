@@ -24,12 +24,38 @@ void Hero::handleSelf()
 		shootCoolDown--;
 }
 
+void Hero::triangle(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3){
+	glVertex3f(x1,y1,z1);
+	glVertex3f(x2,y2,z2);
+	glVertex3f(x3,y3,z3);
+}
+
 void Hero::draw()
 {
 	// The entity color
 	glColor3f( this->color.r , this->color.g , this->color.b );
 
-	// Pyramid like
+	//sca 5 5 5
+	//cen 0 0 0.7
+	glScalef(50,50,50);
+
+	glBegin(GL_TRIANGLES);
+		//BRIDGE
+		glColor3f(0,0.7,1);
+		triangle( 0, 0, 0, -0.25, 0, 1, 0, 0.25, 1 );
+		triangle( 0, 0, 0, 0, 0.25, 1, 0.25, 0, 1 );
+
+		//ENGINE
+		glColor3f(1,0.3,0);
+		triangle( 0, 0.25, 1, -0.25, 0, 1, 0.25, 0, 1 );
+
+		//WINGS
+		glColor3f(0.8,0.8,0.8);
+		triangle( 0, 0, 0.5, -0.75, 0, 1, 0.75, 0, 1 );
+		triangle( 0, 0, 0.5, 0.75, 0, 1, -0.75, 0, 1 );
+		triangle( 0, 0, 0, 0.25, 0, 1, -0.25, 0, 1 );
+	glEnd();
+/*
 	glBegin( GL_TRIANGLE_FAN );
 		glColor3f( 0.4 , 0.4 , 0.4 );
 		glVertex3f(  0,
@@ -72,5 +98,5 @@ void Hero::draw()
 		glVertex3f( -25.0f,
 					 25.0f,
 					 25.0f);
-	glEnd();
+	glEnd();*/
 }

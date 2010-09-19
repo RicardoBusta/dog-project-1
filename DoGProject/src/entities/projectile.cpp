@@ -19,12 +19,50 @@ Projectile::~Projectile() {
 }
 
 void Projectile::draw(){
-	glBegin(GL_QUADS);
-		glVertex3f(0,0,0);
-		glVertex3f(10,0,0);
-		glVertex3f(10,0,-10);
-		glVertex3f(0,0,-10);
-	glEnd();
+	glScalef(0.2,0.2,0.2);
+	glBegin( GL_TRIANGLE_FAN );
+			glColor3f( 0.4 , 0.4 , 0.4 );
+			glVertex3f(  0,
+						 0,
+						-25.0f );
+			glColor3f( 0.7 , 0.7 , 0.7 );
+			glVertex3f( -25.0f,
+						 25.0f,
+						 25.0f);
+			glColor3f( 0.6 , 0.6 , 0.6 );
+			glVertex3f(  25.0f,
+						 25.0f,
+						 25.0f);
+			glColor3f( 0.5 , 0.5 , 0.5 );
+			glVertex3f(  25.0f,
+						-25.0f,
+						 25.0f);
+			glColor3f( 0.8 , 0.8 , 0.8 );
+			glVertex3f( -25.0f,
+						-25.0f,
+						 25.0f);
+			glColor3f( 0.7 , 0.7 , 0.7 );
+			glVertex3f( -25.0f,
+						 25.0f,
+						 25.0f);
+		glEnd();
+
+		// The bottom of the pyramid
+		glBegin( GL_QUADS );
+
+			glVertex3f( -25.0f,
+						-25.0f,
+						 25.0f);
+			glVertex3f(  25.0f,
+						-25.0f,
+						 25.0f);
+			glVertex3f(	 25.0f,
+						 25.0f,
+						 25.0f);
+			glVertex3f( -25.0f,
+						 25.0f,
+						 25.0f);
+		glEnd();
 }
 
 void Projectile::handleSelf(){
