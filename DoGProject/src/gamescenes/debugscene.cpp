@@ -85,6 +85,7 @@ bool DebugScene::prepare()
 		this->entities.push_back( cen );
 	}
 
+	//TODO remodelar de forma que não seja necessário fazer esse cast
 	SoundEffect *fundo = (SoundEffect*)ContentManager::getContent(CONTENT_SOUND, "fundo");
 	fundo->play(INF_LOOP);
 
@@ -190,6 +191,7 @@ void DebugScene::logic()
 
 	if( shooting ){
 		//toca o efeito sonoro de tiro
+		//TODO remodelar de forma que não seja necessário fazer esse cast
 		tiro = (SoundEffect*)ContentManager::getContent(CONTENT_SOUND, "tiro");
 		tiro->play(PLAY_ONCE);
 
