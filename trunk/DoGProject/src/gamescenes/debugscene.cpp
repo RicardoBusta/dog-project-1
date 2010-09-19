@@ -55,7 +55,7 @@ bool DebugScene::prepare()
 
 	// Posicionando a c�mera
 	camera->moveOriginW( Vector3( -320.0f , -240.0f , 100.0f ) );
-	camera->setRotationX( -90*16 );
+	camera->setRotationX( -90 );
 	//camera.setRotationX( 30 );
 
 	Box* cen;
@@ -169,8 +169,11 @@ void DebugScene::logic()
 	//if( up ) ship->rotate(-10,0,0);
 	//if( down ) ship->rotate(10,0,0);
 	float speed = 5;
-	if( up ) ship->move( Vector3(0,0,-speed) );
-	if( down ) ship->move( Vector3(0,0,speed) );
+	//if( up ) ship->move( Vector3(0,0,-speed) );
+	//if( down ) ship->move( Vector3(0,0,speed) );
+	if( up ) camera->setRotationX(1);
+	if( down ) camera->setRotationX(-1);
+	cout << camera->getRotationX() << endl;
 	if( right ) ship->move( Vector3(speed,0,0) );
 	if( left ) ship->move( Vector3(-speed,0,0) );
 
@@ -205,8 +208,8 @@ void DebugScene::render()
 	for(it=entities.begin();it!=entities.end();it++){
 		(*it)->render();
 	}
-	// Switch the buffers
-	SDL::switchBuffers();
+	// Swap the buffers
+	SDL::swapBuffers();
 }
 
 SceneMessage DebugScene::result()

@@ -90,9 +90,9 @@ void Frame::calculateRotation()
     glPushMatrix();
     glLoadIdentity();
 
-    glRotatef( angleX/16.0 , 1.0 , 0.0 , 0.0 );
-    glRotatef( angleY/16.0 , 0.0 , 1.0 , 0.0 );
-    glRotatef( angleZ/16.0 , 0.0 , 0.0 , 1.0 );
+    glRotatef( angleX , 1.0 , 0.0 , 0.0 );
+    glRotatef( angleY , 0.0 , 1.0 , 0.0 );
+    glRotatef( angleZ , 0.0 , 0.0 , 1.0 );
 
     //Obtain the rotation matrix
     glGetFloatv( GL_MODELVIEW_MATRIX, aux );
@@ -191,34 +191,29 @@ void Frame::moveOriginT( float dx , float dy , float dz )
     moveOriginT( temp );
 }
 
-void Frame::setRotationX( int angle )
+void Frame::setRotationX( float angle )
 {
     this->angleX += angle;
     normalizeAngle( &this->angleX );
 }
 
-void Frame::setRotationY( int angle )
+void Frame::setRotationY( float angle )
 {
     this->angleY += angle;
     normalizeAngle( &this->angleY );
 }
 
-void Frame::setRotationZ( int angle )
+void Frame::setRotationZ( float angle )
 {
     this->angleZ += angle;
     normalizeAngle( &this->angleZ );
 }
 
-void Frame::normalizeAngle(int *angle)
+void Frame::normalizeAngle(float *angle)
 {
-    while (*angle < 0)
-    {
-        *angle += 360 * 16;
-    }
-    while (*angle > 360 * 16)
-    {
-        *angle -= 360 * 16;
-    }
+	if( *angle > 180.0 or *angle <= -180.0 ){
+		*angle-=(int)(*angle/180.0)*360.0;
+	}
 }
 
 void Frame::resetRotation()

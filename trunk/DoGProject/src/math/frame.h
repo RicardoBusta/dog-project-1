@@ -2,7 +2,7 @@
  * frame.h
  *	The abstraction of a coordinate indepent frame
  *  Created on: 08/09/2010
- *      Author: Cleóbulo
+ *      Author: Cleï¿½bulo
  */
 #ifndef FRAME_H
 #define FRAME_H
@@ -16,12 +16,12 @@ class Frame
 
 protected:
     Vector3 i,j,k;				// The vectors
-    int angleX,angleY,angleZ;	// The rotation angles
+    float angleX,angleY,angleZ;	// The rotation angles
 
     Point3 origin;				// The origin point
     GLfloat matrix[16];			// The final matrix
 
-    void normalizeAngle( int* );	// In this case the angles are 16*angle(X/Y/Z)
+    void normalizeAngle( float* );	// In this case the angles are 16*angle(X/Y/Z)
     								// so the normalization reduces them to the real form
 public:
     // Initializers
@@ -44,9 +44,9 @@ public:
     Point3* getOrigin();
 
     // Set rotation but don't modify the matrix
-    void setRotationX( int );
-    void setRotationY( int );
-    void setRotationZ( int );
+    void setRotationX( float );
+    void setRotationY( float );
+    void setRotationZ( float );
 
     // Getters of rotations
     int getRotationX();

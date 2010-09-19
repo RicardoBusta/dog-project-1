@@ -24,8 +24,8 @@ protected:
 	Frame* camera;
 
 	list<Entity*> entities;
-	MUSICA *backgroundMusic;  //musica de background
-	vector<SOM*> efeitosSonoros; //vetor de efeitos sonoros usados na fase
+	MUSIC *backgroundMusic;  //musica de background
+	vector<SOUND*> efeitosSonoros; //vetor de efeitos sonoros usados na fase
 
 	void handleEntities();
 private:

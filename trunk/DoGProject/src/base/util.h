@@ -20,17 +20,17 @@ using namespace std;
 
 #define GAME_TITLE "SpaceShips vs Zombies"
 #define DEFAULT_FPS 60
-#define IMAGEM SDL_Surface
-#define CARREGAR_IMAGEM IMG_load
-#define MUSICA Mix_Music
-#define SOM Mix_Chunk
+#define IMAGE SDL_Surface
+#define LOAD_IMAGE IMG_load
+#define MUSIC Mix_Music
+#define SOUND Mix_Chunk
 #define DEFAULT_SOUND_FREQUENCY 22050
 #define DEFAULT_CHUNK_SIZE 1024
-#define MODELO void*
+#define MODEL void*
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
+#define FRUSTUM_DEPTH 1000
 #define SCREEN_BPP 32
-#define USE_OPENGL SDL_OPENGL
 
 #endif
 
@@ -80,5 +80,8 @@ typedef struct ctr_{
 
 } Controller;
 
+//ANGLE OPERATIONS
+float rad(float deg);
+float deg(float rad);
 
 #endif /* UTIL_H_ */

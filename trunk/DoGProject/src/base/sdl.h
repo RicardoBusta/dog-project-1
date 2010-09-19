@@ -21,36 +21,34 @@ using namespace std;
 
 /* SE FOR USAR TTF
 #define NORMAL TTF_STYLE_NORMAL
-#define ITALICO TTF_STYLE_ITALIC
-#define NEGRITO TTF_STYLE_BOLD
+#define ITALIC TTF_STYLE_ITALIC
+#define BOLD TTF_STYLE_BOLD
 
 //funcionalidade utilizada pela TTF
 enum textquality {solid, shaded, blended};*/
 
 class SDL{
-    public:
-
-	// Construtor vazio
+public:
 	SDL();
 
-	// Preparando o SDL e o OPENGL e os encerrando
+	//Initializing and closing SDL and OPENGL
 	static bool initialize();
 	static void close();
 
-	// Initializing subsystems
+	//Initializing subsystems
 	static bool setVideo();
 	static bool setAudio();
 
-	// OpenGL Interface
+	//OpenGL Interface
 	static bool initOpenGL();
 	static void projection( int width , int height );
 
 
-	// Carregando Arquivos
-	static IMAGEM* loadImage( char* filename );
-	static MUSICA* loadBackgroundMusic( char* filename );
-	static SOM* loadSound(char *filename);
-	static MODELO* loadModel( char* filename );
+	//Loading Files
+	static IMAGE* loadImage( char* filename );
+	static MUSIC* loadBackgroundMusic( char* filename );
+	static SOUND* loadSound(char *filename);
+	static MODEL* loadModel( char* filename );
 	static GLuint loadTexture(char *fileName);
 
 	// Timer Interface
@@ -71,16 +69,16 @@ class SDL{
 
 	// Render functions
 	static void prepareRender();
-	static void switchBuffers();
+	static void swapBuffers();
 
 	//sound and music functions
-	static bool playBackgroundMusic(MUSICA* );
+	static bool playBackgroundMusic(MUSIC* );
 	static void stopBackgroundMusic();
-	static bool playSound(SOM* );
+	static bool playSound(SOUND* );
 
     private:
 	// Screen surface
-	static IMAGEM* screen;
+	static IMAGE* screen;
 
 	// Events input and returns parameters
 	static SDL_Event event;
@@ -98,8 +96,6 @@ class SDL{
 
 //by Ricardo, só para testes.
 public:
-	static bool exec(void);
-	static void events(void);
 	static bool quit;
 };
 

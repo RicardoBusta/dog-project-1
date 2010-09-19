@@ -8,7 +8,7 @@
 #include "sdl.h"
 
 // Static Members
-IMAGEM* SDL::screen;
+IMAGE* SDL::screen;
 int SDL::width;
 int SDL::height;
 int SDL::bpp;
@@ -117,7 +117,7 @@ bool SDL::initOpenGL()
 
 	glShadeModel( GL_SMOOTH );
 
-	projection( 640 , 480 );
+	projection( SCREEN_WIDTH , SCREEN_HEIGHT );
 	return false;
 }
 
@@ -126,16 +126,16 @@ void SDL::projection( int width , int height )
 	glMatrixMode( GL_PROJECTION );
 
 	glLoadIdentity();
-	glOrtho( 0.0	,	640.0 ,
-             0.0	,	480.0 ,
-            -1000.0	,	1000.0);
+	glOrtho( 0.0,width	,
+             0.0,height ,
+            -FRUSTUM_DEPTH, FRUSTUM_DEPTH);
 
    glMatrixMode(GL_MODELVIEW);
 }
 
-IMAGEM* SDL::loadImage( char* filename )
+IMAGE* SDL::loadImage( char* filename )
 {
-    IMAGEM *temp = NULL, *otm = NULL;
+    IMAGE *temp = NULL, *otm = NULL;
 
     temp = IMG_Load(filename);
 
@@ -149,33 +149,33 @@ IMAGEM* SDL::loadImage( char* filename )
 }
 
 //loads background music from the "filename" ile
-MUSICA* SDL::loadBackgroundMusic( char* filename )
+MUSIC* SDL::loadBackgroundMusic( char* filename )
 {
-	MUSICA* nova = NULL;
+	MUSIC* music = NULL;
 
 	//obs: the file type **MUST** be WAVE, AIFF, RIFF, OGG or VOC
-	nova = Mix_LoadMUS(filename);
-	return nova;
+	music = Mix_LoadMUS(filename);
+	return music;
 }
 
 //loads a sound from the "filename" file
-SOM* SDL::loadSound( char *filename )
+SOUND* SDL::loadSound( char *filename )
 {
-	SOM* novo = NULL;
+	SOUND* sound = NULL;
 
 	//obs: the file type **MUST** be WAVE, MOD, RIFF, OGG, MP3 or VOC
-	novo = Mix_LoadWAV(filename);
-	return novo;
+	sound = Mix_LoadWAV(filename);
+	return sound;
 }
 
-MODELO* SDL::loadModel( char* filename )
+MODEL* SDL::loadModel( char* filename )
 {
-	MODELO* novo = NULL;
-	return novo;
+	MODEL* sound = NULL;
+	return sound;
 }
 
 // Carrega texturas e retorna um handle
-// Lembrete: criar um gerenciador de texturas, isso aqui só carrega
+// TODO: criar um gerenciador de texturas, isso aqui só carrega
 // Deve ser necessário criar parametros opcionais para o carregamento de textura
 // Clamp, mipmap etc
 // Sugestão: pra reduzir o tamanho da função, pode criar um parametro alpha, e
@@ -396,42 +396,6 @@ void SDL::paint(){
     SDL_GL_SwapBuffers();
 }
 
-//The event catching function. While there's an event in the event list, handle it.
-void SDL::events(){
-    while (SDL_PollEvent(&event)) {
-        switch (event.type) {
-        case SDL_QUIT:
-            quit = true;
-            break;
-        case SDL_KEYDOWN:
-        	switch(event.key.keysym.sym){
-				case SDLK_ESCAPE:
-					quit = true;
-					break;
-				default:
-					//Do Nothing
-					break;
-        	}
-        	break;
-        default:
-        	//Do Nothing
-			break;
-        }
-    }
-
-}
-
-//The Main SDL execution LOOP. Returns 0 if no errors occurs.
-bool SDL::exec(){
-	initialize();
-	while( !quit ){
-		events();
-		paint();
-	}
-	close();
-	return 0;
-}
-
 void SDL::prepareRender()
 {
 	// Clear the screen
@@ -442,14 +406,14 @@ void SDL::prepareRender()
     glLoadIdentity();
 }
 
-void SDL::switchBuffers()
+void SDL::swapBuffers()
 {
 	// Swap the buffers
 	SDL_GL_SwapBuffers();
 }
 
 //plays a background music defined by "music" argument
-bool SDL::playBackgroundMusic(MUSICA *music)
+bool SDL::playBackgroundMusic(MUSIC *music)
 {
 	//plays "music" in loop
 	if(Mix_PlayMusic(music, -1) < 0)
@@ -467,7 +431,7 @@ void SDL::stopBackgroundMusic()
 }
 
 //plays the sound defined by "som" argument
-bool SDL::playSound(SOM* som)
+bool SDL::playSound(SOUND* som)
 {
 	if(Mix_PlayChannel(-1, som, 0) < 0)
 	{

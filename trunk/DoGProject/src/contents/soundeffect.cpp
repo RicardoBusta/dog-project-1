@@ -17,5 +17,6 @@ SoundEffect::~SoundEffect() {
 }
 
 bool SoundEffect::load(){
-
+	// TODO Load a sound effect
+	return false;
 }
