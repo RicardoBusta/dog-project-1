@@ -13,7 +13,7 @@ Texture::Texture(std::string label, std::string path)
 	this->setLabel(label);
 	this->setType(CONTENT_TEXTURE);
 	handle = 0;
-	if(!path.compare(""))
+	if(path != "")
 		this->load(path);
 }
 

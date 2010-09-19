@@ -19,8 +19,7 @@ Box::Box(Entity* p):Entity(p) {
 
 Box::~Box()
 {
-	std::string temp("madeira");
-	ContentManager::removeContent(CONTENT_TEXTURE, temp);
+	ContentManager::removeContent(CONTENT_TEXTURE, "madeira");
 }
 
 void Box::randomColors()
