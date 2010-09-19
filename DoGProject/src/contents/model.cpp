@@ -17,5 +17,6 @@ Model::~Model() {
 }
 
 bool Model::load(){
-
+	// TODO load a model
+	return false;
 }

@@ -17,5 +17,5 @@ Texture::~Texture() {
 }
 
 bool Texture::load(){
-
+	// TODO Load a texture
 }
