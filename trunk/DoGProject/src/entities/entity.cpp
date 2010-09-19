@@ -73,17 +73,17 @@ Point3* Entity::getPosition(){
 void Entity::setRotation(float x, float y, float z)
 {
 	//Set the rotation of the object
-	this->coords.setRotationX( (int)(x*16.0f) );
-	this->coords.setRotationY( (int)(y*16.0f) );
-	this->coords.setRotationZ( (int)(z*16.0f) );
+	this->coords.setRotationX( x );
+	this->coords.setRotationY( y );
+	this->coords.setRotationZ( z );
 }
 
 void Entity::rotate(float x, float y, float z)
 {
 	//Rotates the object based on the current position
-	this->coords.setRotationX( this->coords.getRotationX() + (int)(x*16.0f) );
-	this->coords.setRotationY( this->coords.getRotationY() + (int)(y*16.0f) );
-	this->coords.setRotationZ( this->coords.getRotationZ() + (int)(z*16.0f) );
+	this->coords.setRotationX( this->coords.getRotationX() + x );
+	this->coords.setRotationY( this->coords.getRotationY() + y );
+	this->coords.setRotationZ( this->coords.getRotationZ() + z );
 }
 
 void Entity::setScale(float x, float y, float z)
