@@ -1,8 +1,8 @@
 /*
  * SoundEffect.h
  *
- *  Created on: 18/09/2010
- *      Author: ricardo
+ *  Created on: 19/09/2010
+ *      Author: felipe
  */
 
 #ifndef SOUNDEFFECT_H_
@@ -12,10 +12,24 @@
 
 class SoundEffect: public Content {
 public:
-	SoundEffect();
+	SoundEffect(std::string label, std::string path);
 	virtual ~SoundEffect();
 
 	bool load(std::string &);
+	bool play(enum NLOOPS);
+	bool stop();
+
+	//ajuste de volume - varia de 0 a 128
+	void setVolume(Uint8 vol);
+	Uint8 getVolume();
+
+	//efeitos de fade-in e fade-out
+	bool fadeIn(int ms, enum NLOOPS);
+	bool fadeOut(int ms);
+
+private:
+	SOUND *som;
+	int currentChannel;
 };
 
 #endif /* SOUNDEFFECT_H_ */

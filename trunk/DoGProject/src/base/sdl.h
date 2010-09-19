@@ -46,7 +46,7 @@ public:
 
 	//Loading Files
 	static IMAGE* loadImage( const char* filename );
-	static MUSIC* loadBackgroundMusic( char* filename );
+	//static MUSIC* loadBackgroundMusic( char* filename );
 	static SOUND* loadSound(char *filename);
 	static MODEL* loadModel( char* filename );
 	static GLuint loadTexture(const char *fileName);
@@ -71,11 +71,6 @@ public:
 	// Render functions
 	static void prepareRender();
 	static void swapBuffers();
-
-	//sound and music functions
-	static bool playBackgroundMusic(MUSIC* );
-	static void stopBackgroundMusic();
-	static bool playSound(SOUND* );
 
     private:
 	// Screen surface

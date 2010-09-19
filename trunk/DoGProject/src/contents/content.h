@@ -16,7 +16,7 @@ using namespace std;
 
 class Scene;
 
-enum CONTENT_{CONTENT_TEXTURE,CONTENT_MODEL,CONTENT_SOUNDEFFECT};
+enum CONTENT_{CONTENT_TEXTURE,CONTENT_MODEL,CONTENT_SOUND};
 
 class Content {
 private:

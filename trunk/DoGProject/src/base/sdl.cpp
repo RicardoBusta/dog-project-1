@@ -148,14 +148,14 @@ IMAGE* SDL::loadImage( const char* filename )
 }
 
 //loads background music from the "filename" ile
-MUSIC* SDL::loadBackgroundMusic( char* filename )
+/*MUSIC* SDL::loadBackgroundMusic( char* filename )
 {
 	MUSIC* music = NULL;
 
 	//obs: the file type **MUST** be WAVE, AIFF, RIFF, OGG or VOC
 	music = Mix_LoadMUS(filename);
 	return music;
-}
+}*/
 
 //loads a sound from the "filename" file
 SOUND* SDL::loadSound( char *filename )
@@ -416,33 +416,4 @@ void SDL::swapBuffers()
 {
 	// Swap the buffers
 	SDL_GL_SwapBuffers();
-}
-
-//plays a background music defined by "music" argument
-bool SDL::playBackgroundMusic(MUSIC *music)
-{
-	//plays "music" in loop
-	if(Mix_PlayMusic(music, -1) < 0)
-	{
-		return false;
-	}
-
-	return true;
-}
-
-//stops the execution of the currently set music
-void SDL::stopBackgroundMusic()
-{
-	Mix_HaltMusic();
-}
-
-//plays the sound defined by "som" argument
-bool SDL::playSound(SOUND* som)
-{
-	if(Mix_PlayChannel(-1, som, 0) < 0)
-	{
-		return false;
-	}
-
-	return true;
 }

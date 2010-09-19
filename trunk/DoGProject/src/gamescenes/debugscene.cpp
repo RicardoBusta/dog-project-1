@@ -16,7 +16,6 @@
 DebugScene::DebugScene()
 {
 	up = down = left = right = shooting = false;
-	backgroundMusic = NULL;
 }
 
 DebugScene::~DebugScene() {
@@ -27,6 +26,7 @@ bool DebugScene::load()
 	glEnable(GL_TEXTURE_2D);
 
 	Texture* newtex;
+	SoundEffect *som;
 
 	newtex = new Texture("madeira", "squareTex.jpg");
 	ContentManager::addContent(newtex);
@@ -38,21 +38,11 @@ bool DebugScene::load()
 	printf("Textura carregada com label: %s\n", newtex->getLabel().c_str());
 	printf("E com handle: %d\n", newtex->getHandle());
 
+	som = new SoundEffect("tiro", "laser.ogg");
+	ContentManager::addContent(som);
 
-#ifdef WIN
-	//carregando musica de fundo
-	this->backgroundMusic = SDL::loadBackgroundMusic("trunk\\DoGProject\\resources\\sounds\\background.ogg");
-
-	//carrega efeito sonoro de tiro
-	this->efeitosSonoros.push_back(SDL::loadSound("trunk\\DoGProject\\resources\\sounds\\laser.ogg"));
-#else
-	//carregando musica de fundo
-	this->backgroundMusic = SDL::loadBackgroundMusic("trunk/DoGProject/resourcessounds/background.ogg");
-
-	//carrega efeito sonoro de tiro
-	this->efeitosSonoros.push_back(SDL::loadSound("trunk/DoGProject/resourcessounds/laser.ogg"));
-
-#endif
+	som = new SoundEffect("fundo", "background.ogg");
+	ContentManager::addContent(som);
 
 	return true;
 }
@@ -95,8 +85,8 @@ bool DebugScene::prepare()
 		this->entities.push_back( cen );
 	}
 
-	//inicia a execucao da musica de fundo
-	SDL::playBackgroundMusic(backgroundMusic);
+	SoundEffect *fundo = (SoundEffect*)ContentManager::getContent(CONTENT_SOUND, "fundo");
+	fundo->play(INF_LOOP);
 
 	return true;
 }
@@ -183,6 +173,7 @@ void DebugScene::input()
 
 void DebugScene::logic()
 {
+	SoundEffect *tiro;
 	// Moving the camera
 	//camera.moveOriginW( Vector3(0,0,-5) );
 
@@ -199,10 +190,8 @@ void DebugScene::logic()
 
 	if( shooting ){
 		//toca o efeito sonoro de tiro
-		if(!(SDL::playSound(efeitosSonoros[0])))
-		{
-			printf("Erro ao tocar o som\n");
-		}
+		tiro = (SoundEffect*)ContentManager::getContent(CONTENT_SOUND, "tiro");
+		tiro->play(PLAY_ONCE);
 
 		if(ship->shootCoolDown<=0){
 			Projectile *p = new Projectile( Vector3(0,0,-10) );
