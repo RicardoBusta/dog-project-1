@@ -37,6 +37,7 @@ void Hero::draw()
 
 	//sca 5 5 5
 	//cen 0 0 0.7
+	glPushMatrix();
 	glScalef(50,50,50);
 
 	glBegin(GL_TRIANGLES);
@@ -55,6 +56,7 @@ void Hero::draw()
 		triangle( 0, 0, 0.5, 0.75, 0, 1, -0.75, 0, 1 );
 		triangle( 0, 0, 0, 0.25, 0, 1, -0.25, 0, 1 );
 	glEnd();
+	glPopMatrix();
 /*
 	glBegin( GL_TRIANGLE_FAN );
 		glColor3f( 0.4 , 0.4 , 0.4 );
