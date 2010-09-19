@@ -66,6 +66,12 @@ void Entity::move( Vector3 delta ){
 	coords.moveOriginT( delta );
 }
 
+void Entity::moveW( Vector3 delta ){
+
+	//Translate the model in the world coordinates
+	coords.moveOriginW( delta );
+}
+
 Point3* Entity::getPosition(){
 	return coords.getOrigin();
 }
