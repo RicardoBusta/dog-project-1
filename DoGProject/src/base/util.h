@@ -22,7 +22,8 @@ using namespace std;
 #define DEFAULT_FPS 60
 #define IMAGE SDL_Surface
 #define LOAD_IMAGE IMG_load
-#define MUSIC Mix_Music
+//#define MUSIC Mix_Music
+#define SOUNDSPATH "resources/sounds/"
 #define SOUND Mix_Chunk
 #define DEFAULT_SOUND_FREQUENCY 22050
 #define DEFAULT_CHUNK_SIZE 1024
@@ -61,6 +62,8 @@ enum ControllerStatus{
 	CON_QUIT_GAME , CON_LAST_CONTROLLER_STATUS };
 
 enum PersonagemStatus{ PER_STANDBY , PER_MOVING , PER_SHOTING , PER_DEAD , PER_LAST_PERSONAGEM_STATUS };
+
+enum NLOOPS { INF_LOOP=-1, PLAY_ONCE=0 };
 
 // Useful Structures
 
