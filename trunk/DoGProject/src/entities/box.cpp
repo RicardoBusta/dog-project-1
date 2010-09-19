@@ -19,7 +19,6 @@ Box::Box(Entity* p):Entity(p) {
 
 Box::~Box()
 {
-	ContentManager::removeContent(CONTENT_TEXTURE, "madeira");
 }
 
 void Box::randomColors()
@@ -37,23 +36,7 @@ void Box::setData( float width , float height , float depth )
 	this->width  = width;
 	this->height = height;
 	this->depth  = depth;
-	//Gambiarra pra testar textures
-	woodTex = ContentManager::getContent(CONTENT_TEXTURE, "madeira");
-	if(woodTex)
-	{
-		printf("Textura jah carregada com label: %s\n", woodTex->getLabel().c_str());
-		Texture *wood = (Texture*) woodTex;
-		printf("E com handle: %d\n", wood->getHandle());
-	}
-	else
-	{
-		woodTex = new Texture("madeira", "squareTex.jpg");
-		ContentManager::addContent(woodTex);
-		printf("Textura carregada com label: %s\n", woodTex->getLabel().c_str());
-		Texture *wood = (Texture*) woodTex;
-		printf("E com handle: %d\n", wood->getHandle());
-	}
-	ContentManager::addContent(woodTex);
+
 	// Set the vertex positions
 	vertex[0].setXYZ( -width/2.0f , -height/2.0f ,  depth/2.0f );
 	vertex[1].setXYZ(  width/2.0f , -height/2.0f ,  depth/2.0f );
@@ -68,7 +51,6 @@ void Box::setData( float width , float height , float depth )
 
 void Box::drawFace( int a , int b , int c , int d )
 {
-
 	glTexCoord2d(0.0, 0.0);
 	//glColor3f( vr[a] , vg[a] , vb[a] );
 	glVertex3f( vertex[a].getX() ,  vertex[a].getY() ,  vertex[a].getZ() );
@@ -89,7 +71,8 @@ void Box::drawFace( int a , int b , int c , int d )
 
 void Box::draw()
 {
-	glEnable(GL_TEXTURE_2D);
+	glColor3f(color.r, color.g, color.b);
+
 	//
 	std::string a("madeira");
 	Texture *tex = (Texture *) ContentManager::getContent(CONTENT_TEXTURE, a);
@@ -108,7 +91,6 @@ void Box::draw()
 		drawFace(7,3,2,6);
 		drawFace(0,4,5,1);
 	glEnd();
-	glDisable(GL_TEXTURE_2D);
 }
 
 void Box::handleSelf()

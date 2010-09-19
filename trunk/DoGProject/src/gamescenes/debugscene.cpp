@@ -10,6 +10,8 @@
 #include "../entities/projectile.h"
 #include "../entities/hero.h"
 #include "../entities/box.h"
+#include "../contents/contentmanager.h"
+
 
 DebugScene::DebugScene()
 {
@@ -22,18 +24,33 @@ DebugScene::~DebugScene() {
 
 bool DebugScene::load()
 {
+	glEnable(GL_TEXTURE_2D);
+
+	Texture* newtex;
+
+	newtex = new Texture("madeira", "squareTex.jpg");
+	ContentManager::addContent(newtex);
+	printf("Textura carregada com label: %s\n", newtex->getLabel().c_str());
+	printf("E com handle: %d\n", newtex->getHandle());
+
+	newtex = new Texture("nave", "ship.png");
+	ContentManager::addContent(newtex);
+	printf("Textura carregada com label: %s\n", newtex->getLabel().c_str());
+	printf("E com handle: %d\n", newtex->getHandle());
+
+
 #ifdef WIN
 	//carregando musica de fundo
-	this->backgroundMusic = SDL::loadBackgroundMusic("sounds\background.ogg");
+	this->backgroundMusic = SDL::loadBackgroundMusic("trunk\\DoGProject\\resources\\sounds\\background.ogg");
 
 	//carrega efeito sonoro de tiro
-	this->efeitosSonoros.push_back(SDL::loadSound("sounds\laser.ogg"));
+	this->efeitosSonoros.push_back(SDL::loadSound("trunk\\DoGProject\\resources\\sounds\\laser.ogg"));
 #else
 	//carregando musica de fundo
-	this->backgroundMusic = SDL::loadBackgroundMusic("sounds/background.ogg");
+	this->backgroundMusic = SDL::loadBackgroundMusic("trunk/DoGProject/resourcessounds/background.ogg");
 
 	//carrega efeito sonoro de tiro
-	this->efeitosSonoros.push_back(SDL::loadSound("sounds/laser.ogg"));
+	this->efeitosSonoros.push_back(SDL::loadSound("trunk/DoGProject/resourcessounds/laser.ogg"));
 
 #endif
 
@@ -46,12 +63,12 @@ bool DebugScene::prepare()
 	ship = new Hero;
 	this->entities.push_back( ship );
 	ship->move( Vector3(0,0,200) );
-
+/*
 	Box *gun = new Box(ship);
 	gun->randomColors();
 	gun->setData(20,1,20);
 	gun->toggleFrozen(); //Freezes the box in place
-	gun->setPosition( Point3(0,40,-10) );
+	gun->setPosition( Point3(0,40,-10) );*/
 
 	// Posicionando a camera
 	camera->moveOriginW( Vector3( 0 , 200 , 400 ) );
@@ -86,6 +103,10 @@ bool DebugScene::prepare()
 
 bool DebugScene::unload()
 {
+	ContentManager::removeContent(CONTENT_TEXTURE, "madeira");
+	ContentManager::removeContent(CONTENT_TEXTURE, "ship");
+	glDisable(GL_TEXTURE_2D);
+
 	list<Entity*>::iterator it;
 
 	while (!entities.empty()){
@@ -172,7 +193,7 @@ void DebugScene::logic()
 	//if( down ) ship->move( Vector3(0,0,speed) );
 	if( up ) camera->setRotationX(1);
 	if( down ) camera->setRotationX(-1);
-	cout << camera->getRotationX() << endl;
+	//cout << camera->getRotationX() << endl;
 	if( right ) ship->move( Vector3(speed,0,0) );
 	if( left ) ship->move( Vector3(-speed,0,0) );
 
