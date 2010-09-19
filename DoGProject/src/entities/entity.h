@@ -58,6 +58,7 @@ public:
 	void setPosition( Point3 position );
 	//void setPosition(entity *e);
 	void move( Vector3 delta );
+	void moveW( Vector3 delta )
 	Point3 *getPosition();
 
 	void setRotation(float x, float y, float z);
