@@ -20,6 +20,7 @@ public:
 
 	// The drawing function
 	void draw();
+	void triangle(float,float,float,float,float,float,float,float,float);
 
 	//Shooting CoolDown
 	int shootCoolDown;
