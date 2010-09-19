@@ -9,8 +9,10 @@
 #define CONTENT_H_
 
 #include <string>
-
+#include <list>
 using namespace std;
+
+class Scene;
 
 enum CONTENT_{CONTENT_TEXTURE,CONTENT_MODEL,CONTENT_SOUNDEFFECT};
 
@@ -18,12 +20,24 @@ class Content {
 private:
 	string label;
 	enum CONTENT_ type;
+	int users;
+
 public:
 	Content();
 	virtual ~Content();
 
-	string getLabel(); // Obtain the string that identifies this content.
-	int getType();
+	//Type Control
+	void setType(enum CONTENT_ type);
+	enum CONTENT_ getType();
+
+	//User Control
+	bool used(); //Check if the content is being used
+	void addUser();
+	void removeUser();
+
+	//Label Control
+	string getLabel(); //Obtain the string that identifies this content.
+	void setLabel(string label);
 
 	virtual bool load()=0; //Calls SDL::load functions depending on the type of information needed
 };
