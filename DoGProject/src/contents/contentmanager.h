@@ -12,6 +12,10 @@
 #include <list>
 #include <string>
 
+#include "texture.h"
+#include "model.h"
+#include "soundeffect.h"
+
 class ContentManager {
 public:
 
