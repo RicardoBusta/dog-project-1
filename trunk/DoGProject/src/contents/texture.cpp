@@ -7,15 +7,34 @@
 
 #include "texture.h"
 
-Texture::Texture() {
-	// TODO Auto-generated constructor stub
-
+// identificador do content e caminho da textura
+Texture::Texture(std::string label, std::string path)
+{
+	this->setLabel(label);
+	this->setType(CONTENT_TEXTURE);
+	handle = 0;
+	if(!path.compare(""))
+		this->load(path);
 }
 
-Texture::~Texture() {
-	// TODO Auto-generated destructor stub
+Texture::~Texture()
+{
+	SDL::removeTexture(1, &handle);
 }
 
-bool Texture::load(){
-	// TODO Load a texture
+bool Texture::load(std::string &path)		// Carrega textura
+{
+	handle = SDL::loadTexture(path.c_str());
+	if(handle)
+	{
+		return true;
+	}
+	return false;
+	// PODE SETAR O ACTIVE AQUI???
 }
+
+GLuint Texture::getHandle()
+{
+	return handle;
+}
+

@@ -17,8 +17,10 @@ Box::Box(Entity* p):Entity(p) {
 	}
 }
 
-Box::~Box() {
-	glDeleteTextures( 1, &textura );
+Box::~Box()
+{
+	std::string temp("madeira");
+	ContentManager::removeContent(CONTENT_TEXTURE, temp);
 }
 
 void Box::randomColors()
@@ -37,7 +39,22 @@ void Box::setData( float width , float height , float depth )
 	this->height = height;
 	this->depth  = depth;
 	//Gambiarra pra testar textures
-	textura = SDL::loadTexture("squareTex.jpg");
+	woodTex = ContentManager::getContent(CONTENT_TEXTURE, "madeira");
+	if(woodTex)
+	{
+		printf("Textura jah carregada com label: %s\n", woodTex->getLabel().c_str());
+		Texture *wood = (Texture*) woodTex;
+		printf("E com handle: %d\n", wood->getHandle());
+	}
+	else
+	{
+		woodTex = new Texture("madeira", "squareTex.jpg");
+		ContentManager::addContent(woodTex);
+		printf("Textura carregada com label: %s\n", woodTex->getLabel().c_str());
+		Texture *wood = (Texture*) woodTex;
+		printf("E com handle: %d\n", wood->getHandle());
+	}
+	ContentManager::addContent(woodTex);
 	// Set the vertex positions
 	vertex[0].setXYZ( -width/2.0f , -height/2.0f ,  depth/2.0f );
 	vertex[1].setXYZ(  width/2.0f , -height/2.0f ,  depth/2.0f );
@@ -74,7 +91,15 @@ void Box::drawFace( int a , int b , int c , int d )
 void Box::draw()
 {
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, textura);
+	//
+	std::string a("madeira");
+	Texture *tex = (Texture *) ContentManager::getContent(CONTENT_TEXTURE, a);
+	if(tex == NULL)
+	{
+		printf("Textura com erro.\n");
+	}
+	else
+		glBindTexture(GL_TEXTURE_2D, tex->getHandle());
 
 	glBegin( GL_QUADS );
 		drawFace(0,1,2,3);

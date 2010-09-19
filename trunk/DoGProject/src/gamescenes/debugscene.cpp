@@ -29,7 +29,6 @@ bool DebugScene::load()
 	//carrega efeito sonoro de tiro
 	this->efeitosSonoros.push_back(SDL::loadSound("sounds\laser.ogg"));
 #else
-
 	//carregando musica de fundo
 	this->backgroundMusic = SDL::loadBackgroundMusic("sounds/background.ogg");
 

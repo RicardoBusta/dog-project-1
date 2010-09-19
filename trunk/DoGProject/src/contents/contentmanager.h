@@ -15,8 +15,8 @@
 class ContentManager {
 public:
 
-	static Content* getContent(CONTENT_, std::string &);	// Retorna um content, NULL caso inexistente
-	static bool removeContent(CONTENT_, std::string &);	// Remove um content, false caso nao remova
+	static Content* getContent(CONTENT_, std::string );	// Retorna um content, NULL caso inexistente
+	static bool removeContent(CONTENT_, std::string );	// Remove um content, false caso nao remova
 	static bool addContent(Content *);		// Recebe o tipo e a string, falso caso nao adicione
 	static bool searchContent(CONTENT_, std::string);	// Busca um Content, true ou false, armazena em it
 

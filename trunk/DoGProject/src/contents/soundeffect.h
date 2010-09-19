@@ -15,7 +15,7 @@ public:
 	SoundEffect();
 	virtual ~SoundEffect();
 
-	bool load();
+	bool load(std::string &);
 };
 
 #endif /* SOUNDEFFECT_H_ */

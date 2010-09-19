@@ -45,11 +45,12 @@ public:
 
 
 	//Loading Files
-	static IMAGE* loadImage( char* filename );
+	static IMAGE* loadImage( const char* filename );
 	static MUSIC* loadBackgroundMusic( char* filename );
 	static SOUND* loadSound(char *filename);
 	static MODEL* loadModel( char* filename );
-	static GLuint loadTexture(char *fileName);
+	static GLuint loadTexture(const char *fileName);
+	static void removeTexture(GLsizei n, const GLuint *textures);
 
 	// Timer Interface
 	static void timerStart();

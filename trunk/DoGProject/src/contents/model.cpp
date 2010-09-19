@@ -16,7 +16,7 @@ Model::~Model() {
 	// TODO Auto-generated destructor stub
 }
 
-bool Model::load(){
+bool Model::load(std::string &){
 	// TODO load a model
 	return false;
 }
