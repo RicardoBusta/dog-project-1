@@ -40,7 +40,7 @@ bool ContentManager::addContent(Content *content)
 	}
 	else
 	{
-		(*it)->addUser();
+		if(content) (*it)->addUser();
 		return false;
 	}
 }
