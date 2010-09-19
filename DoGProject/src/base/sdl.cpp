@@ -126,9 +126,8 @@ void SDL::projection( int width , int height )
 	glMatrixMode( GL_PROJECTION );
 
 	glLoadIdentity();
-	glOrtho( 0.0,width	,
-             0.0,height ,
-            -FRUSTUM_DEPTH, FRUSTUM_DEPTH);
+	//glOrtho( 0.0,width, 0.0,height , -FRUSTUM_DEPTH, FRUSTUM_DEPTH);
+	glFrustum (-width/20,width/20, -height/20,height/20, 50,6000);
 
    glMatrixMode(GL_MODELVIEW);
 }

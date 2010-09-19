@@ -45,6 +45,7 @@ bool DebugScene::prepare()
 	// Preparando os elementos
 	ship = new Hero;
 	this->entities.push_back( ship );
+	ship->move( Vector3(0,0,200) );
 
 	Box *gun = new Box(ship);
 	gun->randomColors();
@@ -53,9 +54,8 @@ bool DebugScene::prepare()
 	gun->setPosition( Point3(0,40,-10) );
 
 	// Posicionando a camera
-	camera->moveOriginW( Vector3( -320.0f , -240.0f , 100.0f ) );
-	camera->setRotationX( -90 );
-	//camera.setRotationX( 30 );
+	camera->moveOriginW( Vector3( 0 , 200 , 400 ) );
+	camera->setRotationX( -45 );
 
 	Box* cen;
 	for( int i = 0 ; i < 3 ; i++ ){
