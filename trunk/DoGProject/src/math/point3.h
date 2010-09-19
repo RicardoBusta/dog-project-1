@@ -12,37 +12,39 @@ class Vector3;
 class Point3
 {
     protected:
-        long double x,y,z;
+        float x,y,z;
 
     public:
         Point3();
-        Point3( long double x , long double y , long double z );
+        Point3( float x , float y , float z );
 
-        // Operações Ponto-Escalar
-        Point3 operator+ ( long double  ); // Soma por escalar
-        Point3 operator* ( long double  ); // Produto por escalar
-        Point3 operator*=( long double  ); // O Mesmo
+        //Operations with numbers
+        Point3 operator+ ( float ); //Add number
+        Point3 operator* ( float ); //Product with number
+        Point3 operator/ ( float );	//Division by a number
+        Point3 operator*=( float );
+        Point3 operator/=( float );
 
-        // Operações Ponto-Ponto
-        Point3  operator+ ( Point3 ); // Soma com outro ponto
-        Vector3 operator- ( Point3 ); // Subtra��o de Dois Pontos
+        //Operations with points
+        Point3  operator+ ( Point3 ); //Add points
+        Vector3 operator- ( Point3 ); //Subtract points
 
-        // Operações Ponto-Vetor
-        Point3 operator+ ( Vector3 ); // Soma ponto com vetor
-        Point3 operator- ( Vector3 ); // Diminuição com vetor
+        //Operations with vectors
+        Point3 operator+ ( Vector3 ); //Add point with vector
+        Point3 operator- ( Vector3 ); //Subtract point with vector
 
-        // Operaçõo de Comparação
+        //Compare
         bool operator==   ( Point3 );
 
-        long double getX();
-        long double getY();
-        long double getZ();
+        float getX();
+        float getY();
+        float getZ();
 
         // Entrada de dados
-        void setX( long double x );
-        void setY( long double y );
-        void setZ( long double z );
-        void setXYZ( long double x , long double y , long double z );
+        void setX( float x );
+        void setY( float y );
+        void setZ( float z );
+        void setXYZ( float x , float y , float z );
         void setXYZ( Point3 );
 };
 

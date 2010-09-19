@@ -5,7 +5,6 @@
  *      Author: Cleóbulo
  */
 #include "frame.h"
-#include "operations.h"
 
 Frame::Frame()
 {
