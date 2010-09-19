@@ -52,7 +52,7 @@ bool DebugScene::prepare()
 	gun->toggleFrozen(); //Freezes the box in place
 	gun->setPosition( Point3(0,40,-10) );
 
-	// Posicionando a c�mera
+	// Posicionando a camera
 	camera->moveOriginW( Vector3( -320.0f , -240.0f , 100.0f ) );
 	camera->setRotationX( -90 );
 	//camera.setRotationX( 30 );
