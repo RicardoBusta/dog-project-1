@@ -29,8 +29,7 @@ Texture::~Texture()
 
 bool Texture::load(std::string &path)		// Carrega textura
 {
-	string completePath = "trunk/DoGProject/resources/textures/"; //ricardo e dione
-	//string completePath = "resources/textures/"; //martins
+	string completePath = TEXTURESPATH;
 	completePath.append(path);
 	cout << completePath << endl;
 	handle = SDL::loadTexture(completePath.c_str());

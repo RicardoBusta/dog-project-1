@@ -28,7 +28,7 @@ bool DebugScene::load()
 	glEnable(GL_TEXTURE_2D);
 
 	Texture* newtex;
-	//SoundEffect *som;
+	SoundEffect *som;
 
 	newtex = new Texture("madeira", "squareTex.jpg");
 
@@ -37,11 +37,11 @@ bool DebugScene::load()
 	newtex = new Texture("stars", "star_texture.jpg");
 
 
-	//som = new SoundEffect("tiro", "laser.ogg");
-	//ContentManager::addContent(som);
+	som = new SoundEffect("tiro", "laser.ogg");
+	ContentManager::addContent(som);
 
-	//som = new SoundEffect("fundo", "background.ogg");
-	//ContentManager::addContent(som);
+	som = new SoundEffect("fundo", "background.ogg");
+	ContentManager::addContent(som);
 
 	return true;
 }
@@ -76,8 +76,8 @@ bool DebugScene::prepare()
 	}
 
 	//TODO remodelar de forma que não seja necessário fazer esse cast
-	//SoundEffect *fundo = (SoundEffect*)ContentManager::getContent(CONTENT_SOUND, "fundo");
-	//fundo->play(INF_LOOP);
+	SoundEffect *fundo = (SoundEffect*)ContentManager::getContent(CONTENT_SOUND, "fundo");
+	fundo->play(INF_LOOP);
 
 	return true;
 }
@@ -177,8 +177,8 @@ void DebugScene::logic()
 	if( shooting ){
 		ship->handleShoot();
 		//TODO remodelar de forma que não seja necessário fazer esse cast
-		//tiro = (SoundEffect*)ContentManager::getContent(CONTENT_SOUND, "tiro");
-		//tiro->play(PLAY_ONCE);
+		tiro = (SoundEffect*)ContentManager::getContent(CONTENT_SOUND, "tiro");
+		tiro->play(PLAY_ONCE);
 	}
 	handleEntities();
 }
