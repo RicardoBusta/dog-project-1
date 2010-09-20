@@ -9,6 +9,9 @@
 #include "../contents/contentmanager.h"
 #include "projectile.h"
 #include "../contents/ModelBullet.h"
+#include "../contents/ModelWeapon.h"
+#include "../entities/weapon.h"
+
 Hero::Hero(Entity* p):Entity(p) {
 	shootCoolDown = 0;
 	speed = 5;
@@ -147,4 +150,11 @@ void Hero::handleShoot(){
 		p->setModel(new ModelBullet());
 		shootCoolDown = 10;
 	}
+}
+
+void Hero::addWeapon( Vector3 v ){
+	Weapon *weapon = new Weapon(this);
+	weapons.push_back(weapon);
+	weapon->move(v);
+	weapon->setModel(new ModelWeapon());
 }

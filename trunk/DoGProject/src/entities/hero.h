@@ -10,6 +10,8 @@
 
 #include "entity.h"
 
+class Weapon;
+
 class Hero : public Entity
 {
 private:
@@ -23,6 +25,10 @@ public:
 
 	//Shooting CoolDown
 	int shootCoolDown;
+
+	//temp
+	void addWeapon( Vector3 position );
+	list<Weapon*> weapons;
 
 	//Moving
 	float speed;
