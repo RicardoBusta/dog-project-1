@@ -15,6 +15,7 @@ Projectile::Projectile(Vector3 d, Entity* p):Particle(p) {
 }
 
 Projectile::~Projectile() {
+	delete direction;
 	// TODO Auto-generated destructor stub
 }
 

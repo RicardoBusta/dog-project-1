@@ -193,15 +193,15 @@ void Entity::render(){
 	glPopMatrix();
 }
 
-bool Entity::isLive(){
+bool Entity::isLive() const{
 	return live;
 }
 
-bool Entity::isVisible(){
+bool Entity::isVisible() const{
 	return visible;
 }
 
-bool Entity::isFrozen(){
+bool Entity::isFrozen() const{
 	return frozen;
 }
 

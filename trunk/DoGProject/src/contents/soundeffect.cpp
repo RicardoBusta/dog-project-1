@@ -10,11 +10,9 @@
 #include <SDL/SDL_mixer.h>
 #include <string>
 
-SoundEffect::SoundEffect(std::string label, std::string path) {
-
-	this->setLabel(label);
-	this->setType(CONTENT_SOUND);
-	this->currentChannel = 0;
+SoundEffect::SoundEffect(std::string label, std::string path) 
+	:Content(label,CONTENT_TEXTURE), currentChannel(0)
+{
 	if(path != "")
 		this->load(path);
 }

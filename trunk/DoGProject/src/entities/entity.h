@@ -92,9 +92,9 @@ public:
 	void toggleFrozen();
 
 	//Check status
-	bool isLive();
-	bool isFrozen();
-	bool isVisible();
+	bool isLive() const;
+	bool isFrozen() const;
+	bool isVisible() const;
 
 	// Main operations
 	void render();

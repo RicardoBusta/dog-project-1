@@ -10,10 +10,8 @@
 
 // identificador do content e caminho da textura
 Texture::Texture(std::string label, std::string path)
+	:Content(label,CONTENT_TEXTURE), handle(0)
 {
-	this->setLabel(label);
-	this->setType(CONTENT_TEXTURE);
-	handle = 0;
 	if(path != "")
 		this->load(path);
 

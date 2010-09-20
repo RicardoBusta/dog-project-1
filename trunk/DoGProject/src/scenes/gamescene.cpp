@@ -13,6 +13,7 @@ GameScene::GameScene() {
 }
 
 GameScene::~GameScene(){
+	delete camera;
 }
 
 void GameScene::handleEntities(){

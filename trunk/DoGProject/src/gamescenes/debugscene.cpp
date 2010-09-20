@@ -16,8 +16,8 @@
 
 
 DebugScene::DebugScene()
+	:up(false), down(false), right(false), shooting(false), world(NULL), ship(NULL)
 {
-	up = down = left = right = shooting = false;
 }
 
 DebugScene::~DebugScene() {
@@ -76,7 +76,7 @@ bool DebugScene::prepare()
 	}
 
 	//TODO remodelar de forma que não seja necessário fazer esse cast
-	SoundEffect *fundo = (SoundEffect*)ContentManager::getContent(CONTENT_SOUND, "fundo");
+	SoundEffect *fundo =  reinterpret_cast<SoundEffect *>(ContentManager::getContent(CONTENT_SOUND, "fundo"));
 	fundo->play(INF_LOOP);
 
 	return true;
@@ -177,7 +177,7 @@ void DebugScene::logic()
 	if( shooting ){
 		ship->handleShoot();
 		//TODO remodelar de forma que não seja necessário fazer esse cast
-		tiro = (SoundEffect*)ContentManager::getContent(CONTENT_SOUND, "tiro");
+		tiro = reinterpret_cast<SoundEffect *>(ContentManager::getContent(CONTENT_SOUND, "tiro"));
 		tiro->play(PLAY_ONCE);
 	}
 	handleEntities();

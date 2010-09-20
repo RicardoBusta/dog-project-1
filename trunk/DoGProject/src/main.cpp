@@ -18,6 +18,8 @@ int main( int argc , char* argv[] ) {
 	teste->run();
 
 	SDL::close();
-
+	
+	delete teste;
+	
 	return 0;
 }

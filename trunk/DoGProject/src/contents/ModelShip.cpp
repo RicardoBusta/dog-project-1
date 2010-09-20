@@ -27,7 +27,7 @@ void ModelShip::triangle(float x1, float y1, float z1, float x2, float y2, float
 
 void ModelShip::draw(){
 	std::string a("nave");
-	Texture *tex = (Texture *) ContentManager::getContent(CONTENT_TEXTURE, a);
+	Texture *tex = reinterpret_cast<Texture *> (ContentManager::getContent(CONTENT_TEXTURE, a));
 	if(tex == NULL)
 	{
 		printf("Textura com erro.\n");

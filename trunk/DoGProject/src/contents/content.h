@@ -25,12 +25,12 @@ private:
 	int users;
 
 public:
-	Content();
+	Content(std::string label, enum CONTENT_ con);
 	virtual ~Content();
 
 	//Type Control
 	void setType(enum CONTENT_ type);
-	enum CONTENT_ getType();
+	enum CONTENT_ getType() const;
 
 	//User Control
 	bool used(); //Check if the content is being used
@@ -38,7 +38,7 @@ public:
 	void removeUser();
 
 	//Label Control
-	string getLabel(); //Obtain the string that identifies this content.
+	string getLabel() const; //Obtain the string that identifies this content.
 	void setLabel(string label);
 
 	virtual bool load(std::string &)=0; //Calls SDL::load functions depending on the type of information needed

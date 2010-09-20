@@ -7,7 +7,8 @@
 
 #include "model.h"
 
-Model::Model() {
+Model::Model() 
+	:Content("",CONTENT_MODEL){		//MUDAR AQUI PRO LABEL, depois
 	// TODO Auto-generated constructor stub
 
 }
