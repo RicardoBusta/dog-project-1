@@ -57,13 +57,24 @@ public:
 	//Sets
 	void setPosition( Point3 position );
 	//void setPosition(entity *e);
-	void move( Vector3 delta );
-	void moveW( Vector3 delta )
+	void move( Vector3 delta ); //Move the object based on its father coordinates
+	void moveSelf( Vector3 delta ); //Move the object based on it's own coordinate system
 	Point3 *getPosition();
 
 	void setRotation(float x, float y, float z);
-	//void setRotation(entity *e);
+	void setRotationX(float x);
+	void setRotationY(float y);
+	void setRotationZ(float z);
+
 	void rotate(float x, float y, float z);
+	void rotateX(float x);
+	void rotateY(float y);
+	void rotateZ(float z);
+
+	Point3 getRotation();
+	float getRotationX();
+	float getRotationY();
+	float getRotationZ();
 
 	void setScale(float x, float y, float z);
 	//void setScale(entity *e);
@@ -90,8 +101,8 @@ public:
 	void handle();
 
 	//Virtual Functions:
-	virtual void draw()=0;
-	virtual void handleSelf()=0;
+	virtual void draw();
+	virtual void handleSelf();
 };
 
 #endif /* ENTITY_H_ */

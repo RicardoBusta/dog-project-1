@@ -12,6 +12,9 @@
 
 class Hero : public Entity
 {
+private:
+	// The main "reaction" function
+	void handleSelf();
 public:
 	Hero(Entity* parent=NULL);
 	~Hero();
@@ -24,9 +27,14 @@ public:
 
 	//Shooting CoolDown
 	int shootCoolDown;
-private:
-	// The main "reaction" function
-	void handleSelf();
+
+	//Moving
+	float speed;
+	void moveForward();
+	void moveBackward();
+	void moveLeft();
+	void moveRight();
+	void handleTilt();
 };
 
 #endif /* HERO_H_ */

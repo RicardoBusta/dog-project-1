@@ -61,12 +61,12 @@ void Entity::setPosition( Point3 position )
 	coords.getOrigin()->setXYZ( position );
 }
 
-void Entity::move( Vector3 delta ){
+void Entity::moveSelf( Vector3 delta ){
 	//Translate the model from it's current coordinates
 	coords.moveOriginT( delta );
 }
 
-void Entity::moveW( Vector3 delta ){
+void Entity::move( Vector3 delta ){
 
 	//Translate the model in the world coordinates
 	coords.moveOriginW( delta );
@@ -84,55 +84,70 @@ void Entity::setRotation(float x, float y, float z)
 	this->coords.setRotationZ( z );
 }
 
-void Entity::rotate(float x, float y, float z)
-{
-	//Rotates the object based on the current position
-	this->coords.setRotationX( this->coords.getRotationX() + x );
-	this->coords.setRotationY( this->coords.getRotationY() + y );
-	this->coords.setRotationZ( this->coords.getRotationZ() + z );
+void Entity::setRotationX(float n){
+	this->coords.setRotationX( n );
 }
 
-void Entity::setScale(float x, float y, float z)
-{
+void Entity::setRotationY(float n){
+	this->coords.setRotationY( n );
+}
+
+void Entity::setRotationZ(float n){
+	this->coords.setRotationZ( n );
+}
+
+void Entity::rotate(float x, float y, float z){
+	//Rotates the object based on the current position
+	this->coords.rotateX( x );
+	this->coords.rotateY( y );
+	this->coords.rotateZ( z );
+}
+
+float Entity::getRotationX(){
+	return this->coords.getRotationX();
+}
+
+float Entity::getRotationY(){
+	return this->coords.getRotationY();
+}
+
+float Entity::getRotationZ(){
+	return this->coords.getRotationZ();
+}
+void Entity::setScale(float x, float y, float z){
 	//Set the object scale
 	this->scale.x = x;
 	this->scale.y = y;
 	this->scale.z = z;
 }
 
-void Entity::resize(float x, float y, float z)
-{
+void Entity::resize(float x, float y, float z){
 	//Scales the current object size
 	this->scale.x += x;
 	this->scale.y += y;
 	this->scale.z += z;
 }
 
-void Entity::setColor(float r, float g, float b)
-{
+void Entity::setColor(float r, float g, float b){
 	//Set the object color
 	this->color.r = r;
 	this->color.g = g;
 	this->color.b = b;
 }
 
-void Entity::toggleVisible()
-{
+void Entity::toggleVisible(){
 	this->visible = !this->visible;
 }
 
-void Entity::toggleLive()
-{
+void Entity::toggleLive(){
 	this->live = !this->live;
 }
 
-void Entity::toggleFrozen()
-{
+void Entity::toggleFrozen(){
 	this->frozen = !this->frozen;
 }
 
-void Entity::render()
-{
+void Entity::render(){
 	//Prepare the coordinate system
 	glPushMatrix();
 	glMultMatrixf( coords.getMatrixToWorld() );
@@ -161,4 +176,11 @@ bool Entity::isVisible(){
 
 bool Entity::isFrozen(){
 	return frozen;
+}
+
+void Entity::draw(){
+}
+
+void Entity::handleSelf(){
+
 }

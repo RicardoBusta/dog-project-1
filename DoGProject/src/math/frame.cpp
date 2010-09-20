@@ -193,20 +193,35 @@ void Frame::moveOriginT( float dx , float dy , float dz )
 
 void Frame::setRotationX( float angle )
 {
-    this->angleX += angle;
+    this->angleX = angle;
     normalizeAngle( &this->angleX );
+}
+
+void Frame::rotateX( float angle ){
+	this->angleX += angle;
+	normalizeAngle( &this->angleX );
 }
 
 void Frame::setRotationY( float angle )
 {
-    this->angleY += angle;
+    this->angleY = angle;
     normalizeAngle( &this->angleY );
+}
+
+void Frame::rotateY( float angle ){
+	this->angleY += angle;
+	normalizeAngle( &this->angleY );
 }
 
 void Frame::setRotationZ( float angle )
 {
-    this->angleZ += angle;
+    this->angleZ = angle;
     normalizeAngle( &this->angleZ );
+}
+
+void Frame::rotateZ( float angle ){
+	this->angleZ += angle;
+	normalizeAngle( &this->angleZ );
 }
 
 void Frame::normalizeAngle(float *angle)
