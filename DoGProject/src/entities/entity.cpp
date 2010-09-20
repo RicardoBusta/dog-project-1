@@ -7,7 +7,7 @@
 
 #include "entity.h"
 #include "../base/sdl.h"
-
+#include "../contents/model.h"
 Entity::Entity(Entity* p) {
 	parent = p;
 	if(parent != NULL){
@@ -17,11 +17,10 @@ Entity::Entity(Entity* p) {
 	visible = true;
 	frozen = false;
 	live = true;
-
-	//setPosition(0,0,0);
-	//setRotation(0,0,0);
-	//setScale(1,1,1);
-
+	model = NULL;
+	setPosition( Point3(0,0,0) );
+	setRotation(0,0,0);
+	setScale(1,1,1);
 	// Set white the color
 	setColor(1.0f,1.0f,1.0f);
 }
@@ -34,17 +33,25 @@ void Entity::handle(){
 	//If it's state isn't frozen
 	if(!frozen){
 		//Handle itself
-		this->handleSelf();
+		this->handler();
 
 		//Handle children
 		list<Entity*>::iterator it;
 		for(it = sons.begin(); it!=sons.end(); it++){
+			if( (*it)->isLive() ){
 			(*it)->handle();
+			}else{
+				list<Entity*>::iterator it2;
+				it2 = it;
+				it--;
+				delete (*it2);
+				sons.erase(it2);
+			}
 		}
 	}
 }
 
-void Entity::killSons(){
+void Entity::clearChildren(){
 //this
 	list<Entity*>::iterator it;
 	while (!sons.empty()){
@@ -53,6 +60,10 @@ void Entity::killSons(){
 		sons.pop_front();
 	}
 	sons.clear();
+}
+
+void Entity::setModel(Model* m){
+	model = m;
 }
 
 void Entity::setPosition( Point3 position )
@@ -101,6 +112,18 @@ void Entity::rotate(float x, float y, float z){
 	this->coords.rotateX( x );
 	this->coords.rotateY( y );
 	this->coords.rotateZ( z );
+}
+
+void Entity::rotateX(float n){
+	this->coords.rotateX(n);
+}
+
+void Entity::rotateY(float n){
+	this->coords.rotateY(n);
+}
+
+void Entity::rotateZ(float n){
+	this->coords.rotateZ(n);
 }
 
 float Entity::getRotationX(){
@@ -155,7 +178,11 @@ void Entity::render(){
 	//Draw the entity and it's children if it isn't invisible
 	if(visible){
 		//Draw this object
-		this->draw();
+		glColor3f(color.r,color.g,color.b);
+		if(model!=NULL){
+			this->model->draw();
+		}
+
 
 		//Render the object's children
 		list<Entity*>::iterator it;
@@ -178,9 +205,6 @@ bool Entity::isFrozen(){
 	return frozen;
 }
 
-void Entity::draw(){
-}
-
-void Entity::handleSelf(){
+void Entity::handler(){
 
 }

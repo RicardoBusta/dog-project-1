@@ -16,10 +16,6 @@ Particle::~Particle() {
 	// TODO Auto-generated destructor stub
 }
 
-void Particle::draw(){
-
-}
-
-void Particle::handleSelf(){
+void Particle::handler(){
 
 }

@@ -6,6 +6,7 @@
  */
 
 #include "texture.h"
+#include "../contents/contentmanager.h"
 
 // identificador do content e caminho da textura
 Texture::Texture(std::string label, std::string path)
@@ -15,6 +16,10 @@ Texture::Texture(std::string label, std::string path)
 	handle = 0;
 	if(path != "")
 		this->load(path);
+
+	ContentManager::addContent(this);
+	printf("Textura carregada com label: %s\n", this->getLabel().c_str());
+	printf("E com handle: %d\n", this->getHandle());
 }
 
 Texture::~Texture()
@@ -42,3 +47,6 @@ GLuint Texture::getHandle()
 	return handle;
 }
 
+void Texture::bind(){
+	glBindTexture(GL_TEXTURE_2D, getHandle());
+}
