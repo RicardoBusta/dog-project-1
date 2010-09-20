@@ -63,6 +63,19 @@ Uint8 SoundEffect::getVolume()
 	return this->som->volume;
 }
 
+void SoundEffect::incVolume()
+{
+	if(this->som->volume < 128)
+		this->som->volume++;
+
+}
+
+void SoundEffect::decVolume()
+{
+	if(this->som->volume>0)
+		this->som->volume--;
+}
+
 bool SoundEffect::fadeIn(int ms, enum NLOOPS n)
 {
 	if(Mix_FadeInChannel(this->currentChannel, this->som, ms, n) < 0)
