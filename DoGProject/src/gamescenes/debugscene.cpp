@@ -9,10 +9,12 @@
 
 #include "../entities/hero.h"
 #include "../entities/box.h"
+#include "../entities/weapon.h"
 #include "../contents/contentmanager.h"
 #include "../contents/model.h"
 #include "../contents/ModelShip.h"
 #include "../contents/ModelBox.h"
+#include "../contents/ModelWeapon.h"
 
 
 DebugScene::DebugScene()
@@ -54,11 +56,14 @@ bool DebugScene::prepare()
 	ship = new Hero(world);
 	ship->move( Vector3(0,0,200) );
 	ship->setModel(new ModelShip());
+
+	Weapon *weapon;
+
+	ship->addWeapon( Vector3(30,0,0) );
+	ship->addWeapon( Vector3(-30,0,0) );
 /*
 	Box *gun = new Box(ship);
-	gun->randomColors();
-	gun->setData(20,1,20);
-	gun->toggleFrozen(); //Freezes the box in place
+
 	gun->setPosition( Point3(0,40,-10) );*/
 
 	// Posicionando a camera
