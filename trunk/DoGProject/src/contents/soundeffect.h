@@ -22,6 +22,8 @@ public:
 	//ajuste de volume - varia de 0 a 128
 	void setVolume(Uint8 vol);
 	Uint8 getVolume();
+	void incVolume();
+	void decVolume();
 
 	//efeitos de fade-in e fade-out
 	bool fadeIn(int ms, enum NLOOPS);
