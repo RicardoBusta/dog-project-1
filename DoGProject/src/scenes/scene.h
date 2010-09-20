@@ -25,7 +25,7 @@ public:
 	SceneMessage run();
 
 	// Verify if its running
-	bool isRunning();
+	bool isRunning() const;
 
 	// GameLoop
 	virtual void input() = 0;

@@ -40,7 +40,7 @@ SceneMessage Scene::run(){
 	return result();
 }
 
-bool Scene::isRunning()
+bool Scene::isRunning() const
 {
 	return Scene::running;
 }

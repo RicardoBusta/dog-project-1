@@ -7,8 +7,10 @@
 
 #include "content.h"
 
-Content::Content() {
-	users=1;
+Content::Content(std::string label, enum CONTENT_ con)
+:users(1) {
+	setType(con);
+	setLabel(label);
 }
 
 Content::~Content() {
@@ -19,7 +21,7 @@ void Content::setType(enum CONTENT_ t){
 	type = t;
 }
 
-enum CONTENT_ Content::getType(){
+enum CONTENT_ Content::getType() const{
 	return type;
 }
 
@@ -40,7 +42,7 @@ void Content::removeUser(){
 		users--;
 }
 
-string Content::getLabel(){
+string Content::getLabel() const{
 	return label;
 }
 
