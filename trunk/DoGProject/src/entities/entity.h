@@ -18,7 +18,7 @@
 
 using namespace std;
 
-class AnimatedModel;
+class Model;
 
 class Entity{
 private:
@@ -30,8 +30,8 @@ protected:
 	bool live; //If it's alive by the end of it's handling, will not be removed.
 
 //3D Model.
-	bool hasModel;
-	AnimatedModel *model;
+	Model *model;
+	//AnimatedModel *model;
 
 	// Frame
 	Frame coords;
@@ -46,7 +46,7 @@ protected:
 			float r,g,b;
 	}color;
 
-	void killSons();
+	void clearChildren();
 
 	list<Entity*> sons;
 public:
@@ -84,7 +84,7 @@ public:
 	//void setColor(entity *e);
 	//void colorize(float r, float g, float b);
 
-	//void setModel(AnimatedModel* model);
+	void setModel(Model* model);
 
 	//Toggles
 	void toggleVisible();
@@ -101,8 +101,7 @@ public:
 	void handle();
 
 	//Virtual Functions:
-	virtual void draw();
-	virtual void handleSelf();
+	virtual void handler();
 };
 
 #endif /* ENTITY_H_ */

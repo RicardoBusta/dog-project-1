@@ -7,7 +7,8 @@
 
 #include "hero.h"
 #include "../contents/contentmanager.h"
-
+#include "projectile.h"
+#include "../contents/ModelBullet.h"
 Hero::Hero(Entity* p):Entity(p) {
 	shootCoolDown = 0;
 	speed = 5;
@@ -20,21 +21,12 @@ void Hero::addAction( ControllerStatus control ){
 
 }
 
-void Hero::handleSelf()
+void Hero::handler()
 {
 	if(shootCoolDown>=0)
 		shootCoolDown--;
 }
-
-void Hero::triangle(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3){
-	glTexCoord2d(0.5,0);
-	glVertex3f(x1,y1,z1);
-	glTexCoord2d(0.5,1);
-	glVertex3f(x2,y2,z2);
-	glTexCoord2d(0,1);
-	glVertex3f(x3,y3,z3);
-}
-
+/*
 void Hero::draw()
 {
 	glColor3f(color.r,color.g,color.b);
@@ -44,7 +36,7 @@ void Hero::draw()
 	{
 		printf("Textura com erro.\n");
 	}
-	glBindTexture(GL_TEXTURE_2D, tex->getHandle());
+	tex->bind();
 
 	//sca 5 5 5
 	//cen 0 0 0.7
@@ -92,12 +84,33 @@ void Hero::draw()
 			glVertex3f( 0, 0, 1 );
 			glTexCoord2d(0.5,0);
 			glVertex3f( 0.75, 0, 1 );
+		//Tail
+			triangle(	0 , 0.35 , 1,
+						0 , 0 , 1,
+						0 , 0 , 0.3
+					);
+			triangle(	0 , 0.35 , 1,
+						0 , 0 , 0.3,
+						0 , 0 , 1
+					);
 		//downside
-			triangle( 0, 0, 0.5, 0.75, 0, 1, -0.75, 0, 1 );
-			triangle( 0, 0, 0, 0.25, 0, 1, -0.25, 0, 1 );
+			//wings
+			triangle( 	-0.15, 0, 0.6,
+						-0.25, 0, 1,
+						-0.75, 0, 1
+					);
+			triangle( 	0.15, 0, 0.6,
+						0.75, 0, 1,
+						0.25, 0, 1
+					);
+			//middle
+			triangle( 	0, 0, 0,
+						0.25, 0, 1,
+						-0.25, 0, 1
+					);
 	glEnd();
 	glPopMatrix();
-}
+}*/
 
 void Hero::moveForward(){
 	move( Vector3(0,0,-speed) );
@@ -108,21 +121,30 @@ void Hero::moveBackward(){
 void Hero::moveLeft(){
 	move( Vector3(-speed,0,0) );
 	if(getRotationZ() < 45 ){
-		rotate(0,0,2);
+		rotateZ(2);
 	}
 }
 void Hero::moveRight(){
 	move( Vector3(speed,0,0) );
 	if(getRotationZ() > -45 ){
-		rotate(0,0,-2);
+		rotateZ(-2);
 	}
 }
 void Hero::handleTilt(){
 	if(getRotationZ() > 1){
-		rotate(0,0,-1);
+		rotateZ(-1);
 	}else if(getRotationZ() < -1){
-		rotate(0,0,1);
+		rotateZ(1);
 	}else{
 		setRotationZ(0);
+	}
+}
+
+void Hero::handleShoot(){
+	if (shootCoolDown<=0){
+		Projectile *p = new Projectile( Vector3(0,0,-10) , parent);
+		p->setPosition( *getPosition() );
+		p->setModel(new ModelBullet());
+		shootCoolDown = 10;
 	}
 }

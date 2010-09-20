@@ -14,16 +14,12 @@ class Hero : public Entity
 {
 private:
 	// The main "reaction" function
-	void handleSelf();
+	void handler();
 public:
 	Hero(Entity* parent=NULL);
 	~Hero();
 
 	void addAction( ControllerStatus control );
-
-	// The drawing function
-	void draw();
-	void triangle(float,float,float,float,float,float,float,float,float);
 
 	//Shooting CoolDown
 	int shootCoolDown;
@@ -35,6 +31,7 @@ public:
 	void moveLeft();
 	void moveRight();
 	void handleTilt();
+	void handleShoot();
 };
 
 #endif /* HERO_H_ */

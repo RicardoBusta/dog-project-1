@@ -16,24 +16,9 @@ public:
 	Box(Entity* parent=NULL);
 	~Box();
 
-	void randomColors();
-
-	//Box Properties
-	void setData( float width , float height , float depth );
-
 	//Main reaction
-	void handleSelf();
+	void handler();
 
-	//The drawing function
-	void draw();
-
-private:
-	void drawFace( int , int , int , int );
-
-	float width,height,depth;
-
-	float vr[8],vg[8],vb[8];
-	Point3 vertex[8];
 };
 
 #endif /* BOX_H_ */

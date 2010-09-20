@@ -15,8 +15,7 @@ public:
 	Particle(Entity* parent=NULL);
 	virtual ~Particle();
 
-	void draw();
-	void handleSelf();
+	virtual void handler();
 };
 
 #endif /* PARTICLE_H_ */

@@ -19,12 +19,11 @@ void GameScene::handleEntities(){
 	list<Entity*>::iterator it;
 	for(it=entities.begin();it!=entities.end();it++){
 		if( !(*it)->isLive() ){
-			if((*it)->isVisible()){
-				(*it)->toggleVisible();
-			}
-			//delete (*it);
-			//entities.remove(it);
-			//delete aux;
+			list<Entity*>::iterator it2;
+			it2 = it;
+			it--;
+			delete (*it2);
+			entities.erase(it2);
 		}else{
 			(*it)->handle();
 		}

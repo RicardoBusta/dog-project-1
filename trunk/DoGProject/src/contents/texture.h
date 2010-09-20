@@ -14,10 +14,11 @@
 class Texture: public Content {
 public:
 	Texture(std::string label, std::string path = "");	// identificador do content e caminho da textura
-	bool load(std::string &path);						// Carrega textura
-	GLuint getHandle();
 	virtual ~Texture();
 
+	bool load(std::string &path);						// Carrega textura
+	GLuint getHandle();
+	void bind();
 
 private:
 	GLuint handle;	// handle para o identificador da textura

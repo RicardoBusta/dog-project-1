@@ -14,8 +14,7 @@ class Projectile: public Particle {
 public:
 	Projectile(Vector3 direction, Entity* parent=NULL);
 	virtual ~Projectile();
-	void draw();
-	void handleSelf();
+	void handler();
 
 	Vector3 *direction;
 	int lifeTime;

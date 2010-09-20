@@ -7,10 +7,12 @@
 
 #include "debugscene.h"
 
-#include "../entities/projectile.h"
 #include "../entities/hero.h"
 #include "../entities/box.h"
 #include "../contents/contentmanager.h"
+#include "../contents/model.h"
+#include "../contents/ModelShip.h"
+#include "../contents/ModelBox.h"
 
 
 DebugScene::DebugScene()
@@ -26,23 +28,20 @@ bool DebugScene::load()
 	glEnable(GL_TEXTURE_2D);
 
 	Texture* newtex;
-	SoundEffect *som;
+	//SoundEffect *som;
 
 	newtex = new Texture("madeira", "squareTex.jpg");
-	ContentManager::addContent(newtex);
-	printf("Textura carregada com label: %s\n", newtex->getLabel().c_str());
-	printf("E com handle: %d\n", newtex->getHandle());
 
 	newtex = new Texture("nave", "ship.png");
-	ContentManager::addContent(newtex);
-	printf("Textura carregada com label: %s\n", newtex->getLabel().c_str());
-	printf("E com handle: %d\n", newtex->getHandle());
 
-	som = new SoundEffect("tiro", "laser.ogg");
-	ContentManager::addContent(som);
+	newtex = new Texture("stars", "star_texture.jpg");
 
-	som = new SoundEffect("fundo", "background.ogg");
-	ContentManager::addContent(som);
+
+	//som = new SoundEffect("tiro", "laser.ogg");
+	//ContentManager::addContent(som);
+
+	//som = new SoundEffect("fundo", "background.ogg");
+	//ContentManager::addContent(som);
 
 	return true;
 }
@@ -54,6 +53,7 @@ bool DebugScene::prepare()
 	// Preparando os elementos
 	ship = new Hero(world);
 	ship->move( Vector3(0,0,200) );
+	ship->setModel(new ModelShip());
 /*
 	Box *gun = new Box(ship);
 	gun->randomColors();
@@ -66,26 +66,18 @@ bool DebugScene::prepare()
 	camera->setRotationX( -45 );
 
 	Box* cen;
-	for( int i = 0 ; i < 3 ; i++ ){
-		cen = new Box(world);
-		cen->randomColors();
-		cen->setData(70,20,130);
-		cen->move(Vector3(0,-100, -i*260));
-
-		cen = new Box(world);
-		cen->randomColors();
-		cen->setData(70,20,130);
-		cen->move(Vector3(80,-100, -i*260-100));
-
-		cen = new Box(world);
-		cen->randomColors();
-		cen->setData(70,20,130);
-		cen->move(Vector3(-80,-100, -i*260-100));
+	//Model* boxm = new ModelBox(); assim basta 1 modelo, mas ai todas as caixas terão a mesma cor
+	for( int i = 0 ; i < 4 ; i++ ){
+		for(int j=-5;j<=5;j++){
+			cen = new Box(world);
+			cen->move(Vector3(80*j,-100, -i*300-80*j));
+			cen->setModel(new ModelBox());
+		}
 	}
 
 	//TODO remodelar de forma que não seja necessário fazer esse cast
-	SoundEffect *fundo = (SoundEffect*)ContentManager::getContent(CONTENT_SOUND, "fundo");
-	fundo->play(INF_LOOP);
+	//SoundEffect *fundo = (SoundEffect*)ContentManager::getContent(CONTENT_SOUND, "fundo");
+	//fundo->play(INF_LOOP);
 
 	return true;
 }
@@ -94,6 +86,7 @@ bool DebugScene::unload()
 {
 	ContentManager::removeContent(CONTENT_TEXTURE, "madeira");
 	ContentManager::removeContent(CONTENT_TEXTURE, "ship");
+	ContentManager::removeContent(CONTENT_TEXTURE, "stars");
 	glDisable(GL_TEXTURE_2D);
 
 	list<Entity*>::iterator it;
@@ -173,28 +166,20 @@ void DebugScene::input()
 void DebugScene::logic()
 {
 	SoundEffect *tiro;
-	// Moving the camera
-	//camera.moveOriginW( Vector3(0,0,-5) );
-
-	//if( up ) ship->rotate(-10,0,0);
-	//if( down ) ship->rotate(10,0,0);
 
 	if( up )	ship->moveForward();
 	if( down )	ship->moveBackward();
 	if( right )	ship->moveRight();
 	if( left )	ship->moveLeft();
-	ship->handleTilt();
+	if( !(left xor right) ) ship->handleTilt();
 
-	if( shooting and ship->shootCoolDown<=0){
-		Projectile *p = new Projectile( Vector3(0,0,-10) , world);
-		p->setPosition( *ship->getPosition() );
-		ship->shootCoolDown = 10;
-		//toca o efeito sonoro de tiro
+
+	if( shooting ){
+		ship->handleShoot();
 		//TODO remodelar de forma que não seja necessário fazer esse cast
-		tiro = (SoundEffect*)ContentManager::getContent(CONTENT_SOUND, "tiro");
-		tiro->play(PLAY_ONCE);
+		//tiro = (SoundEffect*)ContentManager::getContent(CONTENT_SOUND, "tiro");
+		//tiro->play(PLAY_ONCE);
 	}
-	//ship->move( Vector3(0,0,-5) );
 	handleEntities();
 }
 

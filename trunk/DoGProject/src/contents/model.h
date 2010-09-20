@@ -10,12 +10,19 @@
 
 #include "content.h"
 
+#include "../base/sdl.h"
+#include "../math/frame.h"
+#include "../math/point3.h"
+#include "../math/vector3.h"
+#include "../base/util.h"
+#include "../contents/contentmanager.h"
+
 class Model: public Content {
 public:
 	Model();
 	virtual ~Model();
 
-	void draw();
+	virtual void draw()=0;
 
 	bool load(std::string &);
 };
