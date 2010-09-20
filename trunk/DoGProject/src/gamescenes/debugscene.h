@@ -36,6 +36,7 @@ public:
 private:
 	// Some test info
 	Hero* ship;
+	Entity* world;
 
 	bool up,down,left,right,shooting;
 };

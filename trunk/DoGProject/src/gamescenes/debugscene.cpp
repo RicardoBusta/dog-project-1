@@ -49,9 +49,10 @@ bool DebugScene::load()
 
 bool DebugScene::prepare()
 {
+	world = new Entity;
+	this->entities.push_back( world );
 	// Preparando os elementos
-	ship = new Hero;
-	this->entities.push_back( ship );
+	ship = new Hero(world);
 	ship->move( Vector3(0,0,200) );
 /*
 	Box *gun = new Box(ship);
@@ -66,23 +67,20 @@ bool DebugScene::prepare()
 
 	Box* cen;
 	for( int i = 0 ; i < 3 ; i++ ){
-		cen = new Box;
+		cen = new Box(world);
 		cen->randomColors();
 		cen->setData(70,20,130);
 		cen->move(Vector3(0,-100, -i*260));
-		this->entities.push_back( cen );
 
-		cen = new Box;
+		cen = new Box(world);
 		cen->randomColors();
 		cen->setData(70,20,130);
 		cen->move(Vector3(80,-100, -i*260-100));
-		this->entities.push_back( cen );
 
-		cen = new Box;
+		cen = new Box(world);
 		cen->randomColors();
 		cen->setData(70,20,130);
 		cen->move(Vector3(-80,-100, -i*260-100));
-		this->entities.push_back( cen );
 	}
 
 	//TODO remodelar de forma que não seja necessário fazer esse cast
@@ -180,29 +178,21 @@ void DebugScene::logic()
 
 	//if( up ) ship->rotate(-10,0,0);
 	//if( down ) ship->rotate(10,0,0);
-	float speed = 5;
-	if( up ) ship->move( Vector3(0,0,-speed) );
-	if( down ) ship->move( Vector3(0,0,speed) );
-	//if( up ) camera->setRotationX(1);
-	//if( down ) camera->setRotationX(-1);
-	//cout << camera->getRotationX() << endl;
-	if( right ){
-		ship->move( Vector3(speed,0,0) );
-	}
-	if( left ) ship->move( Vector3(-speed,0,0) );
 
-	if( shooting ){
+	if( up )	ship->moveForward();
+	if( down )	ship->moveBackward();
+	if( right )	ship->moveRight();
+	if( left )	ship->moveLeft();
+	ship->handleTilt();
+
+	if( shooting and ship->shootCoolDown<=0){
+		Projectile *p = new Projectile( Vector3(0,0,-10) , world);
+		p->setPosition( *ship->getPosition() );
+		ship->shootCoolDown = 10;
 		//toca o efeito sonoro de tiro
 		//TODO remodelar de forma que não seja necessário fazer esse cast
 		tiro = (SoundEffect*)ContentManager::getContent(CONTENT_SOUND, "tiro");
 		tiro->play(PLAY_ONCE);
-
-		if(ship->shootCoolDown<=0){
-			Projectile *p = new Projectile( Vector3(0,0,-10) );
-			p->setPosition( *ship->getPosition() );
-			this->entities.push_back( p );
-			ship->shootCoolDown = 10;
-		}
 	}
 	//ship->move( Vector3(0,0,-5) );
 	handleEntities();

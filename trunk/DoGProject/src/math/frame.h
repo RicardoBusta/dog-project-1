@@ -45,8 +45,11 @@ public:
 
     // Set rotation but don't modify the matrix
     void setRotationX( float );
+    void rotateX( float );
     void setRotationY( float );
+    void rotateY( float );
     void setRotationZ( float );
+    void rotateZ( float );
 
     // Getters of rotations
     int getRotationX();

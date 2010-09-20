@@ -10,6 +10,7 @@
 
 Hero::Hero(Entity* p):Entity(p) {
 	shootCoolDown = 0;
+	speed = 5;
 }
 
 Hero::~Hero() {
@@ -96,4 +97,32 @@ void Hero::draw()
 			triangle( 0, 0, 0, 0.25, 0, 1, -0.25, 0, 1 );
 	glEnd();
 	glPopMatrix();
+}
+
+void Hero::moveForward(){
+	move( Vector3(0,0,-speed) );
+}
+void Hero::moveBackward(){
+	move( Vector3(0,0,speed) );
+}
+void Hero::moveLeft(){
+	move( Vector3(-speed,0,0) );
+	if(getRotationZ() < 45 ){
+		rotate(0,0,2);
+	}
+}
+void Hero::moveRight(){
+	move( Vector3(speed,0,0) );
+	if(getRotationZ() > -45 ){
+		rotate(0,0,-2);
+	}
+}
+void Hero::handleTilt(){
+	if(getRotationZ() > 1){
+		rotate(0,0,-1);
+	}else if(getRotationZ() < -1){
+		rotate(0,0,1);
+	}else{
+		setRotationZ(0);
+	}
 }
