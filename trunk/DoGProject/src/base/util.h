@@ -23,10 +23,10 @@ using namespace std;
 #define IMAGE SDL_Surface
 #define LOAD_IMAGE IMG_load
 //#define MUSIC Mix_Music
-#define TEXTURESPATH "trunk/DoGProject/resources/textures/"
-#define SOUNDSPATH "trunk/DoGProject/resources/sounds/"
-//#define TEXTURESPATH "resources/textures/"
-//#define SOUNDSPATH "resources/sounds/"
+//#define TEXTURESPATH "trunk/DoGProject/resources/textures/"
+//#define SOUNDSPATH "trunk/DoGProject/resources/sounds/"
+#define TEXTURESPATH "resources/textures/"
+#define SOUNDSPATH "resources/sounds/"
 #define SOUND Mix_Chunk
 #define DEFAULT_SOUND_FREQUENCY 22050
 #define DEFAULT_CHUNK_SIZE 1024
