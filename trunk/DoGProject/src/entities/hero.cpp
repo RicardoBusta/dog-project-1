@@ -13,6 +13,7 @@
 Hero::Hero(Entity* p):Entity(p) {
 	shootCoolDown = 0;
 	speed = 5;
+	volume = new BoundingBox(this->getPosition(), 120.0f,50.0f,180.0f);
 }
 
 Hero::~Hero() {
@@ -27,10 +28,14 @@ void Hero::handler()
 	if(shootCoolDown>=0)
 		shootCoolDown--;
 }
-/*
+
 void Hero::draw()
 {
-	glColor3f(color.r,color.g,color.b);
+	volume->setCurPosition(this->getPosition());
+	volume->draw();
+
+
+	/*glColor3f(color.r,color.g,color.b);
 	std::string a("nave");
 	Texture *tex = (Texture *) ContentManager::getContent(CONTENT_TEXTURE, a);
 	if(tex == NULL)
@@ -110,8 +115,8 @@ void Hero::draw()
 						-0.25, 0, 1
 					);
 	glEnd();
-	glPopMatrix();
-}*/
+	glPopMatrix();*/
+}
 
 void Hero::moveForward(){
 	move( Vector3(0,0,-speed) );

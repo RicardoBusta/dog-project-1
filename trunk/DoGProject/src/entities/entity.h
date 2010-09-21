@@ -9,12 +9,15 @@
 #ifndef ENTITY_H_
 #define ENTITY_H_
 
+#include "bounding_volume.h"
 #include "../base/sdl.h"
 #include "../math/frame.h"
 #include "../math/point3.h"
 #include "../math/vector3.h"
 #include "../base/util.h"
 #include <list>
+
+#include "bounding_volume.h"
 
 using namespace std;
 
@@ -104,6 +107,8 @@ public:
 
 	//Virtual Functions:
 	virtual void handler();
+
+	BoundingVolume *volume;
 };
 
 #endif /* ENTITY_H_ */
