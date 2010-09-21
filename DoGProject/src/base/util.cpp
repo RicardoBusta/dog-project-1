@@ -21,3 +21,8 @@ float rad(float deg){
 float deg(float rad){
 	return rad*180/M_PI;
 }
+
+float abs(float n){
+	if(n<0) return -n;
+	return n;
+}
