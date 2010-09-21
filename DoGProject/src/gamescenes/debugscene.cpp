@@ -10,6 +10,7 @@
 #include "../entities/hero.h"
 #include "../entities/box.h"
 #include "../entities/weapon.h"
+#include "../entities/bounding_volume.h"
 #include "../contents/contentmanager.h"
 #include "../contents/model.h"
 #include "../contents/ModelShip.h"
@@ -18,7 +19,7 @@
 
 
 DebugScene::DebugScene()
-	:up(false), down(false), right(false), shooting(false), world(NULL), ship(NULL)
+	: ship(NULL),world(NULL),up(false), down(false), right(false), shooting(false)
 {
 }
 
@@ -91,7 +92,6 @@ void DebugScene::input()
 bool DebugScene::load()
 {
 	glEnable(GL_TEXTURE_2D);
-
 	Texture* newtex;
 	SoundEffect *som;
 
@@ -109,20 +109,19 @@ bool DebugScene::load()
 	som = new SoundEffect("fundo", "background.ogg");
 	som->setVolume(100);
 	ContentManager::addContent(som);
-
 	return true;
 }
 
 bool DebugScene::prepare()
 {
 	world = new Entity;
-	this->entities.push_back( world );
+	this->scenario.push_back( world );
 	// Preparando os elementos
 	ship = new Hero(world);
 	ship->move( Vector3(0,0,200) );
 	ship->setModel(new ModelShip());
 
-	Weapon *weapon;
+	//Weapon *weapon;
 	for(int i=-50;i<=50;i+=10){
 		ship->addWeapon( Vector3(i,0,abs(i)) );
 	}
@@ -161,11 +160,21 @@ bool DebugScene::unload()
 
 	list<Entity*>::iterator it;
 
-	while (!entities.empty()){
-			it = entities.begin();
+	while (!ships.empty()){
+			it = ships.begin();
 			delete (*it);
-			entities.pop_front();
+			ships.pop_front();
 		}
+	while (!bullets.empty()){
+				it = bullets.begin();
+				delete (*it);
+				bullets.pop_front();
+			}
+	while (!scenario.empty()){
+				it = scenario.begin();
+				delete (*it);
+				scenario.pop_front();
+			}
 
 	return true;
 }
@@ -182,7 +191,9 @@ void DebugScene::logic()
 	if( shooting ){
 		ship->handleShoot();
 	}
-	handleEntities();
+	handleShips();
+	handleBullets();
+	handleScenario();
 }
 
 void DebugScene::render()
@@ -192,11 +203,17 @@ void DebugScene::render()
 
 	//Position the objects in the camera
 	glMultMatrixf( camera->getMatrixToThis() );
-
 	// Render all the elements of the scene
 	list<Entity*>::iterator it;
-	for(it=entities.begin();it!=entities.end();it++){
+	ship->draw();
+	for(it=ships.begin();it!=ships.end();it++){
 		(*it)->render();
+	}
+	for(it=bullets.begin();it!=bullets.end();it++){
+			(*it)->render();
+	}
+	for(it=scenario.begin();it!=scenario.end();it++){
+			(*it)->render();
 	}
 	// Swap the buffers
 	SDL::swapBuffers();

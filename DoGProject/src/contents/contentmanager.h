@@ -6,12 +6,9 @@
  */
 #define _DEFINE_DEPRECATED_HASH_CLASSES 0
 
-#ifdef WIN
-#include <unordered_map>
-#else
-#include <tr1/unordered_map>
+#include <boost/tr1/unordered_map.hpp>
 using namespace std::tr1;
-#endif
+
 
 #ifndef CONTENTMANAGER_H_
 #define CONTENTMANAGER_H_

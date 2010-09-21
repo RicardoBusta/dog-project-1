@@ -38,6 +38,8 @@ public:
 	void moveRight();
 	void handleTilt();
 	void handleShoot();
+
+	void draw();
 };
 
 #endif /* HERO_H_ */

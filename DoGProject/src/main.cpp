@@ -8,6 +8,7 @@
 #include "base/sdl.h"
 #include "gamescenes/debugscene.h"
 
+
 int main( int argc , char* argv[] ) {
 	//return SDL::exec();
 
