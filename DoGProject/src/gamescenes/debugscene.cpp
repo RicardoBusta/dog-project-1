@@ -25,6 +25,69 @@ DebugScene::DebugScene()
 DebugScene::~DebugScene() {
 }
 
+void DebugScene::input()
+{
+	// The main inputs
+	while( SDL::actionsLeft() ){
+
+		// The next action
+		switch( SDL::nextAction() ){
+
+			// Close the game action
+			case CON_QUIT_GAME:
+				// End the scene
+				this->running = false;
+				break;
+
+			// Directional
+			case CON_UP_ON:
+				up = true;
+				ship->addAction( CON_UP_ON );
+				break;
+			case CON_UP_OFF:
+				up = false;
+				ship->addAction( CON_UP_OFF );
+				break;
+			case CON_DOWN_ON:
+				down = true;
+				ship->addAction( CON_DOWN_ON );
+				break;
+			case CON_DOWN_OFF:
+				down = false;
+				ship->addAction( CON_DOWN_OFF );
+				break;
+			case CON_LEFT_ON:
+				left = true;
+				ship->addAction( CON_LEFT_ON );
+				break;
+			case CON_LEFT_OFF:
+				left = false;
+				ship->addAction( CON_LEFT_OFF );
+				break;
+			case CON_RIGHT_ON:
+				right = true;
+				ship->addAction( CON_RIGHT_ON );
+				break;
+			case CON_RIGHT_OFF:
+				right = false;
+				ship->addAction( CON_RIGHT_OFF );
+				break;
+			case CON_SHOOTING_ON:
+				shooting = true;
+				ship->addAction( CON_SHOOTING_ON );
+				break;
+			case CON_SHOOTING_OFF:
+				shooting = false;
+				ship->addAction( CON_SHOOTING_OFF );
+				break;
+
+			default:
+				// Standby
+				break;
+		}
+	}
+}
+
 bool DebugScene::load()
 {
 	glEnable(GL_TEXTURE_2D);
@@ -107,73 +170,8 @@ bool DebugScene::unload()
 	return true;
 }
 
-void DebugScene::input()
-{
-	// The main inputs
-	while( SDL::actionsLeft() ){
-
-		// The next action
-		switch( SDL::nextAction() ){
-
-			// Close the game action
-			case CON_QUIT_GAME:
-				// End the scene
-				this->running = false;
-				break;
-
-			// Directional
-			case CON_UP_ON:
-				up = true;
-				ship->addAction( CON_UP_ON );
-				break;
-			case CON_UP_OFF:
-				up = false;
-				ship->addAction( CON_UP_OFF );
-				break;
-			case CON_DOWN_ON:
-				down = true;
-				ship->addAction( CON_DOWN_ON );
-				break;
-			case CON_DOWN_OFF:
-				down = false;
-				ship->addAction( CON_DOWN_OFF );
-				break;
-			case CON_LEFT_ON:
-				left = true;
-				ship->addAction( CON_LEFT_ON );
-				break;
-			case CON_LEFT_OFF:
-				left = false;
-				ship->addAction( CON_LEFT_OFF );
-				break;
-			case CON_RIGHT_ON:
-				right = true;
-				ship->addAction( CON_RIGHT_ON );
-				break;
-			case CON_RIGHT_OFF:
-				right = false;
-				ship->addAction( CON_RIGHT_OFF );
-				break;
-			case CON_SHOOTING_ON:
-				shooting = true;
-				ship->addAction( CON_SHOOTING_ON );
-				break;
-			case CON_SHOOTING_OFF:
-				shooting = false;
-				ship->addAction( CON_SHOOTING_OFF );
-				break;
-
-			default:
-				// Standby
-				break;
-		}
-	}
-}
-
 void DebugScene::logic()
 {
-	SoundEffect *tiro;
-
 	if( up )	ship->moveForward();
 	if( down )	ship->moveBackward();
 	if( right )	ship->moveRight();
@@ -183,9 +181,6 @@ void DebugScene::logic()
 
 	if( shooting ){
 		ship->handleShoot();
-		//TODO remodelar de forma que não seja necessário fazer esse cast
-		tiro = reinterpret_cast<SoundEffect *>(ContentManager::getContent(CONTENT_SOUND, "tiro"));
-		tiro->play(PLAY_ONCE);
 	}
 	handleEntities();
 }

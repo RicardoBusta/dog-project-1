@@ -148,6 +148,9 @@ void Hero::handleShoot(){
 			(*it)->shoot();
 		}
 		shootCoolDown = 10;
+		//TODO remodelar de forma que não seja necessário fazer esse cast
+		SoundEffect *tiro = reinterpret_cast<SoundEffect *>(ContentManager::getContent(CONTENT_SOUND, "tiro"));
+		tiro->play(PLAY_ONCE);
 	}
 }
 
