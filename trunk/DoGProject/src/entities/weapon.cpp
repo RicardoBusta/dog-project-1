@@ -6,6 +6,8 @@
  */
 
 #include "weapon.h"
+#include "projectile.h"
+#include "../contents/ModelBullet.h"
 
 Weapon::Weapon(Entity* p):Entity(p) {
 	// TODO Auto-generated constructor stub
@@ -14,6 +16,12 @@ Weapon::Weapon(Entity* p):Entity(p) {
 
 Weapon::~Weapon() {
 	// TODO Auto-generated destructor stub
+}
+
+void Weapon::shoot(){
+	Projectile *p = new Projectile( Vector3(0,0,-10) , parent->getParent());
+	p->setPosition( *getPosition() + *parent->getPosition() );
+	p->setModel(new ModelBullet());
 }
 
 void Weapon::handler(){

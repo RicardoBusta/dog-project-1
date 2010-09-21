@@ -15,6 +15,8 @@ public:
 	Weapon(Entity* parent=NULL);
 	virtual ~Weapon();
 
+	void shoot();
+
 	void handler();
 };
 
