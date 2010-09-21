@@ -29,6 +29,10 @@ Entity::~Entity() {
 	//killSons();
 }
 
+Entity* Entity::getParent(){
+	return parent;
+}
+
 void Entity::handle(){
 	//If it's state isn't frozen
 	if(!frozen){

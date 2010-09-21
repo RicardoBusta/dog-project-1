@@ -7,8 +7,6 @@
 
 #include "hero.h"
 #include "../contents/contentmanager.h"
-#include "projectile.h"
-#include "../contents/ModelBullet.h"
 #include "../contents/ModelWeapon.h"
 #include "../entities/weapon.h"
 
@@ -145,9 +143,10 @@ void Hero::handleTilt(){
 
 void Hero::handleShoot(){
 	if (shootCoolDown<=0){
-		Projectile *p = new Projectile( Vector3(0,0,-10) , parent);
-		p->setPosition( *getPosition() );
-		p->setModel(new ModelBullet());
+		list<Weapon*>::iterator it;
+		for(it=weapons.begin();it!=weapons.end();it++){
+			(*it)->shoot();
+		}
 		shootCoolDown = 10;
 	}
 }

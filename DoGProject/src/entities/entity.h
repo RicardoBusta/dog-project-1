@@ -54,6 +54,8 @@ public:
 	Entity(Entity *parent=NULL);
 	virtual ~Entity();
 
+	Entity* getParent();
+
 	//Sets
 	void setPosition( Point3 position );
 	//void setPosition(entity *e);
