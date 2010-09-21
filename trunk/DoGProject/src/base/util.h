@@ -90,4 +90,6 @@ typedef struct ctr_{
 float rad(float deg);
 float deg(float rad);
 
+float abs(float n);
+
 #endif /* UTIL_H_ */

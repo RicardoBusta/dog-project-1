@@ -6,7 +6,7 @@
  */
 
 #include "debugscene.h"
-
+#include "../base/util.h"
 #include "../entities/hero.h"
 #include "../entities/box.h"
 #include "../entities/weapon.h"
@@ -60,9 +60,9 @@ bool DebugScene::prepare()
 	ship->setModel(new ModelShip());
 
 	Weapon *weapon;
-
-	ship->addWeapon( Vector3(30,0,0) );
-	ship->addWeapon( Vector3(-30,0,0) );
+	for(int i=-50;i<=50;i+=10){
+		ship->addWeapon( Vector3(i,0,abs(i)) );
+	}
 /*
 	Box *gun = new Box(ship);
 
