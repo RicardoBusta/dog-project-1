@@ -40,9 +40,11 @@ bool DebugScene::load()
 
 
 	som = new SoundEffect("tiro", "laser.ogg");
+	som->setVolume(40);
 	ContentManager::addContent(som);
 
 	som = new SoundEffect("fundo", "background.ogg");
+	som->setVolume(100);
 	ContentManager::addContent(som);
 
 	return true;
