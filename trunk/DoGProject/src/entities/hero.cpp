@@ -11,6 +11,7 @@
 #include "../entities/weapon.h"
 
 Hero::Hero(Entity* p):Entity(p) {
+	entityType = HERO_SHIP;
 	shootCoolDown = 0;
 	speed = 5;
 	boundingVol = new BoundingBox
@@ -149,8 +150,8 @@ void Hero::handleShoot(list<Entity*> *bullets){
 		for(it=weapons.begin();it!=weapons.end();it++){
 			(*it)->shoot(bullets);
 		}
-		//shootCoolDown = 10;
-		shootCoolDown = 50;
+		shootCoolDown = 10;
+
 		//TODO remodelar de forma que não seja necessário fazer esse cast
 		SoundEffect *tiro = reinterpret_cast<SoundEffect *>(ContentManager::getContent(CONTENT_SOUND, "tiro"));
 		tiro->play(PLAY_ONCE);

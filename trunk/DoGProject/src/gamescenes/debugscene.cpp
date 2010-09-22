@@ -115,13 +115,13 @@ bool DebugScene::load()
 bool DebugScene::prepare()
 {
 	world = new Entity;
-	this->scenario.push_back( world );
+	this->entities.push_back( world );
 	// Preparando os elementos
 
 	ship = new Hero();
 	ship->move( Vector3(0,0,200) );
 	ship->setModel(new ModelShip());
-	this->ships.push_back(ship);
+	this->entities.push_back(ship);
 	//COLLISION TEST
 	bvol2 = new BoundingBox
 			(ship->getPosition()->x,ship->getPosition()->y,
@@ -166,21 +166,11 @@ bool DebugScene::unload()
 
 	list<Entity*>::iterator it;
 
-	while (!ships.empty()){
-			it = ships.begin();
+	while (!entities.empty()){
+			it = entities.begin();
 			delete (*it);
-			ships.pop_front();
+			entities.pop_front();
 		}
-	while (!bullets.empty()){
-				it = bullets.begin();
-				delete (*it);
-				bullets.pop_front();
-			}
-	while (!scenario.empty()){
-				it = scenario.begin();
-				delete (*it);
-				scenario.pop_front();
-			}
 
 	return true;
 }
@@ -194,17 +184,18 @@ void DebugScene::logic()
 	if( !(left xor right) ) ship->handleTilt();
 
 	if( shooting ){
-		ship->handleShoot(&bullets);
+		ship->handleShoot(&entities);
 	}
 	ship->boundingVol->checkCollision((BoundingBox*)bvol2);
 
 	list<Entity*>::iterator it;
-	for(it=bullets.begin();it!=bullets.end();it++){
+	for(it=entities.begin();it!=entities.end();it++){
+
+	if((*it)->boundingVol!=NULL){
 			(*it)->boundingVol->checkCollision((BoundingBox*)bvol2);
 	}
-	handleShips();
-	handleBullets();
-	handleScenario();
+	}
+	handleEntities();
 }
 
 void DebugScene::render()
@@ -216,13 +207,7 @@ void DebugScene::render()
 	// Render all the elements of the scene
 	list<Entity*>::iterator it;
 	bvol2->draw();
-	for(it=ships.begin();it!=ships.end();it++){
-			(*it)->render();
-	}
-	for(it=bullets.begin();it!=bullets.end();it++){
-			(*it)->render();
-	}
-	for(it=scenario.begin();it!=scenario.end();it++){
+	for(it=entities.begin();it!=entities.end();it++){
 			(*it)->render();
 	}
 	// Swap the buffers

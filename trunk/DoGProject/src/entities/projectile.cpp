@@ -27,8 +27,6 @@ void Projectile::handler(){
 	this->move(*direction);
 	lifeTime--;
 	if(lifeTime<=0 and isLive()){
-		///BUG NA HORA DE REMOVER OS PROJÉTEIS 'MORTOS'
-		///PROBLEMA NAS FUNÇÕES HANDLESCENE,HANDLEBULLETS,HANDLESHIPS?
-		//toggleLive();
+		toggleLive();
 	}
 }
