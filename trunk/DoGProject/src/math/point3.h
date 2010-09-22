@@ -11,9 +11,6 @@ class Vector3;
 
 class Point3
 {
-    protected:
-        float x,y,z;
-
     public:
         Point3();
         Point3( float x , float y , float z );
@@ -46,6 +43,8 @@ class Point3
         void setZ( float z );
         void setXYZ( float x , float y , float z );
         void setXYZ( Point3 );
+
+        float x,y,z;
 };
 
 #endif // POINT3_H
