@@ -12,43 +12,47 @@
 #ifndef BOUNDING_VOLUME_H_
 #define BOUNDING_VOLUME_H_
 
+class BoundingBox;
+
 class BoundingVolume {
 public:
 	BoundingVolume();
 	virtual ~BoundingVolume();
 
 	virtual void draw()=0;
-	virtual bool checkCollision()=0;
 	virtual void setCurPosition(Point3 *pos)=0;
+	virtual bool checkCollision(BoundingBox *box)=0;
 };
 
 class BoundingBox : public BoundingVolume {
 public:
 	BoundingBox(Point3 *position, float width, float height, float depth);
+	BoundingBox(float x, float y, float z, float width, float height, float depth);
 	~BoundingBox();
 
 	void draw();
 	void drawFaces(int index, float x, float y, float z,float halfwidth, float halfheight, float halfdepth);
-	bool checkCollision();
+	bool checkCollision(BoundingBox *collisionBox);
+	void updateBoundaries();
 
-	void setBoxSize();
 	void setCurPosition(Point3 *position);
 
 	Point3 getCurPosition();
 	float getBoxSize();
-	float getMaxX();
-	float getMaxY();
-	float getMaxZ();
 
+	Point3 getMax();
+	Point3 getMin();
 
 private:
 	Point3 *cur_position;
 	float height;
 	float width;
 	float depth;
-	float maxX;
-	float maxY;
-	float maxZ;
+
+	Point3 max;
+	Point3 min;
+
+	bool colliding;
 
 };
 

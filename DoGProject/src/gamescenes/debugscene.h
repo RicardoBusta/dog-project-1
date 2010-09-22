@@ -37,6 +37,8 @@ private:
 	// Some test info
 	Hero* ship;
 	Entity* world;
+	BoundingVolume *bvol;
+	BoundingVolume *bvol2;
 
 	bool up,down,left,right,shooting;
 };

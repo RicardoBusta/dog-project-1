@@ -108,7 +108,7 @@ public:
 	//Virtual Functions:
 	virtual void handler();
 
-	BoundingVolume *volume;
+	BoundingVolume *boundingVol;
 };
 
 #endif /* ENTITY_H_ */

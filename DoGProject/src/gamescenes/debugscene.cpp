@@ -121,6 +121,14 @@ bool DebugScene::prepare()
 	ship->move( Vector3(0,0,200) );
 	ship->setModel(new ModelShip());
 
+	//COLLISION TEST
+	bvol = new BoundingBox
+				(ship->getPosition(),122.0f,50.0f,150.0f);
+
+	bvol2 = new BoundingBox
+			(ship->getPosition()->x,ship->getPosition()->y,
+					ship->getPosition()->z,50.0f,50.0f,50.0f);
+
 	//Weapon *weapon;
 	for(int i=-50;i<=50;i+=10){
 		ship->addWeapon( Vector3(i,0,abs(i)) );
@@ -194,6 +202,7 @@ void DebugScene::logic()
 	handleShips();
 	handleBullets();
 	handleScenario();
+	bvol->checkCollision((BoundingBox*)bvol2);
 }
 
 void DebugScene::render()
@@ -205,7 +214,9 @@ void DebugScene::render()
 	glMultMatrixf( camera->getMatrixToThis() );
 	// Render all the elements of the scene
 	list<Entity*>::iterator it;
-	ship->draw();
+
+	bvol->draw();
+	bvol2->draw();
 	for(it=ships.begin();it!=ships.end();it++){
 		(*it)->render();
 	}
