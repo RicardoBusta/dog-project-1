@@ -21,6 +21,7 @@ public:
 	virtual bool prepare() = 0;
 	virtual bool unload()  = 0;
 
+
 	// Main call
 	SceneMessage run();
 
@@ -31,7 +32,6 @@ public:
 	virtual void input() = 0;
 	virtual void logic()  = 0;
 	virtual void render() = 0;
-
 	// Result of the scene
 	virtual SceneMessage result() = 0;
 

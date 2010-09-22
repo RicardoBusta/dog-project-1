@@ -117,14 +117,12 @@ bool DebugScene::prepare()
 	world = new Entity;
 	this->scenario.push_back( world );
 	// Preparando os elementos
-	ship = new Hero(world);
+
+	ship = new Hero();
 	ship->move( Vector3(0,0,200) );
 	ship->setModel(new ModelShip());
-
+	this->ships.push_back(ship);
 	//COLLISION TEST
-	bvol = new BoundingBox
-				(ship->getPosition(),122.0f,50.0f,150.0f);
-
 	bvol2 = new BoundingBox
 			(ship->getPosition()->x,ship->getPosition()->y,
 					ship->getPosition()->z,50.0f,50.0f,50.0f);
@@ -133,7 +131,7 @@ bool DebugScene::prepare()
 	for(int i=-50;i<=50;i+=10){
 		ship->addWeapon( Vector3(i,0,abs(i)) );
 	}
-/*
+	/*
 	Box *gun = new Box(ship);
 
 	gun->setPosition( Point3(0,40,-10) );*/
@@ -195,30 +193,31 @@ void DebugScene::logic()
 	if( left )	ship->moveLeft();
 	if( !(left xor right) ) ship->handleTilt();
 
-
 	if( shooting ){
-		ship->handleShoot();
+		ship->handleShoot(&bullets);
+	}
+	ship->boundingVol->checkCollision((BoundingBox*)bvol2);
+
+	list<Entity*>::iterator it;
+	for(it=bullets.begin();it!=bullets.end();it++){
+			(*it)->boundingVol->checkCollision((BoundingBox*)bvol2);
 	}
 	handleShips();
 	handleBullets();
 	handleScenario();
-	bvol->checkCollision((BoundingBox*)bvol2);
 }
 
 void DebugScene::render()
 {
 	// Render start
 	SDL::prepareRender();
-
 	//Position the objects in the camera
 	glMultMatrixf( camera->getMatrixToThis() );
 	// Render all the elements of the scene
 	list<Entity*>::iterator it;
-
-	bvol->draw();
 	bvol2->draw();
 	for(it=ships.begin();it!=ships.end();it++){
-		(*it)->render();
+			(*it)->render();
 	}
 	for(it=bullets.begin();it!=bullets.end();it++){
 			(*it)->render();

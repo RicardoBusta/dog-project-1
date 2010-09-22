@@ -29,6 +29,7 @@ public:
 	void input();
 	void logic();
 	void render();
+	void clean();
 
 	// Result of the scene
 	SceneMessage result();
@@ -37,7 +38,6 @@ private:
 	// Some test info
 	Hero* ship;
 	Entity* world;
-	BoundingVolume *bvol;
 	BoundingVolume *bvol2;
 
 	bool up,down,left,right,shooting;

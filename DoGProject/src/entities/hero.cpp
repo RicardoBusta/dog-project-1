@@ -13,7 +13,8 @@
 Hero::Hero(Entity* p):Entity(p) {
 	shootCoolDown = 0;
 	speed = 5;
-	//volume = new BoundingBox(this->getPosition(), 120.0f,50.0f,180.0f);
+	boundingVol = new BoundingBox
+					(this->getPosition(),122.0f,50.0f,150.0f);
 }
 
 Hero::~Hero() {
@@ -142,13 +143,14 @@ void Hero::handleTilt(){
 	}
 }
 
-void Hero::handleShoot(){
+void Hero::handleShoot(list<Entity*> *bullets){
 	if (shootCoolDown<=0){
 		list<Weapon*>::iterator it;
 		for(it=weapons.begin();it!=weapons.end();it++){
-			(*it)->shoot();
+			(*it)->shoot(bullets);
 		}
-		shootCoolDown = 10;
+		//shootCoolDown = 10;
+		shootCoolDown = 50;
 		//TODO remodelar de forma que não seja necessário fazer esse cast
 		SoundEffect *tiro = reinterpret_cast<SoundEffect *>(ContentManager::getContent(CONTENT_SOUND, "tiro"));
 		tiro->play(PLAY_ONCE);
