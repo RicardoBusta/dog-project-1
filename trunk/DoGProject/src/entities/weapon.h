@@ -9,13 +9,14 @@
 #define WEAPON_H_
 
 #include "entity.h"
+#include "projectile.h"
 
 class Weapon: public Entity {
 public:
 	Weapon(Entity* parent=NULL);
 	virtual ~Weapon();
 
-	void shoot();
+	void shoot(list<Entity*> *bullets);
 
 	void handler();
 };

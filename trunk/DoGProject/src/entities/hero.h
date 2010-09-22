@@ -37,7 +37,8 @@ public:
 	void moveLeft();
 	void moveRight();
 	void handleTilt();
-	void handleShoot();
+	void handleShoot(list<Entity*> *bullets);
+
 
 	void draw();
 };

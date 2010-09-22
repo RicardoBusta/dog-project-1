@@ -13,11 +13,12 @@ Entity::Entity(Entity* p) {
 	if(parent != NULL){
 		parent->sons.push_back(this);
 	}
-
+	boundingVol = NULL;
 	visible = true;
 	frozen = false;
 	live = true;
 	model = NULL;
+	showBoundingVol = true;
 	setPosition( Point3(0,0,0) );
 	setRotation(0,0,0);
 	setScale(1,1,1);
@@ -167,6 +168,7 @@ void Entity::toggleVisible(){
 }
 
 void Entity::toggleLive(){
+	boundingVol = NULL;
 	this->live = !this->live;
 }
 
@@ -195,6 +197,10 @@ void Entity::render(){
 		}
 	}
 	glPopMatrix();
+	if(showBoundingVol==true && boundingVol!=NULL)
+	{
+			boundingVol->draw();
+	}
 }
 
 bool Entity::isLive() const{
