@@ -23,13 +23,8 @@ public:
 protected:
 	Frame* camera;
 
-	list<Entity*> ships;
-	list<Entity*> bullets;
-	list<Entity*> scenario;
-
-	void handleShips();
-	void handleBullets();
-	void handleScenario();
+	list<Entity*> entities;
+	void handleEntities();
 private:
 
 };

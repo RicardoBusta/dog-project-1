@@ -68,6 +68,8 @@ enum PersonagemStatus{ PER_STANDBY , PER_MOVING , PER_SHOTING , PER_DEAD , PER_L
 
 enum NLOOPS { INF_LOOP=-1, PLAY_ONCE=0 };
 
+enum EntityType { HERO_SHIP, ENEMY_SHIP, FRIENDLY_PROJECTILE, ENEMY_PROJECTILE };
+
 // Useful Structures
 
 typedef struct pl_mess_{

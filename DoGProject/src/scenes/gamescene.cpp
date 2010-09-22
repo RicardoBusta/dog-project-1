@@ -16,45 +16,15 @@ GameScene::~GameScene(){
 	delete camera;
 }
 
-void GameScene::handleShips(){
+void GameScene::handleEntities(){
 	list<Entity*>::iterator it;
-	for(it=ships.begin();it!=ships.end();it++){
+	for(it=entities.begin();it!=entities.end();it++){
 		if( !(*it)->isLive() ){
 			list<Entity*>::iterator it2;
 			it2 = it;
 			it--;
 			delete (*it2);
-			ships.erase(it2);
-		}else{
-			(*it)->handle();
-		}
-	}
-}
-
-void GameScene::handleBullets(){
-	list<Entity*>::iterator it;
-	for(it=bullets.begin();it!=bullets.end();it++){
-		if( !(*it)->isLive() ){
-			list<Entity*>::iterator it2;
-			it2 = it;
-			it--;
-			delete (*it2);
-			bullets.erase(it2);
-		}else{
-			(*it)->handle();
-		}
-	}
-}
-
-void GameScene::handleScenario(){
-	list<Entity*>::iterator it;
-	for(it=scenario.begin();it!=scenario.end();it++){
-		if( !(*it)->isLive() ){
-			list<Entity*>::iterator it2;
-			it2 = it;
-			it--;
-			delete (*it2);
-			scenario.erase(it2);
+			entities.erase(it2);
 		}else{
 			(*it)->handle();
 		}

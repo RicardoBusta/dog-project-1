@@ -81,6 +81,7 @@ public:
 	//Virtual Functions:
 	virtual void handler();
 	BoundingVolume *boundingVol;
+	int entityType;
 private:
 
 protected:

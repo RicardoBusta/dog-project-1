@@ -19,8 +19,7 @@ Weapon::~Weapon() {
 }
 
 void Weapon::shoot(list<Entity*> *bullets){
-	//Projectile *p = new Projectile( Vector3(0,0,-10) , parent->getParent());
-	Projectile *p = new Projectile( Vector3(0,0,-1) , parent->getParent());
+	Projectile *p = new Projectile( Vector3(0,0,-10) , parent->getParent());
 	p->setPosition( *getPosition() + *parent->getPosition() );
 	p->setModel(new ModelBullet());
 	bullets->push_back(p);
