@@ -20,14 +20,16 @@ public:
 	virtual ~BoundingVolume();
 
 	virtual void draw()=0;
-	virtual void setCurPosition(Point3 *pos)=0;
+	virtual void setCurPosition(Point3 pos)=0;
 	virtual bool checkCollision(BoundingBox *box)=0;
 };
 
 class BoundingBox : public BoundingVolume {
 public:
-	BoundingBox(Point3 *position, float width, float height, float depth);
+	BoundingBox(Point3 position, float width, float height, float depth);
 	BoundingBox(float x, float y, float z, float width, float height, float depth);
+//	BoundingBox(Point3 *position, Point3 max, Point3 min);
+//	BoundingBox(Point3 position, Point3 max, Point3 min);
 	~BoundingBox();
 
 	void draw();
@@ -35,7 +37,7 @@ public:
 	bool checkCollision(BoundingBox *collisionBox);
 	void updateBoundaries();
 
-	void setCurPosition(Point3 *position);
+	void setCurPosition(Point3 position);
 
 	Point3 getCurPosition();
 	float getBoxSize();

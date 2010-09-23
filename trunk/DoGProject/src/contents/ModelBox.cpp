@@ -17,7 +17,7 @@ ModelBox::ModelBox() {
 	}
 
 	setData(80,10,300);
-	randomColors();
+	//randomColors();
 }
 
 ModelBox::~ModelBox() {
@@ -26,8 +26,8 @@ ModelBox::~ModelBox() {
 
 void ModelBox::draw()
 {
-	std::string a("stars");
-	//std::string a("madeira");
+	//std::string a("stars");
+	std::string a("madeira");
 	Texture *tex = reinterpret_cast<Texture *> (ContentManager::getContent(CONTENT_TEXTURE, a));
 	if(tex == NULL)
 	{

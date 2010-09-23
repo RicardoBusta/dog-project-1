@@ -19,6 +19,8 @@
 
 #include "bounding_volume.h"
 
+enum ENTITY_{ENTITY_PLAYER,ENTITY_ALLY,ENTITY_ENEMY};
+
 using namespace std;
 
 class Model;
@@ -34,10 +36,13 @@ public:
 
 	//Sets
 	void setPosition( Point3 position );
+
+	void setFrame(Frame f);
+	Frame getFrame();
 	//void setPosition(entity *e);
 	void move( Vector3 delta ); //Move the object based on its father coordinates
 	void moveSelf( Vector3 delta ); //Move the object based on it's own coordinate system
-	Point3 *getPosition();
+	Point3 getPosition();
 
 	void setRotation(float x, float y, float z);
 	void setRotationX(float x);

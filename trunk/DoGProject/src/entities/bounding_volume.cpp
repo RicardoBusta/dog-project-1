@@ -16,14 +16,14 @@ BoundingVolume::~BoundingVolume() {
 	// TODO Auto-generated destructor stub
 }
 
-BoundingBox::BoundingBox( Point3 *position, float width, float height,  float depth)
+BoundingBox::BoundingBox( Point3 position, float width, float height,  float depth)
 {
 	float x, y, z;
-	x = position->getX();
-	y = position->getY();
-	z = position->getZ();
+	x = position.getX();
+	y = position.getY();
+	z = position.getZ();
 
-	this->cur_position = position;
+	this->cur_position = &position;
 
 	this->height = height;
 	this->width = width;
@@ -107,8 +107,8 @@ bool BoundingBox::checkCollision(BoundingBox *collisionBox)
 	return true;
 }
 
-void BoundingBox::setCurPosition(Point3 *position){
-	this->cur_position = position;
+void BoundingBox::setCurPosition(Point3 position){
+	this->cur_position = &position;
 }
 
 Point3 BoundingBox::getMax()

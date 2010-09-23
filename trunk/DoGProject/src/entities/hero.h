@@ -38,9 +38,6 @@ public:
 	void moveRight();
 	void handleTilt();
 	void handleShoot(list<Entity*> *bullets);
-
-
-	void draw();
 };
 
 #endif /* HERO_H_ */

@@ -88,8 +88,8 @@ void Entity::move( Vector3 delta ){
 	coords.moveOriginW( delta );
 }
 
-Point3* Entity::getPosition(){
-	return coords.getOrigin();
+Point3 Entity::getPosition(){
+	return *coords.getOrigin();
 }
 
 void Entity::setRotation(float x, float y, float z)
@@ -217,4 +217,12 @@ bool Entity::isFrozen() const{
 
 void Entity::handler(){
 
+}
+
+void Entity::setFrame(Frame f){
+	coords = f;
+}
+
+Frame Entity::getFrame(){
+	return coords;
 }

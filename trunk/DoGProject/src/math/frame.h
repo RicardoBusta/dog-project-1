@@ -68,6 +68,9 @@ public:
 
     void moveOriginT( Vector3 );                // Move origin through this frame coordinates
     void moveOriginT( float , float , float );  //
+
+    //lol
+    Frame operator=(Frame f);
 };
 
 #endif // FRAME_H

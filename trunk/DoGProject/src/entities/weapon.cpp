@@ -20,7 +20,7 @@ Weapon::~Weapon() {
 
 void Weapon::shoot(list<Entity*> *bullets){
 	Projectile *p = new Projectile( Vector3(0,0,-10) , parent->getParent());
-	p->setPosition( *getPosition() + *parent->getPosition() );
+	p->setFrame(parent->getFrame());
 	p->setModel(new ModelBullet());
 	bullets->push_back(p);
 }
