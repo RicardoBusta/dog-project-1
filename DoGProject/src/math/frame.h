@@ -71,6 +71,7 @@ public:
 
     //lol
     Frame operator=(Frame f);
+    Frame operator^(Frame f);
 };
 
 #endif // FRAME_H

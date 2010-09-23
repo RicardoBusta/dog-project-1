@@ -264,3 +264,16 @@ Frame Frame::operator=(Frame f){
 	angleY = f.angleY;
 	angleZ = f.angleZ;
 }
+
+Frame Frame::operator^(Frame f){
+
+	Frame temp;
+    //TODO: Fix This WTH?!
+	temp.origin = this->origin + convertP( f.origin , (this->getMatrixToWorld()) );
+
+	temp.setRotationX(this->getRotationX()+f.getRotationX());
+	temp.setRotationY(this->getRotationY()+f.getRotationY());
+	temp.setRotationZ(this->getRotationZ()+f.getRotationZ());
+
+	return temp;
+}
