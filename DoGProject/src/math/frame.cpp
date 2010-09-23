@@ -252,3 +252,15 @@ int Frame::getRotationZ()
 {
 	return angleZ;
 }
+
+//Operators
+
+Frame Frame::operator=(Frame f){
+	origin = f.origin;
+	i = f.i;
+	j = f.j;
+	k = f.k;
+	angleX = f.angleX;
+	angleY = f.angleY;
+	angleZ = f.angleZ;
+}

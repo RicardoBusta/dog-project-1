@@ -124,8 +124,8 @@ bool DebugScene::prepare()
 	this->entities.push_back(ship);
 	//COLLISION TEST
 	bvol2 = new BoundingBox
-			(ship->getPosition()->x,ship->getPosition()->y,
-					ship->getPosition()->z,50.0f,50.0f,50.0f);
+			(ship->getPosition().getX(),ship->getPosition().getY(),
+					ship->getPosition().getZ(),50.0f,50.0f,50.0f);
 
 	//Weapon *weapon;
 	for(int i=-50;i<=50;i+=10){

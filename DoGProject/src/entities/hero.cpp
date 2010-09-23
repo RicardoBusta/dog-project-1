@@ -11,7 +11,7 @@
 #include "../entities/weapon.h"
 
 Hero::Hero(Entity* p):Entity(p) {
-	entityType = HERO_SHIP;
+	entityType = ENTITY_PLAYER;
 	shootCoolDown = 0;
 	speed = 5;
 	boundingVol = new BoundingBox
@@ -29,91 +29,6 @@ void Hero::handler()
 {
 	if(shootCoolDown>=0)
 		shootCoolDown--;
-}
-
-void Hero::draw()
-{
-	/*glColor3f(color.r,color.g,color.b);
-	std::string a("nave");
-	Texture *tex = (Texture *) ContentManager::getContent(CONTENT_TEXTURE, a);
-	if(tex == NULL)
-	{
-		printf("Textura com erro.\n");
-	}
-	tex->bind();
-
-	//sca 5 5 5
-	//cen 0 0 0.7
-	glPushMatrix();
-	glScalef(80,80,80);
-
-	glBegin(GL_TRIANGLES);
-		//BRIDGE
-			//side 1
-			glTexCoord2d(0,1);
-			glVertex3f(0, 0, 0);
-			glTexCoord2d(0,0);
-			glVertex3f(-0.25, 0, 1);
-			glTexCoord2d(0.5,0);
-			glVertex3f(0, 0.25, 1);
-			//side 2
-			glTexCoord2d(0,1);
-			glVertex3f( 0, 0, 0 );
-			glTexCoord2d(0.5,0);
-			glVertex3f( 0, 0.25, 1 );
-			glTexCoord2d(0,0);
-			glVertex3f( 0.25, 0, 1 );
-
-		//ENGINE
-			glTexCoord2d(1,1);
-			glVertex3f( 0, 0.25, 1 );
-			glTexCoord2d(0.5,1);
-			glVertex3f( -0.25, 0, 1 );
-			glTexCoord2d(1,0.5);
-			glVertex3f( 0.25, 0, 1 );
-
-		//WINGS
-		//upside
-			//left
-			glTexCoord2d(0,1);
-			glVertex3f( 0, 0, 0.5);
-			glTexCoord2d(0.5,0);
-			glVertex3f( -0.75, 0, 1 );
-			glTexCoord2d(0.5,1);
-			glVertex3f( 0, 0, 1 );
-			//right
-			glTexCoord2d(0,1);
-			glVertex3f( 0, 0, 0.5);
-			glTexCoord2d(0.5,1);
-			glVertex3f( 0, 0, 1 );
-			glTexCoord2d(0.5,0);
-			glVertex3f( 0.75, 0, 1 );
-		//Tail
-			triangle(	0 , 0.35 , 1,
-						0 , 0 , 1,
-						0 , 0 , 0.3
-					);
-			triangle(	0 , 0.35 , 1,
-						0 , 0 , 0.3,
-						0 , 0 , 1
-					);
-		//downside
-			//wings
-			triangle( 	-0.15, 0, 0.6,
-						-0.25, 0, 1,
-						-0.75, 0, 1
-					);
-			triangle( 	0.15, 0, 0.6,
-						0.75, 0, 1,
-						0.25, 0, 1
-					);
-			//middle
-			triangle( 	0, 0, 0,
-						0.25, 0, 1,
-						-0.25, 0, 1
-					);
-	glEnd();
-	glPopMatrix();*/
 }
 
 void Hero::moveForward(){
