@@ -13,17 +13,18 @@ Entity::Entity(Entity* p) {
 	if(parent != NULL){
 		parent->sons.push_back(this);
 	}
-	boundingVol = NULL;
 	visible = true;
 	frozen = false;
 	live = true;
 	model = NULL;
-	showBoundingVol = true;
 	setPosition( Point3(0,0,0) );
 	setRotation(0,0,0);
 	setScale(1,1,1);
-	// Set white the color
 	setColor(1.0f,1.0f,1.0f);
+
+	//bounding test
+	boundingVol = NULL;
+	showBoundingVol = true;
 }
 
 Entity::~Entity() {
@@ -71,8 +72,7 @@ void Entity::setModel(Model* m){
 	model = m;
 }
 
-void Entity::setPosition( Point3 position )
-{
+void Entity::setPosition( Point3 position ){
 	//Set the position of the object
 	coords.getOrigin()->setXYZ( position );
 }
@@ -92,8 +92,7 @@ Point3 Entity::getPosition(){
 	return *coords.getOrigin();
 }
 
-void Entity::setRotation(float x, float y, float z)
-{
+void Entity::setRotation(float x, float y, float z){
 	//Set the rotation of the object
 	this->coords.setRotationX( x );
 	this->coords.setRotationY( y );
@@ -168,7 +167,6 @@ void Entity::toggleVisible(){
 }
 
 void Entity::toggleLive(){
-	boundingVol = NULL;
 	this->live = !this->live;
 }
 
@@ -197,6 +195,8 @@ void Entity::render(){
 		}
 	}
 	glPopMatrix();
+
+
 	if(showBoundingVol==true && boundingVol!=NULL)
 	{
 			boundingVol->draw();

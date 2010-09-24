@@ -85,8 +85,9 @@ public:
 
 	//Virtual Functions:
 	virtual void handler();
-	BoundingVolume *boundingVol;
-	int entityType;
+	enum ENTITY_ entityType;
+
+	BoundingVolume *boundingVol; //?
 private:
 
 protected:
@@ -94,7 +95,7 @@ protected:
 	bool visible; //It is visible and will be drawn
 	bool frozen; //Does not interact with other entities, but is still drawn in the screen.
 	bool live; //If it's alive by the end of it's handling, will not be removed.
-	bool showBoundingVol;
+	bool showBoundingVol; //?
 
 //3D Model.
 	Model *model;

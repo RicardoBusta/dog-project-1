@@ -46,7 +46,7 @@ void ModelWeapon::draw(){
 	}else{
 		a = "enemy";
 	}
-		Texture *tex = (Texture *) ContentManager::getContent(CONTENT_TEXTURE, a);
+		Texture *tex = ContentManager::getTexture(a);
 		if(tex == NULL)
 		{
 			printf("Textura com erro.\n");

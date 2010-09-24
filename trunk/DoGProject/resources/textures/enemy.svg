@@ -16,7 +16,7 @@
    version="1.1"
    inkscape:version="0.47 r22583"
    sodipodi:docname="enemy.svg"
-   inkscape:export-filename="/home/ricardo/workspace/DoG_Project_1/trunk/DoGProject/resources/textures/ship.png"
+   inkscape:export-filename="/home/ricardo/workspace/DOG Project - Spaceship/resources/textures/enemy.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -184,16 +184,6 @@
        inkscape:vp_y="0 : 1000 : 0"
        inkscape:vp_x="0 : 0.5 : 1"
        sodipodi:type="inkscape:persp3d" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient3702"
-       id="linearGradient3708"
-       x1="195.99996"
-       y1="992.36218"
-       x2="273.78171"
-       y2="992.36218"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.59671716,0.59671716,-0.59671716,0.59671716,677.61668,287.83239)" />
     <inkscape:perspective
        id="perspective2868"
        inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
@@ -271,15 +261,13 @@
        x2="196.0406"
        y2="864.40271"
        gradientUnits="userSpaceOnUse" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient3822"
-       id="linearGradient3842"
-       x1="128"
-       y1="924.36218"
-       x2="183"
-       y2="979.36218"
-       gradientUnits="userSpaceOnUse" />
+    <inkscape:perspective
+       id="perspective2881-8"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -290,7 +278,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
      inkscape:cx="104.33503"
-     inkscape:cy="166.38424"
+     inkscape:cy="105.77509"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -360,7 +348,7 @@
        id="path2871-2"
        sodipodi:nodetypes="cccc" />
     <path
-       style="fill:url(#linearGradient3708);fill-opacity:1;fill-rule:evenodd;stroke:none"
+       style="fill:#00ff00;fill-opacity:1;fill-rule:evenodd;stroke:none"
        d="m 248.8274,950.53483 -29.73379,29.73377 -38.16441,38.1871 -17.88108,17.881 -7.04812,7.0255 92.82738,0 0,-92.82739 z"
        id="rect2816-5-9-8" />
     <path
@@ -380,11 +368,31 @@
        sodipodi:nodetypes="cccc"
        id="path3805"
        d="m 238,924.36218 -110,110.00002 0,-110.00002 110,0 z"
-       style="fill:url(#linearGradient3842);stroke:none;fill-opacity:1" />
+       style="fill:#ffff00;stroke:none;fill-opacity:1" />
     <path
        sodipodi:nodetypes="cccc"
        id="path3840"
        d="m 128,924.36218 121.93909,-121.93926 0,121.93926 -121.93909,0 z"
        style="fill:#ff0000;stroke:none" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;fill-opacity:1;stroke:#800000;stroke-width:3;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path2871"
+       sodipodi:cx="59.093922"
+       sodipodi:cy="44.87812"
+       sodipodi:rx="20.708128"
+       sodipodi:ry="20.708128"
+       d="m 79.80205,44.87812 a 20.708128,20.708128 0 1 1 -41.416256,0 20.708128,20.708128 0 1 1 41.416256,0 z"
+       transform="translate(-14.142136,790.30126)" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;fill-opacity:1;stroke:#800000;stroke-width:3;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path2871-1"
+       sodipodi:cx="59.093922"
+       sodipodi:cy="44.87812"
+       sodipodi:rx="20.708128"
+       sodipodi:ry="20.708128"
+       d="m 79.80205,44.87812 a 20.708128,20.708128 0 1 1 -41.416256,0 20.708128,20.708128 0 1 1 41.416256,0 z"
+       transform="matrix(0.43142859,0,0,0.43142859,80.066133,880.46744)" />
   </g>
 </svg>

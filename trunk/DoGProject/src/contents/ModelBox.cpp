@@ -28,7 +28,7 @@ void ModelBox::draw()
 {
 	//std::string a("stars");
 	std::string a("madeira");
-	Texture *tex = reinterpret_cast<Texture *> (ContentManager::getContent(CONTENT_TEXTURE, a));
+	Texture *tex = ContentManager::getTexture(a);
 	if(tex == NULL)
 	{
 		printf("Textura com erro.\n");
