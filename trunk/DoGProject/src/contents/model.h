@@ -25,6 +25,9 @@ public:
 	virtual void draw()=0;
 
 	bool load(std::string &);
+
+	void setSkin(int skin);
+	int skin;
 };
 
 #endif /* MODEL_H_ */

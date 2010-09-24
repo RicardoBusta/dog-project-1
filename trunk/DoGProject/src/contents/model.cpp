@@ -10,7 +10,7 @@
 Model::Model() 
 	:Content("",CONTENT_MODEL){		//MUDAR AQUI PRO LABEL, depois
 	// TODO Auto-generated constructor stub
-
+	skin = 0;
 }
 
 Model::~Model() {
@@ -22,4 +22,6 @@ bool Model::load(std::string &){
 	return false;
 }
 
-
+void Model::setSkin(int newskin){
+	skin = newskin;
+}

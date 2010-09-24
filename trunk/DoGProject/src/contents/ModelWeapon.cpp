@@ -40,7 +40,12 @@ void ModelWeapon::borderTriangle(float x1, float y1, float z1, float x2, float y
 }
 
 void ModelWeapon::draw(){
-	std::string a("nave");
+	std::string a;
+	if(skin==0){
+		a = "nave";
+	}else{
+		a = "enemy";
+	}
 		Texture *tex = (Texture *) ContentManager::getContent(CONTENT_TEXTURE, a);
 		if(tex == NULL)
 		{

@@ -61,6 +61,7 @@ void Hero::handleTilt(){
 
 void Hero::handleShoot(list<Entity*> *bullets){
 	if (shootCoolDown<=0){
+		model->skin = 1 - model->skin;
 		list<Weapon*>::iterator it;
 		for(it=weapons.begin();it!=weapons.end();it++){
 			(*it)->shoot(bullets);
@@ -77,5 +78,7 @@ void Hero::addWeapon( Vector3 v ){
 	Weapon *weapon = new Weapon(this);
 	weapons.push_back(weapon);
 	weapon->move(v);
-	weapon->setModel(new ModelWeapon());
+	Model* lol = new ModelWeapon();
+	lol->setSkin(model->skin);
+	weapon->setModel(lol);
 }
