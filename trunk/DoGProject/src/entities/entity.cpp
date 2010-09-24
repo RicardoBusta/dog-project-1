@@ -8,6 +8,7 @@
 #include "entity.h"
 #include "../base/sdl.h"
 #include "../contents/model.h"
+
 Entity::Entity(Entity* p) {
 	parent = p;
 	if(parent != NULL){

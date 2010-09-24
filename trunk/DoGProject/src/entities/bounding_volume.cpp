@@ -7,6 +7,9 @@
 
 #include "bounding_volume.h"
 
+#include "entity.h"
+
+
 BoundingVolume::BoundingVolume() {
 	// TODO Auto-generated constructor stub
 
@@ -16,14 +19,17 @@ BoundingVolume::~BoundingVolume() {
 	// TODO Auto-generated destructor stub
 }
 
-BoundingBox::BoundingBox( Point3 position, float width, float height,  float depth)
+BoundingBox::BoundingBox( Point3 position, float width, float height,  float depth, Entity* o)
 {
+	owner = o;
+
 	float x, y, z;
 	x = position.getX();
 	y = position.getY();
 	z = position.getZ();
 
-	this->cur_position = &position;
+	this->cur_position = new Point3;
+	*this->cur_position = position;
 
 	this->height = height;
 	this->width = width;
@@ -40,7 +46,7 @@ BoundingBox::BoundingBox( Point3 position, float width, float height,  float dep
 	colliding = false;
 }
 
-BoundingBox::BoundingBox( float x, float y, float z, float width, float height,  float depth)
+BoundingBox::BoundingBox( float x, float y, float z, float width, float height,  float depth, Entity* owner)
 {
 	cur_position = new Point3();
 	cur_position->x = x;
@@ -108,7 +114,7 @@ bool BoundingBox::checkCollision(BoundingBox *collisionBox)
 }
 
 void BoundingBox::setCurPosition(Point3 position){
-	this->cur_position = &position;
+	*this->cur_position = position;
 }
 
 Point3 BoundingBox::getMax()

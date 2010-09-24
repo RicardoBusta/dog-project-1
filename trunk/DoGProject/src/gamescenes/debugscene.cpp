@@ -125,7 +125,7 @@ bool DebugScene::prepare(){
 	//COLLISION TEST
 	bvol2 = new BoundingBox
 			(ship->getPosition().getX(),ship->getPosition().getY(),
-					ship->getPosition().getZ(),50.0f,50.0f,50.0f);
+					ship->getPosition().getZ(),50.0f,50.0f,50.0f, ship);
 
 	//Weapon *weapon;
 	for(int i=-50;i<=50;i+=10){
@@ -193,6 +193,7 @@ void DebugScene::logic(){
 
 	if((*it)->boundingVol!=NULL){
 			(*it)->boundingVol->checkCollision((BoundingBox*)bvol2);
+			(*it)->boundingVol->setCurPosition( (*it)->boundingVol->owner->getPosition() );
 	}
 	}
 	handleEntities();
