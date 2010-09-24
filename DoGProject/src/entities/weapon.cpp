@@ -21,11 +21,10 @@ Weapon::~Weapon() {
 void Weapon::shoot(list<Entity*> *bullets){
 	Projectile *p = new Projectile( Vector3(0,0,-10) , parent->getParent());
 	p->setFrame(parent->getFrame()^getFrame());
-	//p->setPosition( getPosition() + parent->getPosition() );
 	p->setModel(new ModelBullet());
 	bullets->push_back(p);
 }
 
 void Weapon::handler(){
-
+	rotateZ(5);
 }

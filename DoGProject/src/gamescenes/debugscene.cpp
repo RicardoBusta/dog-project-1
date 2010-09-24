@@ -101,6 +101,8 @@ bool DebugScene::load()
 
 	newtex = new Texture("stars", "star_texture.jpg");
 
+	newtex = new Texture("enemy", "enemy.png");
+
 
 	som = new SoundEffect("tiro", "laser.ogg");
 	som->setVolume(40);
@@ -120,7 +122,8 @@ bool DebugScene::prepare()
 
 	ship = new Hero();
 	ship->move( Vector3(0,0,200) );
-	ship->setModel(new ModelShip());
+	Model* lol = new ModelShip();
+	ship->setModel(lol);
 	this->entities.push_back(ship);
 	//COLLISION TEST
 	bvol2 = new BoundingBox
