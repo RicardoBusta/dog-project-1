@@ -32,7 +32,7 @@ void ModelShip::draw(){
 	}else{
 		a = "enemy";
 	}
-	Texture *tex = reinterpret_cast<Texture *> (ContentManager::getContent(CONTENT_TEXTURE, a));
+	Texture *tex = ContentManager::getTexture(a);
 	if(tex == NULL)
 	{
 		printf("Textura com erro.\n");

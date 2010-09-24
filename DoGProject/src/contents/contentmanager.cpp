@@ -13,9 +13,15 @@ unordered_map<std::string, Content *>::iterator ContentManager::it;
 // Retorna um content, NULL caso inexistente
 Content* ContentManager::getContent(CONTENT_ type, std::string label)
 {
-	bool success = searchContent(type, label);
-	if(success)
+	if( searchContent(type, label) )
 		return it->second;
+	return NULL;
+}
+
+Texture* ContentManager::getTexture(std::string label)
+{
+	if( searchContent(CONTENT_TEXTURE, label) )
+		return reinterpret_cast<Texture *>(it->second);
 	return NULL;
 }
 

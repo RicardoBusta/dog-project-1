@@ -58,7 +58,7 @@ private:
 
 };
 
-/*class BoundingSphere : public BoundingVoulume{
+/* todo class BoundingSphere : public BoundingVoulume{
 public:
 	BoundingSphere(Point3 position, float radius);
 	~BoundingSphere();

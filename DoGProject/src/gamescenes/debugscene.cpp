@@ -23,11 +23,10 @@ DebugScene::DebugScene()
 {
 }
 
-DebugScene::~DebugScene() {
+DebugScene::~DebugScene(){
 }
 
-void DebugScene::input()
-{
+void DebugScene::input(){
 	// The main inputs
 	while( SDL::actionsLeft() ){
 
@@ -89,8 +88,7 @@ void DebugScene::input()
 	}
 }
 
-bool DebugScene::load()
-{
+bool DebugScene::load(){
 	glEnable(GL_TEXTURE_2D);
 	Texture* newtex;
 	SoundEffect *som;
@@ -114,8 +112,7 @@ bool DebugScene::load()
 	return true;
 }
 
-bool DebugScene::prepare()
-{
+bool DebugScene::prepare(){
 	world = new Entity;
 	this->entities.push_back( world );
 	// Preparando os elementos
@@ -160,11 +157,12 @@ bool DebugScene::prepare()
 	return true;
 }
 
-bool DebugScene::unload()
-{
+bool DebugScene::unload(){
+	//todo function to remove all content from the hash map
 	ContentManager::removeContent(CONTENT_TEXTURE, "madeira");
 	ContentManager::removeContent(CONTENT_TEXTURE, "ship");
 	ContentManager::removeContent(CONTENT_TEXTURE, "stars");
+	ContentManager::removeContent(CONTENT_TEXTURE, "enemy");
 	glDisable(GL_TEXTURE_2D);
 
 	list<Entity*>::iterator it;
@@ -178,8 +176,7 @@ bool DebugScene::unload()
 	return true;
 }
 
-void DebugScene::logic()
-{
+void DebugScene::logic(){
 	if( up )	ship->moveForward();
 	if( down )	ship->moveBackward();
 	if( right )	ship->moveRight();
@@ -201,8 +198,7 @@ void DebugScene::logic()
 	handleEntities();
 }
 
-void DebugScene::render()
-{
+void DebugScene::render(){
 	// Render start
 	SDL::prepareRender();
 	//Position the objects in the camera
@@ -217,8 +213,7 @@ void DebugScene::render()
 	SDL::swapBuffers();
 }
 
-SceneMessage DebugScene::result()
-{
+SceneMessage DebugScene::result(){
 	// End the execution of the game
 	return SCN_END_GAME;
 }
