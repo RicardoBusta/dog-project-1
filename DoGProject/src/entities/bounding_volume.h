@@ -8,6 +8,7 @@
 #include "../base/sdl.h"
 #include "../math/point3.h"
 
+class Entity;
 
 #ifndef BOUNDING_VOLUME_H_
 #define BOUNDING_VOLUME_H_
@@ -16,6 +17,7 @@ class BoundingBox;
 
 class BoundingVolume {
 public:
+	Entity* owner;
 	BoundingVolume();
 	virtual ~BoundingVolume();
 
@@ -26,8 +28,8 @@ public:
 
 class BoundingBox : public BoundingVolume {
 public:
-	BoundingBox(Point3 position, float width, float height, float depth);
-	BoundingBox(float x, float y, float z, float width, float height, float depth);
+	BoundingBox(Point3 position, float width, float height, float depth, Entity *owner);
+	BoundingBox(float x, float y, float z, float width, float height, float depth, Entity *owner);
 //	BoundingBox(Point3 *position, Point3 max, Point3 min);
 //	BoundingBox(Point3 position, Point3 max, Point3 min);
 	~BoundingBox();

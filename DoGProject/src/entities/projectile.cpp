@@ -14,7 +14,7 @@ Projectile::Projectile(Vector3 d, Entity* p):Particle(p) {
 	//lifeTime = 25;
 	lifeTime = 50;
 	boundingVol = new BoundingBox
-						(this->getPosition(),40.0f,40.0f,40.0f);
+						(this->getPosition(),40.0f,40.0f,40.0f, this);
 }
 
 Projectile::~Projectile() {

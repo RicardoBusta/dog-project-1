@@ -15,7 +15,7 @@ Hero::Hero(Entity* p):Entity(p) {
 	shootCoolDown = 0;
 	speed = 5;
 	boundingVol = new BoundingBox
-					(this->getPosition(),122.0f,50.0f,150.0f);
+					(this->getPosition(),122.0f,50.0f,150.0f, this);
 }
 
 Hero::~Hero() {
@@ -50,10 +50,11 @@ void Hero::moveRight(){
 	}
 }
 void Hero::handleTilt(){
-	if(getRotationZ() > 1){
-		rotateZ(-1);
-	}else if(getRotationZ() < -1){
-		rotateZ(1);
+	float tiltspeed=2;
+	if(getRotationZ() > tiltspeed){
+		rotateZ(-tiltspeed);
+	}else if(getRotationZ() < -tiltspeed){
+		rotateZ(tiltspeed);
 	}else{
 		setRotationZ(0);
 	}
