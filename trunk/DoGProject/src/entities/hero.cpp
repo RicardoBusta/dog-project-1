@@ -7,7 +7,7 @@
 
 #include "hero.h"
 #include "../contents/contentmanager.h"
-#include "../contents/ModelWeapon.h"
+#include "../contents/model/ModelWeapon.h"
 #include "../entities/weapon.h"
 
 Hero::Hero(Entity* p):Entity(p) {

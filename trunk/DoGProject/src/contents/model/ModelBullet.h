@@ -8,7 +8,7 @@
 #ifndef MODELBULLET_H_
 #define MODELBULLET_H_
 
-#include "model.h"
+#include "../model.h"
 
 class ModelBullet: public Model {
 public:

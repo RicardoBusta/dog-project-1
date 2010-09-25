@@ -7,7 +7,7 @@
 
 #include "weapon.h"
 
-#include "../contents/ModelBullet.h"
+#include "../contents/model/ModelBullet.h"
 
 Weapon::Weapon(Entity* p):Entity(p) {
 	// TODO Auto-generated constructor stub

@@ -13,9 +13,9 @@
 #include "../entities/weapon.h"
 #include "../contents/contentmanager.h"
 #include "../contents/model.h"
-#include "../contents/ModelShip.h"
-#include "../contents/ModelBox.h"
-#include "../contents/ModelWeapon.h"
+#include "../contents/model/ModelShip.h"
+#include "../contents/model/ModelBox.h"
+#include "../contents/model/ModelWeapon.h"
 
 
 #include "../physics/physics.h"
@@ -134,8 +134,12 @@ bool DebugScene::prepare(){
 	PhysicsSystem::addVolume(bvol2);
 
 	//Weapon *weapon;
-	for(int i=-50;i<=50;i+=10){
-		ship->addWeapon( Vector3(i,0,abs(i)) );
+	int weapon_rows=5;
+	int weapon_columns=11;
+	for(int i=-(10*(weapon_columns/2));i<=(10*(weapon_columns/2));i+=10){
+		for(int j=-(10*(weapon_rows/2));j<=(10*(weapon_rows/2));j+=10){
+		ship->addWeapon( Vector3(i,j,abs(i)) );
+		}
 	}
 	/*
 	Box *gun = new Box(ship);
@@ -149,7 +153,7 @@ bool DebugScene::prepare(){
 	Box* cen;
 	//Model* boxm = new ModelBox(); assim basta 1 modelo, mas ai todas as caixas terão a mesma cor
 	for( int i = 0 ; i < 4 ; i++ ){
-		for(int j=-5;j<=5;j++){
+		for(int j=-6;j<=6;j++){
 			cen = new Box(world);
 			cen->move(Vector3(80*j,-100, -i*300-80*j));
 			cen->setModel(new ModelBox());
