@@ -5,6 +5,8 @@
  *      Author: Cleobulo
  */
 
+#define DRAWBOUNDINGS
+
 #ifndef UTIL_H_
 #define UTIL_H_
 

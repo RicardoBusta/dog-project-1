@@ -9,14 +9,16 @@
 #include "../base/util.h"
 #include "../entities/hero.h"
 #include "../entities/box.h"
+
 #include "../entities/weapon.h"
-#include "../entities/bounding_volume.h"
 #include "../contents/contentmanager.h"
 #include "../contents/model.h"
 #include "../contents/ModelShip.h"
 #include "../contents/ModelBox.h"
 #include "../contents/ModelWeapon.h"
 
+
+#include "../physics/physics.h"
 
 DebugScene::DebugScene()
 	: ship(NULL),world(NULL),up(false), down(false), right(false), shooting(false)
@@ -117,15 +119,19 @@ bool DebugScene::prepare(){
 	this->entities.push_back( world );
 	// Preparando os elementos
 
+
 	ship = new Hero();
 	ship->move( Vector3(0,0,200) );
 	Model* lol = new ModelShip();
 	ship->setModel(lol);
 	this->entities.push_back(ship);
-	//COLLISION TEST
+
+		//COLLISION TEST
 	bvol2 = new BoundingBox
 			(ship->getPosition().getX(),ship->getPosition().getY(),
-					ship->getPosition().getZ(),50.0f,50.0f,50.0f, ship);
+					ship->getPosition().getZ(),50.0f,50.0f,50.0f, *world);
+	
+	PhysicsSystem::addVolume(bvol2);
 
 	//Weapon *weapon;
 	for(int i=-50;i<=50;i+=10){
@@ -186,16 +192,14 @@ void DebugScene::logic(){
 	if( shooting ){
 		ship->handleShoot(&entities);
 	}
-	ship->boundingVol->checkCollision((BoundingBox*)bvol2);
+	
+	//
+	//	ISTO DEVE FICAR NO LOOP PRINCIPAL
+	//
+	
+	PhysicsSystem::processPhysics();
 
-	list<Entity*>::iterator it;
-	for(it=entities.begin();it!=entities.end();it++){
 
-	if((*it)->boundingVol!=NULL){
-			(*it)->boundingVol->checkCollision((BoundingBox*)bvol2);
-			(*it)->boundingVol->setCurPosition( (*it)->boundingVol->owner->getPosition() );
-	}
-	}
 	handleEntities();
 }
 
@@ -206,6 +210,7 @@ void DebugScene::render(){
 	glMultMatrixf( camera->getMatrixToThis() );
 	// Render all the elements of the scene
 	list<Entity*>::iterator it;
+	
 	bvol2->draw();
 	for(it=entities.begin();it!=entities.end();it++){
 			(*it)->render();

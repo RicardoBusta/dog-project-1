@@ -9,15 +9,17 @@
 #ifndef ENTITY_H_
 #define ENTITY_H_
 
-#include "bounding_volume.h"
+
+
 #include "../base/sdl.h"
 #include "../math/frame.h"
 #include "../math/point3.h"
 #include "../math/vector3.h"
 #include "../base/util.h"
+#include "../physics/physics.h"
 #include <list>
 
-#include "bounding_volume.h"
+#include "../physics/boundingvolume.h"
 
 enum ENTITY_{ENTITY_PLAYER,ENTITY_ALLY,ENTITY_ENEMY};
 
@@ -74,6 +76,11 @@ public:
 	void toggleLive();
 	void toggleFrozen();
 
+	// Physics
+	void addBoundings(BoundingVolume *);		
+	void translateBoundings();			
+	
+
 	//Check status
 	bool isLive() const;
 	bool isFrozen() const;
@@ -86,8 +93,7 @@ public:
 	//Virtual Functions:
 	virtual void handler();
 	enum ENTITY_ entityType;
-
-	BoundingVolume *boundingVol; //?
+	
 private:
 
 protected:
@@ -96,6 +102,8 @@ protected:
 	bool frozen; //Does not interact with other entities, but is still drawn in the screen.
 	bool live; //If it's alive by the end of it's handling, will not be removed.
 	bool showBoundingVol; //?
+	std::list<BoundingVolume *> boundings; //?
+	
 
 //3D Model.
 	Model *model;
