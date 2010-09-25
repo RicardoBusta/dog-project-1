@@ -14,8 +14,8 @@ Hero::Hero(Entity* p):Entity(p) {
 	entityType = ENTITY_PLAYER;
 	shootCoolDown = 0;
 	speed = 5;
-	boundingVol = new BoundingBox
-					(this->getPosition(),122.0f,50.0f,150.0f, this);
+	this->addBoundings(new BoundingBox
+					(this->getPosition(),122.0f,50.0f,150.0f, *this));		// CREATES A BOUNDING AND ADD IT
 }
 
 Hero::~Hero() {

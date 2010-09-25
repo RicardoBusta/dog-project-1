@@ -5,9 +5,10 @@
  *      Author: Cle�bulo
  */
 
-#include "box.h"
 // PRA TESTAR TEXTURAS - REMOVER DEPOIS - SE BEM QUE ESSE BOX EH SOH PRA TESTES MESMO
 #include "../base/sdl.h"
+#include "../entities/box.h"
+
 
 Box::Box(Entity* p):Entity(p) {
 

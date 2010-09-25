@@ -22,14 +22,16 @@ Entity::Entity(Entity* p) {
 	setRotation(0,0,0);
 	setScale(1,1,1);
 	setColor(1.0f,1.0f,1.0f);
-
-	//bounding test
-	boundingVol = NULL;
-	showBoundingVol = true;
 }
 
 Entity::~Entity() {
 	//killSons();
+	std::list<BoundingVolume *>::iterator iter;
+	
+	for(iter = boundings.begin(); iter != boundings.end(); ++iter)
+	{
+		PhysicsSystem::deleteVolume(*iter);
+	}
 }
 
 Entity* Entity::getParent(){
@@ -39,6 +41,7 @@ Entity* Entity::getParent(){
 void Entity::handle(){
 	//If it's state isn't frozen
 	if(!frozen){
+		
 		//Handle itself
 		this->handler();
 
@@ -76,17 +79,23 @@ void Entity::setModel(Model* m){
 void Entity::setPosition( Point3 position ){
 	//Set the position of the object
 	coords.getOrigin()->setXYZ( position );
+	//ADDED
+	translateBoundings();
 }
 
 void Entity::moveSelf( Vector3 delta ){
 	//Translate the model from it's current coordinates
 	coords.moveOriginT( delta );
+	// ADDED
+	translateBoundings();
 }
 
 void Entity::move( Vector3 delta ){
-
+	
 	//Translate the model in the world coordinates
 	coords.moveOriginW( delta );
+	// ADDED
+	translateBoundings();
 }
 
 Point3 Entity::getPosition(){
@@ -197,11 +206,14 @@ void Entity::render(){
 	}
 	glPopMatrix();
 
-
-	if(showBoundingVol==true && boundingVol!=NULL)
+	#ifdef DRAWBOUNDINGS
+	static std::list<BoundingVolume *>::iterator iter;
+	
+	for(iter = boundings.begin(); iter != boundings.end(); ++iter)
 	{
-			boundingVol->draw();
+		(*iter)->draw();
 	}
+	#endif
 }
 
 bool Entity::isLive() const{
@@ -226,4 +238,23 @@ void Entity::setFrame(Frame f){
 
 Frame Entity::getFrame(){
 	return coords;
+}
+
+// Translate the boundings according to the entity translation
+void Entity::translateBoundings()
+{
+	static std::list<BoundingVolume *>::iterator iter;
+	
+	for(iter = boundings.begin(); iter != boundings.end(); ++iter)
+	{
+		(*iter)->setPosition(getPosition());
+		(*iter)->setChanged(true);
+	}
+}
+
+// Add a bounding to the entities list
+void Entity::addBoundings(BoundingVolume* bvol)
+{
+	boundings.push_back(bvol);
+	PhysicsSystem::addVolume(bvol);
 }
