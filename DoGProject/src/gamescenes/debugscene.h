@@ -40,7 +40,7 @@ private:
 	Entity* world;
 	BoundingVolume *bvol2;
 
-	bool up,down,left,right,shooting;
+	int up,down,left,right,shoot;
 };
 
 #endif /* DEBUGSCENE_H_ */

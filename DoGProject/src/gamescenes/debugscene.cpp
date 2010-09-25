@@ -21,8 +21,12 @@
 #include "../physics/physics.h"
 
 DebugScene::DebugScene()
-	: ship(NULL),world(NULL),up(false), down(false), right(false), shooting(false)
 {
+	up = SDLK_UP;
+	down = SDLK_DOWN;
+	left = SDLK_LEFT;
+	right = SDLK_RIGHT;
+	shoot = SDLK_SPACE;
 }
 
 DebugScene::~DebugScene(){
@@ -30,17 +34,18 @@ DebugScene::~DebugScene(){
 
 void DebugScene::input(){
 	// The main inputs
+	SDL::actionsGet();
 	while( SDL::actionsLeft() ){
-
 		// The next action
 		switch( SDL::nextAction() ){
-
 			// Close the game action
 			case CON_QUIT_GAME:
 				// End the scene
 				this->running = false;
 				break;
 
+			/* OLD SCENE BUTTON HANDLING. NOW HANDLED BY SDL. REMOVE COMMENT TO TURN IT BACK ON */
+			/*
 			// Directional
 			case CON_UP_ON:
 				up = true;
@@ -75,14 +80,15 @@ void DebugScene::input(){
 				ship->addAction( CON_RIGHT_OFF );
 				break;
 			case CON_SHOOTING_ON:
-				shooting = true;
+				shoot = true;
 				ship->addAction( CON_SHOOTING_ON );
 				break;
 			case CON_SHOOTING_OFF:
-				shooting = false;
+				shoot= false;
 				ship->addAction( CON_SHOOTING_OFF );
 				break;
-
+				 //
+				//*/
 			default:
 				// Standby
 				break;
@@ -134,7 +140,7 @@ bool DebugScene::prepare(){
 	PhysicsSystem::addVolume(bvol2);
 
 	//Weapon *weapon;
-	int weapon_rows=5;
+	int weapon_rows=1;
 	int weapon_columns=11;
 	for(int i=-(10*(weapon_columns/2));i<=(10*(weapon_columns/2));i+=10){
 		for(int j=-(10*(weapon_rows/2));j<=(10*(weapon_rows/2));j+=10){
@@ -187,13 +193,13 @@ bool DebugScene::unload(){
 }
 
 void DebugScene::logic(){
-	if( up )	ship->moveForward();
-	if( down )	ship->moveBackward();
-	if( right )	ship->moveRight();
-	if( left )	ship->moveLeft();
-	if( !(left xor right) ) ship->handleTilt();
+	if( SDL::key[up].down() )	ship->moveForward();
+	if( SDL::key[down].down() )	ship->moveBackward();
+	if( SDL::key[right].down() )	ship->moveRight();
+	if( SDL::key[left].down() )	ship->moveLeft();
+	if( !( SDL::key[left].down() xor SDL::key[right].down() ) ) ship->handleTilt();
 
-	if( shooting ){
+	if( SDL::key[shoot].down() ){
 		ship->handleShoot(&entities);
 	}
 	

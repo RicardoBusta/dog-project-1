@@ -15,6 +15,8 @@ int SDL::bpp;
 int SDL::FPS;
 unsigned int SDL::timer_begin;
 bool SDL::quit;
+Keyboard SDL::key[SDLK_LAST];
+list<int> SDL::modKey;
 SDL_Event SDL::event;
 list<ControllerStatus> SDL::actions;
 
@@ -307,8 +309,83 @@ void SDL::toggleFullScreen()
 
 }
 
-bool SDL::actionsLeft()
-{
+void SDL::actionsGet(){
+	//resets every modified key to its original state.
+	    list<int>::iterator it;
+	    for (it=modKey.begin();it!=modKey.end();it++) {
+	        key[(*it)].reset();
+	    }
+	    modKey.clear(); //clear the mod key list.
+	    //mouse.reset(); //will reset the mouse state as well, when implemented.
+
+	    while (SDL_PollEvent(&event)) {
+	            switch (event.type) {
+	            case SDL_QUIT:
+	            	actions.push_back( CON_QUIT_GAME );
+	                quit = true;
+	                break;
+	            case SDL_MOUSEMOTION:
+	            	actions.push_back( CON_MOUSE_MOTION );
+	                /*
+	                mouse.speed.x = event.button.x-mouse.position.x;
+	                mouse.speed.y = event.button.y-mouse.position.y;
+
+	                mouse.position.x = event.motion.x;
+	                mouse.position.y = event.motion.y;*/
+	                break;
+	            case SDL_MOUSEBUTTONDOWN:
+	            	actions.push_back( CON_MOUSE_DOWN );
+	            	/*
+	                if (event.button.button==SDL_BUTTON_LEFT) {
+	                    mouse.left.isDown=true;
+	                    mouse.left.hit=true;
+	                }
+	                if (event.button.button==SDL_BUTTON_RIGHT) {
+	                    mouse.right.isDown=true;
+	                    mouse.right.hit=true;
+	                }
+	                if (event.button.button==SDL_BUTTON_MIDDLE) {
+	                    mouse.middle.isDown=true;
+	                    mouse.middle.hit=true;
+	                }*/
+	                break;
+	            case SDL_MOUSEBUTTONUP:
+	            	actions.push_back( CON_MOUSE_UP );
+	            	/*
+	                if (event.button.button==SDL_BUTTON_LEFT) {
+	                    mouse.left.isDown=false;
+	                    mouse.left.release=true;
+	                }
+	                if (event.button.button==SDL_BUTTON_RIGHT) {
+	                    mouse.right.isDown=false;
+	                    mouse.right.release=true;
+	                }
+	                if (event.button.button==SDL_BUTTON_MIDDLE) {
+	                    mouse.middle.isDown=false;
+	                    mouse.middle.release=true;
+	                }*/
+	                break;
+	            case SDL_KEYDOWN:
+	            	actions.push_back( CON_KEY_DOWN );
+	                key[event.key.keysym.sym].hit_=true;
+	                key[event.key.keysym.sym].down_=true;
+	                modKey.push_back(event.key.keysym.sym);
+	                break;
+	            case SDL_KEYUP:
+	            	actions.push_back( CON_KEY_UP );
+	                key[event.key.keysym.sym].release_=true;
+	                key[event.key.keysym.sym].down_=false;
+	                modKey.push_back(event.key.keysym.sym);
+	                break;
+	            default:
+	                break;
+	            }
+	        }
+}
+
+bool SDL::actionsLeft(){
+		/* Old key detection REMOVE THE NEXT COMMENT TO TURN IT ON */
+	/*
 	// Put the actions in a queue
 	while( SDL_PollEvent( &event )){
 
@@ -375,6 +452,7 @@ bool SDL::actionsLeft()
 
 		}
 	}
+	//*/
 
 	// Return the size of the queue
 	return (int)actions.size() > 0;

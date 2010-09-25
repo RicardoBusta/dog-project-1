@@ -15,8 +15,10 @@
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_ttf.h>
 #include <SDL/SDL_mixer.h>
-
 #include <list>
+
+#include "keyboard.h"
+
 using namespace std;
 
 /* SE FOR USAR TTF
@@ -64,7 +66,12 @@ public:
 	static void paint();
 	static void toggleFullScreen();
 
+	//Keyboard state
+	static Keyboard key[SDLK_LAST]; //Vector with the current key state
+	static list<int> modKey; //Modified keys
+
 	// Events interface
+	static void actionsGet();
 	static bool actionsLeft();
 	static ControllerStatus nextAction();
 
