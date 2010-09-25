@@ -7,6 +7,7 @@
 
 #include "contentmanager.h"
 
+// Definição dos atributos static
 unordered_map<std::string, Content *> ContentManager::contents;
 unordered_map<std::string, Content *>::iterator ContentManager::it;
 

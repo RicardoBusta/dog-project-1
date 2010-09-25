@@ -25,17 +25,20 @@ using namespace std;
 #include "model.h"
 #include "soundeffect.h"
 
+// Estrutura contendo a função de comparação usada na hashtable
+// Ia usar hash_compare<string>, mas por algum motivo, não está inclusa no compilador aqui ._.
 struct compKey
 {
 	bool operator()(const char* s1, const char* s2) const
 	{
-		return strcmp(s1,s2)==0;
+		return strcmp(s1,s2) == 0;
 	}
 };
 
+// Classe do tipo static que possui metodos para gerenciar uma hashtable de contents
 class ContentManager {
 public:
-	static Content* addContent(Content *);		// Recebe o tipo e a string, retorna o content, null caso content null
+	static Content* addContent(Content *);				// Recebe o tipo e a string, retorna o content, null caso content null
 	static Content* getContent(CONTENT_, std::string );	// Retorna um content, NULL caso inexistente
 	static Texture* getTexture( std::string );
 	//static Model* getModel( std::string );
