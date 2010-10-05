@@ -7,6 +7,7 @@
 
 #include "ModelWeapon.h"
 #include "../../base/Common.h"
+#include "../../math/TriangleMath.h"
 #include <cmath>
 ModelWeapon::ModelWeapon() {
 	r = 5;
@@ -20,6 +21,10 @@ ModelWeapon::~ModelWeapon() {
 void ModelWeapon::middleTriangle(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3){
 	glColor3f(1,1,1);
 
+	Vector3 Normal;
+	Normal = triangleNormal(x1,y1,z1,x2,y2,z2,x3,y3,z3);
+	glNormal3f(Normal.getX(), Normal.getY(), Normal.getZ());
+
 	glTexCoord2d(1,0.5);
 	glVertex3f(x1,y1,z1);
 	glTexCoord2d(1,0);
@@ -30,6 +35,10 @@ void ModelWeapon::middleTriangle(float x1, float y1, float z1, float x2, float y
 
 void ModelWeapon::borderTriangle(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3){
 	glColor3f(1,1,1);
+
+	Vector3 Normal;
+	Normal = triangleNormal(x1,y1,z1,x2,y2,z2,x3,y3,z3);
+	glNormal3f(Normal.getX(), Normal.getY(), Normal.getZ());
 
 	glTexCoord2d(0.5,0.5);
 	glVertex3f(x1,y1,z1);

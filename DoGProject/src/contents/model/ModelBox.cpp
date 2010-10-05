@@ -8,6 +8,7 @@
 
 
 #include "ModelBox.h"
+//#include "../../math/Vector3.h"
 
 ModelBox::ModelBox() {
 	for( int i = 0 ; i < 8 ; i++ ){
@@ -17,7 +18,7 @@ ModelBox::ModelBox() {
 	}
 
 	setData(80,10,300);
-	//randomColors();
+	randomColors();
 }
 
 ModelBox::~ModelBox() {
@@ -26,8 +27,8 @@ ModelBox::~ModelBox() {
 
 void ModelBox::draw()
 {
-	//std::string a("stars");
-	std::string a("madeira");
+	std::string a("stars");
+	//std::string a("madeira");
 	Texture *tex = ContentManager::getTexture(a);
 	if(tex == NULL)
 	{
@@ -66,6 +67,11 @@ void ModelBox::setData( float width , float height , float depth )
 
 void ModelBox::drawFace( int a , int b , int c , int d )
 {
+	Vector3 Normal;
+	Normal = ( vertex[a] + vertex[b] + vertex[c] + vertex[d] );
+	Normal.setUnitary();
+
+	glNormal3f(Normal.getX(),Normal.getY(),Normal.getZ());
 	glTexCoord2d(0.0, 0.0);
 	glColor3f( vr[a] , vg[a] , vb[a] );
 	glVertex3f( vertex[a].getX() ,  vertex[a].getY() ,  vertex[a].getZ() );

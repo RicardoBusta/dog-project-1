@@ -16,6 +16,7 @@
 #include "../contents/model/ModelShip.h"
 #include "../contents/model/ModelBox.h"
 #include "../contents/model/ModelWeapon.h"
+#include "../contents/model/MD2Loader.h"
 
 
 #include "../physics/Physics.h"
@@ -27,6 +28,8 @@ DebugScene::DebugScene()
 	left = SDLK_LEFT;
 	right = SDLK_RIGHT;
 	shoot = SDLK_SPACE;
+
+	CurFrame = 0;
 }
 
 DebugScene::~DebugScene(){
@@ -117,6 +120,18 @@ bool DebugScene::load(){
 	som = new SoundEffect("fundo", "background.ogg");
 	som->setVolume(100);
 	ContentManager::addContent(som);
+
+	//MODEL
+	newtex = new Texture("hheli", "hheli.png");
+
+	Obj = new MD2Obj;
+	if( Obj->Load( "resources/models/hheli/hheli.md2" ) ){
+		cout << "deu pau" << endl;
+		//return true;
+	}
+	Frames = Obj->GetFrameCount();
+	Obj->SetTexture(newtex->getHandle());
+
 	return true;
 }
 
@@ -153,15 +168,15 @@ bool DebugScene::prepare(){
 	gun->setPosition( Point3(0,40,-10) );*/
 
 	// Posicionando a camera
-	camera->moveOriginW( Vector3( 0 , 200 , 400 ) );
+	camera->moveOriginW( Vector3( 0 , 400 , 600 ) );
 	camera->setRotationX( -45 );
 
 	Box* cen;
 	//Model* boxm = new ModelBox(); assim basta 1 modelo, mas ai todas as caixas terão a mesma cor
-	for( int i = 0 ; i < 4 ; i++ ){
+	for( int i = 0 ; i < 6 ; i++ ){
 		for(int j=-6;j<=6;j++){
 			cen = new Box(world);
-			cen->move(Vector3(80*j,-100, -i*300-80*j));
+			cen->move(Vector3(80*j,-100, -i*300-80*abs(j)));
 			cen->setModel(new ModelBox());
 		}
 	}
@@ -174,6 +189,7 @@ bool DebugScene::prepare(){
 }
 
 bool DebugScene::unload(){
+	delete Obj;
 	//todo function to remove all content from the hash map
 	ContentManager::removeContent(CONTENT_TEXTURE, "madeira");
 	ContentManager::removeContent(CONTENT_TEXTURE, "ship");
@@ -193,6 +209,15 @@ bool DebugScene::unload(){
 }
 
 void DebugScene::logic(){
+
+	Obj->Draw(CurFrame);
+	CurFrame++;
+	 if(CurFrame>=Frames){
+	     CurFrame=0;
+	 }
+
+
+
 	if( SDL::key[up].down() )	ship->moveForward();
 	if( SDL::key[down].down() )	ship->moveBackward();
 	if( SDL::key[right].down() )	ship->moveRight();

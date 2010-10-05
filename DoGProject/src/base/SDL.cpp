@@ -117,6 +117,37 @@ bool SDL::initOpenGL()
 	glEnable(GL_POLYGON_OFFSET_FILL);
 	glEnable(GL_NORMALIZE);
 
+	//LIGHTNING
+	  GLfloat Ambient[]  = { 0.1f,  0.1f,  0.1f, 1.0f};  // Ambient light value
+	  GLfloat Diffuse[]  = { 1.0f,  1.0f,  1.0f, 1.0f};  // Diffuse light value
+	  GLfloat Position[] = { 0.0f,  0.0f,  0.0f, 1.0f};  // Light position
+	  glEnable(GL_LIGHTING);
+	  glEnable(GL_LIGHT0);
+	  glLightfv(GL_LIGHT0, GL_AMBIENT, Ambient); // Set the ambient lighting value for Light0
+	  glLightfv(GL_LIGHT0, GL_DIFFUSE, Diffuse); // Set the diffuse lighting value for Light0
+	  glLightfv(GL_LIGHT0,GL_POSITION,Position);
+	//end
+
+	//FOG
+	  /*
+	  GLfloat density = 0.0005;
+	  GLfloat fogColor[4] = {0.0, 0.6, 0.8, 1.0};
+	  glEnable (GL_FOG);
+	  glFogi (GL_FOG_MODE, GL_EXP2);
+	  glFogfv (GL_FOG_COLOR, fogColor);
+	  glFogf (GL_FOG_DENSITY, density);
+	  glHint (GL_FOG_HINT, GL_NICEST);
+	  */
+	//end
+
+	//BLENDING
+	  /*
+	  glEnable(GL_BLEND);
+	  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	  */
+	//end
+	  glEnable(GL_COLOR_MATERIAL);
+
 	glShadeModel( GL_SMOOTH );
 
 	projection( SCREEN_WIDTH , SCREEN_HEIGHT );
