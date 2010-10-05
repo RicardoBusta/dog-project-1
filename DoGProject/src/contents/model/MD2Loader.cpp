@@ -334,3 +334,4 @@ void MD2Obj::CalcNormal(Mesh_Vtx v1,Mesh_Vtx v2,Mesh_Vtx v3,Mesh_Vtx* Result)
   Result->y = (float) (ny / vLen);
   Result->z = (float) (nz / vLen);
  }
+//*/

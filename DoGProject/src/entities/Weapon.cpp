@@ -25,6 +25,7 @@ void Weapon::shoot(list<Entity*> *bullets){
 	p->setFrame(parent->getFrame()^getFrame());
 	ModelWeapon *lol = new ModelWeapon();
 	lol->setSkin(1);
+	//p->setModel(new ModelBullet());
 	p->setModel(lol);
 	bullets->push_back(p);
 }

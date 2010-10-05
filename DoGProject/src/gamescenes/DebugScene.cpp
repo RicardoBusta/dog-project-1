@@ -105,12 +105,10 @@ bool DebugScene::load(){
 	SoundEffect *som;
 
 	newtex = new Texture("nave", "ship.png");
-
-	newtex = new Texture("stars", "star_texture.jpg");
-
+	//newtex = new Texture("stars", "star_texture.jpg");
 	newtex = new Texture("enemy", "enemy.png");
-
 	newtex = new Texture("madeira", "squareTex.jpg");
+	newtex = new Texture("grama", "grass.jpg");
 
 
 	som = new SoundEffect("tiro", "laser.ogg");
@@ -122,16 +120,15 @@ bool DebugScene::load(){
 	ContentManager::addContent(som);
 
 	//MODEL
-	//newtex = new Texture("fighter", "fighter.png");
+	newtex = new Texture("objeto", "dumbster.jpg");
 
 	Obj = new MD2Obj;
-	if( Obj->Load( "resources/models/hheli/hheli.md2" ) ){
-	//if( Obj->Load( "resources/models/fighter/fighter.md2" ) ){
+	if( Obj->Load( "resources/models/test_models/dumbster.md2" ) ){
 		cout << "deu pau" << endl;
 		//return true;
 	}
 	Frames = Obj->GetFrameCount();
-	Obj->SetTexture(newtex->getHandle());
+	Obj->SetTexture(newtex->getHandle());//*/
 
 	return true;
 }
@@ -177,7 +174,7 @@ bool DebugScene::prepare(){
 	for( int i = 0 ; i < 6 ; i++ ){
 		for(int j=-6;j<=6;j++){
 			cen = new Box(world);
-			cen->move(Vector3(80*j,-100, -i*300-80*abs(j)));
+			cen->move(Vector3(120*j,-100, -i*300-120*abs(j)));
 			cen->setModel(new ModelBox());
 		}
 	}
@@ -194,10 +191,11 @@ bool DebugScene::unload(){
 
 	//todo function to remove all content from the hash map
 	ContentManager::removeContent(CONTENT_TEXTURE, "madeira");
+	ContentManager::removeContent(CONTENT_TEXTURE, "grama");
 	ContentManager::removeContent(CONTENT_TEXTURE, "ship");
 	ContentManager::removeContent(CONTENT_TEXTURE, "stars");
 	ContentManager::removeContent(CONTENT_TEXTURE, "enemy");
-	ContentManager::removeContent(CONTENT_TEXTURE, "fighter");
+	ContentManager::removeContent(CONTENT_TEXTURE, "objeto");
 	glDisable(GL_TEXTURE_2D);
 
 	list<Entity*>::iterator it;
@@ -240,12 +238,13 @@ void DebugScene::render(){
 	// Render all the elements of the scene
 	list<Entity*>::iterator it;
 
-	//Obj->Draw(CurFrame);
+	Obj->Draw(CurFrame);
 	Obj->Draw(0);
 	CurFrame++;
 	 if(CurFrame>=Frames){
 	     CurFrame=0;
 	 }
+	 //*/
 
 	bvol2->draw();
 

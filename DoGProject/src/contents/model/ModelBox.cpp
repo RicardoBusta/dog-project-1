@@ -17,8 +17,8 @@ ModelBox::ModelBox() {
 		vb[i] = 1;
 	}
 
-	setData(80,10,300);
-	randomColors();
+	setData(120,10,300);
+	//randomColors();
 }
 
 ModelBox::~ModelBox() {
@@ -27,8 +27,10 @@ ModelBox::~ModelBox() {
 
 void ModelBox::draw()
 {
-	std::string a("stars");
+	//std::string a("stars");
 	//std::string a("madeira");
+	std::string a("grama");
+
 	Texture *tex = ContentManager::getTexture(a);
 	if(tex == NULL)
 	{
@@ -38,12 +40,12 @@ void ModelBox::draw()
 		tex->bind();
 
 	glBegin( GL_QUADS );
-		drawFace(0,1,2,3);
-		drawFace(4,7,6,5);
-		drawFace(2,1,5,6);
-		drawFace(0,3,7,4);
-		drawFace(7,3,2,6);
-		drawFace(0,4,5,1);
+		//drawFace(0,1,2,3); //front face
+		//drawFace(4,7,6,5); //back face
+		//drawFace(2,1,5,6); //right face
+		//drawFace(0,3,7,4); //left face
+		drawFace(7,3,2,6); // top face
+		//drawFace(0,4,5,1); //bottom face
 	glEnd();
 }
 
