@@ -7,8 +7,8 @@
  * 		Author: Fernando
  */
 
-#include "../math/point3.h"
-#include "../math/vector3.h"
+#include "../math/Point3.h"
+#include "../math/Vector3.h"
 
 
 

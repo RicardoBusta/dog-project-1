@@ -8,7 +8,7 @@
 #ifndef GAMESCENE_H_
 #define GAMESCENE_H_
 
-#include "scene.h"
+#include "Scene.h"
 #include <list>
 #include <vector>
 using namespace std;

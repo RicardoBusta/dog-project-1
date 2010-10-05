@@ -9,7 +9,7 @@
 #ifndef DEBUGSCENE_H_
 #define DEBUGSCENE_H_
 
-#include "../scenes/gamescene.h"
+#include "../scenes/GameScene.h"
 
 class Hero;
 class Box;

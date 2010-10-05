@@ -5,7 +5,7 @@
  *      Author: Cleóbulo
  */
 
-#include "scene.h"
+#include "Scene.h"
 
 Scene::Scene(){
 	Scene::running = true;

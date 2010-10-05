@@ -5,8 +5,8 @@
  *      Author: Cle�bulo
  */
 
-#include "gamescene.h"
-#include "../math/frame.h"
+#include "GameScene.h"
+#include "../math/Frame.h"
 
 GameScene::GameScene() {
 	camera = new Frame();

@@ -4,7 +4,7 @@
  *  Created on: 08/09/2010
  *      Author: Cleóbulo
  */
-#include "frame.h"
+#include "Frame.h"
 
 Frame::Frame()
 {

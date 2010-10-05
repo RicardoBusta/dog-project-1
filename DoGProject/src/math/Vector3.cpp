@@ -4,8 +4,8 @@
  *  Created on: Sep 3, 2010
  *      Author: Cle�bulo
  */
-#include "point3.h"
-#include "vector3.h"
+#include "Point3.h"
+#include "Vector3.h"
 
 Vector3::Vector3()
 {
