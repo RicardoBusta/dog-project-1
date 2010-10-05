@@ -397,10 +397,15 @@ void SDL::actionsGet(){
 	                }*/
 	                break;
 	            case SDL_KEYDOWN:
-	            	actions.push_back( CON_KEY_DOWN );
-	                key[event.key.keysym.sym].hit_=true;
-	                key[event.key.keysym.sym].down_=true;
-	                modKey.push_back(event.key.keysym.sym);
+	            	if(event.key.keysym.sym == SDLK_ESCAPE){
+	            		actions.push_back( CON_QUIT_GAME );
+	            		quit = true;
+	            	}else{
+	            		actions.push_back( CON_KEY_DOWN );
+	            		key[event.key.keysym.sym].hit_=true;
+	            		key[event.key.keysym.sym].down_=true;
+	            		modKey.push_back(event.key.keysym.sym);
+	            	}
 	                break;
 	            case SDL_KEYUP:
 	            	actions.push_back( CON_KEY_UP );

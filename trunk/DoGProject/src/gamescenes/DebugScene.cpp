@@ -104,13 +104,13 @@ bool DebugScene::load(){
 	Texture* newtex;
 	SoundEffect *som;
 
-	newtex = new Texture("madeira", "squareTex.jpg");
-
 	newtex = new Texture("nave", "ship.png");
 
 	newtex = new Texture("stars", "star_texture.jpg");
 
 	newtex = new Texture("enemy", "enemy.png");
+
+	newtex = new Texture("madeira", "squareTex.jpg");
 
 
 	som = new SoundEffect("tiro", "laser.ogg");
@@ -122,10 +122,11 @@ bool DebugScene::load(){
 	ContentManager::addContent(som);
 
 	//MODEL
-	newtex = new Texture("hheli", "hheli.png");
+	//newtex = new Texture("fighter", "fighter.png");
 
 	Obj = new MD2Obj;
 	if( Obj->Load( "resources/models/hheli/hheli.md2" ) ){
+	//if( Obj->Load( "resources/models/fighter/fighter.md2" ) ){
 		cout << "deu pau" << endl;
 		//return true;
 	}
@@ -190,11 +191,13 @@ bool DebugScene::prepare(){
 
 bool DebugScene::unload(){
 	delete Obj;
+
 	//todo function to remove all content from the hash map
 	ContentManager::removeContent(CONTENT_TEXTURE, "madeira");
 	ContentManager::removeContent(CONTENT_TEXTURE, "ship");
 	ContentManager::removeContent(CONTENT_TEXTURE, "stars");
 	ContentManager::removeContent(CONTENT_TEXTURE, "enemy");
+	ContentManager::removeContent(CONTENT_TEXTURE, "fighter");
 	glDisable(GL_TEXTURE_2D);
 
 	list<Entity*>::iterator it;
@@ -209,15 +212,6 @@ bool DebugScene::unload(){
 }
 
 void DebugScene::logic(){
-
-	Obj->Draw(CurFrame);
-	CurFrame++;
-	 if(CurFrame>=Frames){
-	     CurFrame=0;
-	 }
-
-
-
 	if( SDL::key[up].down() )	ship->moveForward();
 	if( SDL::key[down].down() )	ship->moveBackward();
 	if( SDL::key[right].down() )	ship->moveRight();
@@ -245,8 +239,16 @@ void DebugScene::render(){
 	glMultMatrixf( camera->getMatrixToThis() );
 	// Render all the elements of the scene
 	list<Entity*>::iterator it;
-	
+
+	//Obj->Draw(CurFrame);
+	Obj->Draw(0);
+	CurFrame++;
+	 if(CurFrame>=Frames){
+	     CurFrame=0;
+	 }
+
 	bvol2->draw();
+
 	for(it=entities.begin();it!=entities.end();it++){
 			(*it)->render();
 	}

@@ -291,9 +291,8 @@ void MD2Obj::Draw(int Frame)
     Frame=0;
 
   glBindTexture(GL_TEXTURE_2D,TexID);
-
   glBegin(GL_TRIANGLES);
-
+  glColor3f(1,1,1);
    for(Part=0;Part<nTri;++Part)
     {
      glNormal3f(frame[Frame].Norm[Part].x,frame[Frame].Norm[Part].y,frame[Frame].Norm[Part].z);
@@ -304,11 +303,8 @@ void MD2Obj::Draw(int Frame)
      glTexCoord2f(UV[Face[Part].uv3].u,UV[Face[Part].uv3].v);
      glVertex3f(frame[Frame].Vtx[Face[Part].p3].x,frame[Frame].Vtx[Face[Part].p3].y,frame[Frame].Vtx[Face[Part].p3].z);
     }
-
   glEnd();
-
  }
-
 
 void MD2Obj::CalcNormal(Mesh_Vtx v1,Mesh_Vtx v2,Mesh_Vtx v3,Mesh_Vtx* Result)
  {
