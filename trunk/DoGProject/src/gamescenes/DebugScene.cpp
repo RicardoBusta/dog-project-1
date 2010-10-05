@@ -16,8 +16,7 @@
 #include "../contents/model/ModelShip.h"
 #include "../contents/model/ModelBox.h"
 #include "../contents/model/ModelWeapon.h"
-#include "../contents/model/MD2Loader.h"
-
+#include "../contents/model/ModelFromMD2.h"
 
 #include "../physics/Physics.h"
 
@@ -29,7 +28,7 @@ DebugScene::DebugScene()
 	right = SDLK_RIGHT;
 	shoot = SDLK_SPACE;
 
-	CurFrame = 0;
+
 }
 
 DebugScene::~DebugScene(){
@@ -109,6 +108,7 @@ bool DebugScene::load(){
 	newtex = new Texture("enemy", "enemy.png");
 	newtex = new Texture("madeira", "squareTex.jpg");
 	newtex = new Texture("grama", "grass.jpg");
+	newtex = new Texture("objeto", "dumbster.jpg");
 
 
 	som = new SoundEffect("tiro", "laser.ogg");
@@ -118,17 +118,6 @@ bool DebugScene::load(){
 	som = new SoundEffect("fundo", "background.ogg");
 	som->setVolume(100);
 	ContentManager::addContent(som);
-
-	//MODEL
-	newtex = new Texture("objeto", "dumbster.jpg");
-
-	Obj = new MD2Obj;
-	if( Obj->Load( "resources/models/test_models/dumbster.md2" ) ){
-		cout << "deu pau" << endl;
-		//return true;
-	}
-	Frames = Obj->GetFrameCount();
-	Obj->SetTexture(newtex->getHandle());//*/
 
 	return true;
 }
@@ -141,7 +130,8 @@ bool DebugScene::prepare(){
 
 	ship = new Hero();
 	ship->move( Vector3(0,0,200) );
-	Model* lol = new ModelShip();
+	//Model* lol = new ModelShip();
+	Model* lol = new ModelFromMD2();
 	ship->setModel(lol);
 	this->entities.push_back(ship);
 
@@ -187,8 +177,6 @@ bool DebugScene::prepare(){
 }
 
 bool DebugScene::unload(){
-	delete Obj;
-
 	//todo function to remove all content from the hash map
 	ContentManager::removeContent(CONTENT_TEXTURE, "madeira");
 	ContentManager::removeContent(CONTENT_TEXTURE, "grama");
@@ -237,14 +225,6 @@ void DebugScene::render(){
 	glMultMatrixf( camera->getMatrixToThis() );
 	// Render all the elements of the scene
 	list<Entity*>::iterator it;
-
-	Obj->Draw(CurFrame);
-	Obj->Draw(0);
-	CurFrame++;
-	 if(CurFrame>=Frames){
-	     CurFrame=0;
-	 }
-	 //*/
 
 	bvol2->draw();
 
