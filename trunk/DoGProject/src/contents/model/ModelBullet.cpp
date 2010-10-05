@@ -32,24 +32,25 @@ void ModelBullet::triangle(float x1, float y1, float z1, float x2, float y2, flo
 }
 
 void ModelBullet::draw(){
-		glDisable(GL_TEXTURE_2D);
-		glScalef(0.2,0.2,0.2);
+		//glDisable(GL_TEXTURE_2D);
 		glColor3f(0,1,1);
 		glBegin( GL_TRIANGLES );
-		triangle(0,0,0, 0,-25,0, 0,-25,-25);
-		triangle(0,0,0, 0,-25,-25, 0, 25,0 );
-
-
-		triangle(
-				-25,-25, 25,
-				 25,-25, 25,
-				 25, 25, 25
-				);
-		triangle(	25,-25,25,
-					25,25,25,
-					-25,-25,-25
-				);
+			triangle(
+					0,0,0,
+					-20,0,-20,
+					20,0,20
+					);
+			triangle(
+					0,0,0,
+					20,0,20,
+					-20,0,-20
+					);
+			triangle(
+								0,0,0,
+								20,20,0,
+								-20,-20,-0
+								);
 		glEnd();
 			// The bottom of the pyramid
-		glEnable(GL_TEXTURE_2D);
+		//glEnable(GL_TEXTURE_2D);
 }
