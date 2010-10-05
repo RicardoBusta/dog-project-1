@@ -8,8 +8,8 @@
 #define FRAME_H
 
 #include <SDL/SDL_opengl.h>
-#include "point3.h"
-#include "vector3.h"
+#include "Point3.h"
+#include "Vector3.h"
 
 class Frame
 {

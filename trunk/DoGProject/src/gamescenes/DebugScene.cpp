@@ -5,7 +5,7 @@
  *      Author: Everybody
  */
 
-#include "debugscene.h"
+#include "DebugScene.h"
 #include "../base/util.h"
 #include "../entities/hero.h"
 #include "../entities/box.h"

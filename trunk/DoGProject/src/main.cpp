@@ -6,7 +6,7 @@
 //============================================================================
 
 #include "base/sdl.h"
-#include "gamescenes/debugscene.h"
+#include "gamescenes/DebugScene.h"
 
 
 int main( int argc , char* argv[] ) {

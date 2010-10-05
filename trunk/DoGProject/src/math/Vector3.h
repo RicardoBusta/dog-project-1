@@ -9,7 +9,7 @@
 #define VECTOR_H
 #include <cmath>
 
-#include "point3.h"
+#include "Point3.h"
 
 class Vector3:public Point3
 {

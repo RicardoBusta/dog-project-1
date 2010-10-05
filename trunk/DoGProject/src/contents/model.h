@@ -11,9 +11,9 @@
 #include "content.h"
 
 #include "../base/sdl.h"
-#include "../math/frame.h"
-#include "../math/point3.h"
-#include "../math/vector3.h"
+#include "../math/Frame.h"
+#include "../math/Point3.h"
+#include "../math/Vector3.h"
 #include "../base/util.h"
 #include "../contents/contentmanager.h"
 
