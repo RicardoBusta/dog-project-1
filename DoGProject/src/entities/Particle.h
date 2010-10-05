@@ -8,7 +8,7 @@
 #ifndef PARTICLE_H_
 #define PARTICLE_H_
 
-#include "entity.h"
+#include "Entity.h"
 
 class Particle: public Entity {
 public:

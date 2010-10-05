@@ -5,13 +5,13 @@
  *      Author: Administrador
  */
 
-#include "../base/sdl.h"
+#include "../base/SDL.h"
 
-#include "../physics/boundingvolume.h"
+#include "../physics/BoundingVolume.h"
 
 #include "../physics/abb.h"			// REMOVER DEPOIS coloquei soh pra testar uma gambiarra
 
-#include "../entities/entity.h"
+#include "../entities/Entity.h"
 
 // Bound constructor
 // receives the owner, the type of volume and a callback in the owner to be called 

@@ -1,5 +1,5 @@
-#include "../physics/physics.h"
-#include "../entities/entity.h"
+#include "../physics/Physics.h"
+#include "../entities/Entity.h"
 	
 // Deve ser substituido por uma estrutura de particionamento de espaço: kdtree etc
 std::list<BoundingVolume *> PhysicsSystem::world;		

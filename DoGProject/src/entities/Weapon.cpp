@@ -5,7 +5,7 @@
  *      Author: ricardo
  */
 
-#include "weapon.h"
+#include "Weapon.h"
 
 #include "../contents/model/ModelBullet.h"
 

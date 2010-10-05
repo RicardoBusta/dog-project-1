@@ -13,7 +13,7 @@
 #include <vector>
 using namespace std;
 
-#include "../entities/entity.h"
+#include "../entities/Entity.h"
 
 class GameScene : public Scene
 {

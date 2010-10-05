@@ -6,8 +6,8 @@
  */
 
 // PRA TESTAR TEXTURAS - REMOVER DEPOIS - SE BEM QUE ESSE BOX EH SOH PRA TESTES MESMO
-#include "../base/sdl.h"
-#include "../entities/box.h"
+#include "../base/SDL.h"
+#include "../entities/Box.h"
 
 
 Box::Box(Entity* p):Entity(p) {

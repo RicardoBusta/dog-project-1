@@ -7,8 +7,8 @@
 
 #define DRAWBOUNDINGS
 
-#ifndef UTIL_H_
-#define UTIL_H_
+#ifndef COMMON_H_
+#define COMMON_H_
 
 class SDL;
 

@@ -10,7 +10,7 @@
 #ifndef MODELSHIP_H_
 #define MODELSHIP_H_
 
-#include "../model.h"
+#include "../Model.h"
 
 class ModelShip: public Model {
 public:

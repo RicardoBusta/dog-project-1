@@ -9,7 +9,7 @@
 #define TEXTURE_H_
 
 #include <SDL/SDL_opengl.h>
-#include "content.h"
+#include "Content.h"
 
 class Texture: public Content {
 public:

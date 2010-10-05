@@ -9,7 +9,7 @@
 #ifndef SDL_H_
 #define SDL_H_
 
-#include "util.h"
+#include "Common.h"
 #include <SDL/SDL.h>
 #include <SDL/SDL_opengl.h>
 #include <SDL/SDL_image.h>
@@ -17,7 +17,7 @@
 #include <SDL/SDL_mixer.h>
 #include <list>
 
-#include "keyboard.h"
+#include "Keyboard.h"
 
 using namespace std;
 

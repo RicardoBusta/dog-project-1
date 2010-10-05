@@ -17,13 +17,13 @@ using namespace std::tr1;
 #ifndef CONTENTMANAGER_H_
 #define CONTENTMANAGER_H_
 
-#include "content.h"
+#include "Content.h"
 #include <string>
 using namespace std;
 
-#include "texture.h"
-#include "model.h"
-#include "soundeffect.h"
+#include "Texture.h"
+#include "Model.h"
+#include "SoundEffect.h"
 
 // Estrutura contendo a função de comparação usada na hashtable
 // Ia usar hash_compare<string>, mas por algum motivo, não está inclusa no compilador aqui ._.

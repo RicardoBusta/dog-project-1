@@ -5,7 +5,7 @@
  *      Author: ricardo
  */
 
-#include "model.h"
+#include "Model.h"
 
 Model::Model() 
 	:Content("",CONTENT_MODEL){		//MUDAR AQUI PRO LABEL, depois

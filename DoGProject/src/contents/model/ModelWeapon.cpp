@@ -6,7 +6,7 @@
  */
 
 #include "ModelWeapon.h"
-#include "../../base/util.h"
+#include "../../base/Common.h"
 #include <cmath>
 ModelWeapon::ModelWeapon() {
 	r = 5;

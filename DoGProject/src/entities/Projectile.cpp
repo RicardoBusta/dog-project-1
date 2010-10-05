@@ -5,7 +5,7 @@
  *      Author: ricardo
  */
 
-#include "projectile.h"
+#include "Projectile.h"
 
 Projectile::Projectile(Vector3 d, Entity* p):Particle(p) {
 	// TODO Auto-generated constructor stub

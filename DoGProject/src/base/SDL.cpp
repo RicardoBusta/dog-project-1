@@ -5,7 +5,7 @@
  *  Created on: 01/09/2010
  *      Author: Cleobulo
  */
-#include "sdl.h"
+#include "SDL.h"
 
 // Static Members
 IMAGE* SDL::screen;

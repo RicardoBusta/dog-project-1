@@ -6,19 +6,19 @@
  */
 
 #include "DebugScene.h"
-#include "../base/util.h"
-#include "../entities/hero.h"
-#include "../entities/box.h"
+#include "../base/Common.h"
+#include "../entities/Hero.h"
+#include "../entities/Box.h"
 
-#include "../entities/weapon.h"
-#include "../contents/contentmanager.h"
-#include "../contents/model.h"
+#include "../entities/Weapon.h"
+#include "../contents/ContentManager.h"
+#include "../contents/Model.h"
 #include "../contents/model/ModelShip.h"
 #include "../contents/model/ModelBox.h"
 #include "../contents/model/ModelWeapon.h"
 
 
-#include "../physics/physics.h"
+#include "../physics/Physics.h"
 
 DebugScene::DebugScene()
 {

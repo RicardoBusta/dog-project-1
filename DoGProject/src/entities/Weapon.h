@@ -8,8 +8,8 @@
 #ifndef WEAPON_H_
 #define WEAPON_H_
 
-#include "entity.h"
-#include "projectile.h"
+#include "Entity.h"
+#include "Projectile.h"
 
 class Weapon: public Entity {
 public:

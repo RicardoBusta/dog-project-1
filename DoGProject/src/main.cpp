@@ -5,7 +5,7 @@
 // Description : Spaceships vs Zombies
 //============================================================================
 
-#include "base/sdl.h"
+#include "base/SDL.h"
 #include "gamescenes/DebugScene.h"
 
 

@@ -10,7 +10,7 @@
 #ifndef MODELBOX_H_
 #define MODELBOX_H_
 
-#include "../model.h"
+#include "../Model.h"
 
 class ModelBox: public Model {
 public:
