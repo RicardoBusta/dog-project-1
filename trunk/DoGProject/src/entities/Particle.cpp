@@ -5,7 +5,7 @@
  *      Author: ricardo
  */
 
-#include "particle.h"
+#include "Particle.h"
 
 Particle::Particle(Entity* p):Entity(p) {
 	// TODO Auto-generated constructor stub

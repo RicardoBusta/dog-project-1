@@ -8,14 +8,14 @@
 #ifndef MODEL_H_
 #define MODEL_H_
 
-#include "content.h"
+#include "Content.h"
 
-#include "../base/sdl.h"
+#include "../base/SDL.h"
 #include "../math/Frame.h"
 #include "../math/Point3.h"
 #include "../math/Vector3.h"
-#include "../base/util.h"
-#include "../contents/contentmanager.h"
+#include "../base/Common.h"
+#include "../contents/ContentManager.h"
 
 class Model: public Content {
 public:

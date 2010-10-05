@@ -8,8 +8,8 @@
 #ifndef BOX_H_
 #define BOX_H_
 
-#include "entity.h"
-#include "../contents/contentmanager.h"
+#include "Entity.h"
+#include "../contents/ContentManager.h"
 
 class Box : public Entity {
 public:

@@ -10,7 +10,7 @@
 
 #include <string>
 #include <list>
-#include "../base/sdl.h"
+#include "../base/SDL.h"
 
 using namespace std;
 

@@ -5,9 +5,9 @@
  *      Author: Ricardo
  */
 
-#include "entity.h"
-#include "../base/sdl.h"
-#include "../contents/model.h"
+#include "Entity.h"
+#include "../base/SDL.h"
+#include "../contents/Model.h"
 
 Entity::Entity(Entity* p) {
 	parent = p;

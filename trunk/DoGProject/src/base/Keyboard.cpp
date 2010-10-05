@@ -5,7 +5,7 @@
  *      Author: ricardo
  */
 
-#include "keyboard.h"
+#include "Keyboard.h"
 
 Keyboard::Keyboard() {
 	reset();

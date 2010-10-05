@@ -8,7 +8,7 @@
 #ifndef SOUNDEFFECT_H_
 #define SOUNDEFFECT_H_
 
-#include "content.h"
+#include "Content.h"
 
 class SoundEffect: public Content {
 public:

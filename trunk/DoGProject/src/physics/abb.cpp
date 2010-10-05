@@ -1,6 +1,6 @@
 #include "abb.h"
 
-#include "../base/sdl.h"
+#include "../base/SDL.h"
 
 BoundingBox::BoundingBox( Point3 position, float width, float height,  float depth, Entity & owner)
 		: BoundingVolume(owner, ABB)

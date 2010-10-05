@@ -1,7 +1,7 @@
 #ifndef BOUNDINGBOX_H
 #define BOUNDINGBOX_H
 
-#include "../physics/boundingvolume.h" // Base class: BoundingVolume
+#include "../physics/BoundingVolume.h" // Base class: BoundingVolume
 
 
 class BoundingBox : public BoundingVolume {

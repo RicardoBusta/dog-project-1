@@ -8,7 +8,7 @@
 #ifndef HERO_H_
 #define HERO_H_
 
-#include "entity.h"
+#include "Entity.h"
 
 class Weapon;
 

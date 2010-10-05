@@ -5,8 +5,8 @@
  *      Author: ricardo
  */
 
-#include "texture.h"
-#include "../contents/contentmanager.h"
+#include "Texture.h"
+#include "../contents/ContentManager.h"
 
 // identificador do content e caminho da textura
 Texture::Texture(std::string label, std::string path)

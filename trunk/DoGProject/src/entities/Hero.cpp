@@ -5,10 +5,10 @@
  *      Author: Cle�bulo
  */
 
-#include "hero.h"
-#include "../contents/contentmanager.h"
+#include "Hero.h"
+#include "../contents/ContentManager.h"
 #include "../contents/model/ModelWeapon.h"
-#include "../entities/weapon.h"
+#include "../entities/Weapon.h"
 
 Hero::Hero(Entity* p):Entity(p) {
 	entityType = ENTITY_PLAYER;

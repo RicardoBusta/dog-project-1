@@ -5,7 +5,7 @@
  *      Author: Ricardo
  */
 
-#include "content.h"
+#include "Content.h"
 
 Content::Content(std::string label, enum CONTENT_ con)
 :users(1) {

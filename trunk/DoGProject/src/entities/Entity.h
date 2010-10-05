@@ -11,15 +11,15 @@
 
 
 
-#include "../base/sdl.h"
+#include "../base/SDL.h"
 #include "../math/Frame.h"
 #include "../math/Point3.h"
 #include "../math/Vector3.h"
-#include "../base/util.h"
-#include "../physics/physics.h"
+#include "../base/Common.h"
+#include "../physics/Physics.h"
 #include <list>
 
-#include "../physics/boundingvolume.h"
+#include "../physics/BoundingVolume.h"
 
 enum ENTITY_{ENTITY_PLAYER,ENTITY_ALLY,ENTITY_ENEMY};
 

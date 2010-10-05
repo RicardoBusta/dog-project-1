@@ -8,7 +8,7 @@
 #ifndef MODELWEAPON_H_
 #define MODELWEAPON_H_
 
-#include "../model.h"
+#include "../Model.h"
 
 class ModelWeapon: public Model {
 public:

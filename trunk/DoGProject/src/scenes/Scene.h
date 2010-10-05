@@ -8,8 +8,8 @@
 #ifndef SCENE_H_
 #define SCENE_H_
 
-#include "../base/util.h"
-#include "../base/sdl.h"
+#include "../base/Common.h"
+#include "../base/SDL.h"
 
 class Scene {
 public:

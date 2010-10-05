@@ -8,7 +8,7 @@
 #ifndef PROJECTILE_H_
 #define PROJECTILE_H_
 
-#include "particle.h"
+#include "Particle.h"
 
 class Projectile: public Particle {
 public:
