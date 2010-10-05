@@ -22,6 +22,6 @@ void Box::handler()
 {
 	this->move( Vector3(0,0,10) );
 	if( coords.getOrigin()->getZ() >= 600){
-		this->setPosition( Point3(coords.getOrigin()->getX(),coords.getOrigin()->getY(),-600) );
+		this->setPosition( Point3(coords.getOrigin()->getX(),coords.getOrigin()->getY(),-1200) );
 	}
 }

@@ -13,6 +13,7 @@
 
 class Hero;
 class Box;
+class MD2Obj;
 
 class DebugScene : public GameScene
 {
@@ -41,6 +42,10 @@ private:
 	BoundingVolume *bvol2;
 
 	int up,down,left,right,shoot;
+
+	int CurFrame;
+	int Frames;
+	MD2Obj *Obj;
 };
 
 #endif /* DEBUGSCENE_H_ */

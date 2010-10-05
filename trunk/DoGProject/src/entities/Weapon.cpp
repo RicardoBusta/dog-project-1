@@ -8,6 +8,8 @@
 #include "Weapon.h"
 
 #include "../contents/model/ModelBullet.h"
+#include "../contents/model/ModelWeapon.h"
+#include "../contents/model/ModelShip.h"
 
 Weapon::Weapon(Entity* p):Entity(p) {
 	// TODO Auto-generated constructor stub
@@ -21,7 +23,9 @@ Weapon::~Weapon() {
 void Weapon::shoot(list<Entity*> *bullets){
 	Projectile *p = new Projectile( Vector3(0,0,-10) , parent->getParent());
 	p->setFrame(parent->getFrame()^getFrame());
-	p->setModel(new ModelBullet());
+	ModelWeapon *lol = new ModelWeapon();
+	lol->setSkin(1);
+	p->setModel(lol);
 	bullets->push_back(p);
 }
 
