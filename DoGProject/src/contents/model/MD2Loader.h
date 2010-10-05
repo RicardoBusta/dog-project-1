@@ -6,7 +6,7 @@
  * Loader from here:
  * http://gpwiki.org/index.php/OpenGL:Tutorials:Tutorial_Framework:MD2Animation:SourceCode#MD2Loader.cpp
  *
- *
+ */
 
 #ifndef _MD2LOADER_H
 #define _MD2LOADER_H
@@ -16,7 +16,8 @@
 #include <time.h>
 #include <memory.h>
 #include <math.h>
-#include "framework.h"
+//#include "framework.h"
+#include "../../base/SDL.h"
 
 #define MD2_OK         0x0
 #define MD2_ERR_MEM    0x1
@@ -110,4 +111,4 @@ class MD2Obj
 
 #endif
 
-*/
+//*/
