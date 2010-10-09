@@ -43,7 +43,7 @@ private:
 	const BOUNDTYPE type;			// Bounding type
 	Entity & owner;			// bound owner
 	bool changed;			// Changed(if true, the object will be handled by the physics)
-	// Maybe it's better to put this atribute as aN "element" atribute in the nodes
+	// Maybe it's better to put this atribute as an "element" atribute in the nodes
 	// of the Bounding Volume repository
 };
 
