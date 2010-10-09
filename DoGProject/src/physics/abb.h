@@ -40,7 +40,7 @@ private:
 
 };
 
-/* todo class BoundingSphere : public BoundingVoulume{
+/* todo class BoundingSphere : public BoundingVolume{
 public:
 	BoundingSphere(Point3 position, float radius);
 	~BoundingSphere();
