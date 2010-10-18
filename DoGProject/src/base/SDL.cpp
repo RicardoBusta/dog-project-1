@@ -8,7 +8,9 @@
 #include "SDL.h"
 
 // Static Members
-IMAGE* SDL::screen;
+SDL_WindowID SDL::windowID;
+SDL_GLContext SDL::glContext;
+
 int SDL::width;
 int SDL::height;
 int SDL::bpp;
@@ -38,8 +40,9 @@ bool SDL::initialize()
 	if( !setVideo() )
 		return false;
 
-	// Sets the window caption
-	SDL_WM_SetCaption( GAME_TITLE , NULL);
+	// Create the window with the provided title
+	if( !createWindow(GAME_TITLE))
+		return false;
 
 	// Initializing the audio
 	if( !setAudio() )
@@ -56,23 +59,15 @@ bool SDL::initialize()
 }
 
 void SDL::close(){
-	SDL_Quit();
+    SDL_GL_DeleteContext(glContext);
+    SDL_DestroyWindow(windowID);
+    SDL_Quit();
 }
 
 bool SDL::setVideo()
 {
 	// Initializing the SDL video
 	if ( SDL_Init( SDL_INIT_VIDEO ) < 0 )
-	{
-		return false;
-	}
-
-	// Main properties
-	screen = SDL_SetVideoMode( width , height , bpp,
-			SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_OPENGL );
-
-	// If failed to create a screen surface
-	if( screen == NULL )
 	{
 		return false;
 	}
@@ -108,14 +103,35 @@ bool SDL::setAudio()
     return true;
 }
 
+bool SDL::createWindow(std::string title)
+{
+	windowID = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+	        width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+	if(!windowID)
+		return false;
+	return true;
+}
+
 bool SDL::initOpenGL()
 {
+	// Opengl 3.1 rendering context info,
+	// since 3.2 there are 2 profiles, core(without deprecated)
+	// and compatibility(with deprecated). SDL 1.3 don't provide this choice
+	// So, it will have to be 3.1 while we don't migrate fully to shaders.
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+
+    // Creating the rendering context
+    glContext = SDL_GL_CreateContext(windowID);
+
+    // Swap interval to match monitors vertical refresh rate
+    SDL_GL_SetSwapInterval(1);
+
 	// Initializing the properties
 	glClearColor(0.0, 0.0, 0.0, 1.0);
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
-	glEnable(GL_POLYGON_OFFSET_FILL);
-	glEnable(GL_NORMALIZE);
 
 	//LIGHTNING
 	  GLfloat Ambient[]  = { 0.1f,  0.1f,  0.1f, 1.0f};  // Ambient light value
@@ -172,12 +188,8 @@ IMAGE* SDL::loadImage( const char* filename )
     temp = IMG_Load(filename);
 
     if(temp)
-    {
-      otm = SDL_DisplayFormatAlpha(temp);
-      SDL_FreeSurface(temp);
-    }
-
-    return otm;
+    	return temp;
+    return NULL;
 }
 
 //loads background music from the "filename" ile
@@ -316,7 +328,7 @@ void SDL::timerStop()
 void SDL::refresh()
 {
    //Update screen
-   SDL_GL_SwapBuffers();
+	SDL_GL_SwapWindow(windowID);
 }
 
 void SDL::resize( int nwidth , int nheight )
@@ -397,7 +409,7 @@ void SDL::actionsGet(){
 	                }*/
 	                break;
 	            case SDL_KEYDOWN:
-	            	if(event.key.keysym.sym == SDLK_ESCAPE){
+	            	if(event.key.keysym.scancode == SDL_SCANCODE_ESCAPE){
 	            		actions.push_back( CON_QUIT_GAME );
 	            		quit = true;
 	            	}else{
@@ -513,7 +525,7 @@ void SDL::paint(){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     //calls the scene paint function here
-    SDL_GL_SwapBuffers();
+    SDL::swapBuffers();
 }
 
 void SDL::prepareRender()
@@ -529,5 +541,5 @@ void SDL::prepareRender()
 void SDL::swapBuffers()
 {
 	// Swap the buffers
-	SDL_GL_SwapBuffers();
+	SDL_GL_SwapWindow(windowID);
 }
