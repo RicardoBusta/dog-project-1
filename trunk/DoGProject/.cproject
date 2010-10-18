@@ -27,7 +27,7 @@
 <option id="gnu.cpp.compiler.option.preprocessor.def.900100667" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" valueType="definedSymbols">
 <listOptionValue builtIn="false" value="LINUX"/>
 </option>
-<option id="gnu.cpp.compiler.option.include.paths.907686890" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths"/>
+<option id="gnu.cpp.compiler.option.include.paths.907686890" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath"/>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1369370227" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.c.compiler.base.1345915218" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.base">
@@ -45,7 +45,7 @@
 <listOptionValue builtIn="false" value="GL"/>
 <listOptionValue builtIn="false" value="GLU"/>
 </option>
-<option id="gnu.cpp.link.option.paths.732890002" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths"/>
+<option id="gnu.cpp.link.option.paths.732890002" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths"/>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1181389477" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 <additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 <additionalInput kind="additionalinput" paths="$(LIBS)"/>
