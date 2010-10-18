@@ -41,7 +41,8 @@ public:
 	static bool setVideo();
 	static bool setAudio();
 
-	//OpenGL Interface
+	//Window & OpenGL Interface
+	static bool createWindow(std::string);
 	static bool initOpenGL();
 	static void projection( int width , int height );
 
@@ -80,8 +81,9 @@ public:
 	static void swapBuffers();
 
     private:
-	// Screen surface
-	static IMAGE* screen;
+	// Handle to the window and opengl rendering context
+	static SDL_WindowID windowID;
+	static SDL_GLContext glContext;
 
 	// Events input and returns parameters
 	static SDL_Event event;
