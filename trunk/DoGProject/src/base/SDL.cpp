@@ -191,7 +191,7 @@ IMAGE* SDL::loadImage( const char* filename )
 }*/
 
 //loads a sound from the "filename" file
-SOUND* SDL::loadSound( char *filename )
+SOUND* SDL::loadSound( const char *filename )
 {
 	SOUND* sound = NULL;
 
@@ -200,7 +200,7 @@ SOUND* SDL::loadSound( char *filename )
 	return sound;
 }
 
-MODEL* SDL::loadModel( char* filename )
+MODEL* SDL::loadModel( const char* filename )
 {
 	MODEL* sound = NULL;
 	return sound;
@@ -508,14 +508,6 @@ ControllerStatus SDL::nextAction(){
 	}
 }
 
-//Paint the canvas
-void SDL::paint(){
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glLoadIdentity();
-    //calls the scene paint function here
-    SDL_GL_SwapBuffers();
-}
-
 void SDL::prepareRender()
 {
 	// Clear the screen
@@ -524,10 +516,4 @@ void SDL::prepareRender()
     // Put the correct matrix mode and current matrix
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
-}
-
-void SDL::swapBuffers()
-{
-	// Swap the buffers
-	SDL_GL_SwapBuffers();
 }

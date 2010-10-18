@@ -7,8 +7,8 @@
 
 #include "Content.h"
 
-Content::Content(std::string label, enum CONTENT_ con)
-:users(1) {
+Content::Content(std::string labelIdentifier, enum CONTENT_ con)
+:users(1) /*, label(labelIdentifier)*/ {
 	setType(con);
 	setLabel(label);
 }

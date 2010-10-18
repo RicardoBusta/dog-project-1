@@ -63,7 +63,6 @@ public:
 
 	// Extra
 	static void resize( int width , int height );
-	static void paint();
 	static void toggleFullScreen();
 
 	//Keyboard state
@@ -77,7 +76,6 @@ public:
 
 	// Render functions
 	static void prepareRender();
-	static void swapBuffers();
 
     private:
 	// Screen surface
