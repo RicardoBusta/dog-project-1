@@ -67,7 +67,7 @@ public:
 	static void toggleFullScreen();
 
 	//Keyboard state
-	static Keyboard key[SDLK_LAST]; //Vector with the current key state
+	static Keyboard key[SDL_NUM_SCANCODES]; //Vector with the current key state
 	static list<int> modKey; //Modified keys
 
 	// Events interface

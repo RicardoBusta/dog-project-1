@@ -15,7 +15,7 @@ int SDL::bpp;
 int SDL::FPS;
 unsigned int SDL::timer_begin;
 bool SDL::quit;
-Keyboard SDL::key[SDLK_LAST];
+Keyboard SDL::key[SDL_NUM_SCANCODES];
 list<int> SDL::modKey;
 SDL_Event SDL::event;
 list<ControllerStatus> SDL::actions;
@@ -402,16 +402,16 @@ void SDL::actionsGet(){
 	            		quit = true;
 	            	}else{
 	            		actions.push_back( CON_KEY_DOWN );
-	            		key[event.key.keysym.sym].hit_=true;
-	            		key[event.key.keysym.sym].down_=true;
-	            		modKey.push_back(event.key.keysym.sym);
+	            		key[event.key.keysym.scancode].hit_=true;
+	            		key[event.key.keysym.scancode].down_=true;
+	            		modKey.push_back(event.key.keysym.scancode);
 	            	}
 	                break;
 	            case SDL_KEYUP:
 	            	actions.push_back( CON_KEY_UP );
-	                key[event.key.keysym.sym].release_=true;
-	                key[event.key.keysym.sym].down_=false;
-	                modKey.push_back(event.key.keysym.sym);
+	                key[event.key.keysym.scancode].release_=true;
+	                key[event.key.keysym.scancode].down_=false;
+	                modKey.push_back(event.key.keysym.scancode);
 	                break;
 	            default:
 	                break;
