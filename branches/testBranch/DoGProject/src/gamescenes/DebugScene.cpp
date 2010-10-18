@@ -22,13 +22,11 @@
 
 DebugScene::DebugScene()
 {
-	up = SDLK_UP;
-	down = SDLK_DOWN;
-	left = SDLK_LEFT;
-	right = SDLK_RIGHT;
-	shoot = SDLK_SPACE;
-
-
+	up = SDL_SCANCODE_UP;
+	down = SDL_SCANCODE_DOWN;
+	left = SDL_SCANCODE_LEFT;
+	right = SDL_SCANCODE_RIGHT;
+	shoot = SDL_SCANCODE_SPACE;
 }
 
 DebugScene::~DebugScene(){
@@ -131,7 +129,7 @@ bool DebugScene::prepare(){
 	ship = new Hero();
 	ship->move( Vector3(0,0,200) );
 	//Model* lol = new ModelShip();
-	Model* lol = new ModelFromMD2();
+	Model* lol = new ModelShip();
 	ship->setModel(lol);
 	this->entities.push_back(ship);
 
