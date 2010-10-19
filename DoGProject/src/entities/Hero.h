@@ -27,7 +27,7 @@ public:
 	int shootCoolDown;
 
 	//temp
-	void addWeapon( Vector3 position );
+	void addWeapon(const btVector3 &position );
 	list<Weapon*> weapons;
 
 	//Moving

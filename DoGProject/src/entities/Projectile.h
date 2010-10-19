@@ -12,11 +12,11 @@
 
 class Projectile: public Particle {
 public:
-	Projectile(Vector3 direction, Entity* parent=NULL);
+	Projectile(const btVector3 &direction, Entity* parent=NULL);
 	virtual ~Projectile();
 	void handler();
 
-	Vector3 *direction;
+	btVector3 *direction;
 	int lifeTime;
 };
 
