@@ -232,7 +232,7 @@ void DebugScene::render(){
 			(*it)->render();
 	}
 	// Swap the buffers
-	SDL::refresh();
+	SDL::swapBuffers();
 }
 
 SceneMessage DebugScene::result(){
