@@ -49,8 +49,8 @@ public:
 	//Loading Files
 	static IMAGE* loadImage( const char* filename );
 	//static MUSIC* loadBackgroundMusic( char* filename );
-	static SOUND* loadSound( const char *filename);
-	static MODEL* loadModel( const char* filename );
+	static SOUND* loadSound(char *filename);
+	static MODEL* loadModel( char* filename );
 	static GLuint loadTexture(const char *fileName);
 	static void removeTexture(GLsizei n, const GLuint *textures);
 
@@ -63,6 +63,7 @@ public:
 
 	// Extra
 	static void resize( int width , int height );
+	static void paint();
 	static void toggleFullScreen();
 
 	//Keyboard state
@@ -76,6 +77,7 @@ public:
 
 	// Render functions
 	static void prepareRender();
+	static void swapBuffers();
 
     private:
 	// Screen surface
