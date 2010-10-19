@@ -127,7 +127,7 @@ bool DebugScene::prepare(){
 
 
 	ship = new Hero();
-	ship->move( Vector3(0,0,200) );
+	ship->move(btVector3(0,0,200) );
 	//Model* lol = new ModelShip();
 	Model* lol = new ModelShip();
 	ship->setModel(lol);
@@ -145,7 +145,7 @@ bool DebugScene::prepare(){
 	int weapon_columns=11;
 	for(int i=-(10*(weapon_columns/2));i<=(10*(weapon_columns/2));i+=10){
 		for(int j=-(10*(weapon_rows/2));j<=(10*(weapon_rows/2));j+=10){
-		ship->addWeapon( Vector3(i,j,abs(i)) );
+		ship->addWeapon(btVector3(i,j,abs(i)) );
 		}
 	}
 	/*
@@ -162,7 +162,7 @@ bool DebugScene::prepare(){
 	for( int i = 0 ; i < 6 ; i++ ){
 		for(int j=-6;j<=6;j++){
 			cen = new Box(world);
-			cen->move(Vector3(120*j,-100, -i*300-120*abs(j)));
+			cen->move(btVector3(120*j,-100, -i*300-120*abs(j)));
 			cen->setModel(new ModelBox());
 		}
 	}

@@ -32,32 +32,31 @@ void Hero::handler()
 }
 
 void Hero::moveForward(){
-	move( Vector3(0,0,-speed) );
+	move(btVector3(0,0,-speed) );
 }
 void Hero::moveBackward(){
-	move( Vector3(0,0,speed) );
+	move(btVector3(0,0,speed) );
 }
 void Hero::moveLeft(){
-	move( Vector3(-speed,0,0) );
-	if(getRotationZ() < 45 ){
-		rotateZ(2);
-	}
+	move(btVector3(-speed,0,0) );
+	//rotate(0, 0, 2);
 }
 void Hero::moveRight(){
-	move( Vector3(speed,0,0) );
-	if(getRotationZ() > -45 ){
-		rotateZ(-2);
-	}
+	move(btVector3(speed,0,0) );
+	//rotate(0, 0, -2);
 }
-void Hero::handleTilt(){
+
+void Hero::handleTilt()
+{
 	float tiltspeed=2;
+	/*
 	if(getRotationZ() > tiltspeed){
 		rotateZ(-tiltspeed);
 	}else if(getRotationZ() < -tiltspeed){
 		rotateZ(tiltspeed);
 	}else{
 		setRotationZ(0);
-	}
+	}*/
 }
 
 void Hero::handleShoot(list<Entity*> *bullets){
@@ -75,7 +74,7 @@ void Hero::handleShoot(list<Entity*> *bullets){
 	}
 }
 
-void Hero::addWeapon( Vector3 v ){
+void Hero::addWeapon(const btVector3 &v){
 	Weapon *weapon = new Weapon(this);
 	weapons.push_back(weapon);
 	weapon->move(v);

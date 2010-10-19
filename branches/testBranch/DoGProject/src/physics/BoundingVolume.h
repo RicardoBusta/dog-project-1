@@ -9,7 +9,7 @@
 
 #include "../math/Point3.h"
 #include "../math/Vector3.h"
-
+#include "../physics/Physics.h"
 
 
 #ifndef BOUNDING_VOLUME_H_
@@ -33,7 +33,7 @@ public:
 	// Draws the bounding volume
 	virtual void draw() const = 0;
 	// Sets the position or center position
-	virtual void setPosition(Point3 const & pos) = 0;
+	virtual void setPosition(const btVector3 & pos) = 0;
 	// Sends a "signal" to the owner, informing about the collision to his owner
 	void setChanged(bool);
 	bool getChanged() const;

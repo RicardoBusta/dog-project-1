@@ -21,8 +21,10 @@ Weapon::~Weapon() {
 }
 
 void Weapon::shoot(list<Entity*> *bullets){
-	Projectile *p = new Projectile( Vector3(0,0,-10) , parent->getParent());
-	p->setFrame(parent->getFrame()^getFrame());
+	Projectile *p = new Projectile( btVector3(0,0,-10) , parent->getParent());
+	btTransform a(parent->getFrame());
+	a *= getFrame();
+	p->setFrame(a);
 	ModelWeapon *lol = new ModelWeapon();
 	lol->setSkin(1);
 	//p->setModel(new ModelBullet());
@@ -31,5 +33,5 @@ void Weapon::shoot(list<Entity*> *bullets){
 }
 
 void Weapon::handler(){
-	rotateZ(5);
+	//rotate(0, 0, 5);
 }

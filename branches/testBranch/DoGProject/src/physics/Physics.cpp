@@ -63,28 +63,23 @@ bool PhysicsSystem::aabAab(BoundingVolume &box1, BoundingVolume &box2)
 	
 	b1->updateBoundaries();
 	b2->updateBoundaries();
-	Point3 other_max;
-	Point3 other_min;
-	Point3 first_max;
-	Point3 first_min;
 	
-	
-	other_max = b2->getMax();
-	other_min = b2->getMin();
-	first_max = b1->getMax();
-	first_min = b1->getMin();
+	const btVector3 &other_max = b2->getMax();
+	const btVector3 &other_min = b2->getMin();
+	const btVector3 &first_max = b1->getMax();
+	const btVector3 &first_min = b1->getMin();
 
-	if(first_min.x>other_max.x)
+	if(first_min.x()>other_max.x())
 		return false;
-	if(first_max.x<other_min.x)
+	if(first_max.x()<other_min.x())
 		return false;
-	if(first_min.y>other_max.y)
+	if(first_min.y()>other_max.y())
 		return false;
-	if(first_max.y<other_min.y)
+	if(first_max.y()<other_min.y())
 		return false;
-	if(first_min.z>other_max.z)
+	if(first_min.z()>other_max.z())
 		return false;
-	if(first_max.z<other_min.z)
+	if(first_max.z()<other_min.z())
 		return false;
 	return true;	
 }
