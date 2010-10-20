@@ -7,9 +7,10 @@
 
 #include "Projectile.h"
 
-Projectile::Projectile(const btVector3 &d, Entity* p):Particle(p) {
+Projectile::Projectile(Vector3 d, Entity* p):Particle(p) {
 	// TODO Auto-generated constructor stub
-	direction = new btVector3(d);
+	direction = new Vector3;
+	*direction = d;
 	//lifeTime = 25;
 	lifeTime = 50;
 	addBoundings(new BoundingBox

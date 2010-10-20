@@ -30,23 +30,45 @@ class Model;
 class Entity{
 
 public:
+	//Entity();
 	Entity(Entity *parent=NULL);
 	virtual ~Entity();
 
 	Entity* getParent();
+
 	//Sets
-	void setPosition(const btVector3&);
-	const btVector3& getPosition();
-	void setFrame(const btTransform &f);
-	const btTransform &getFrame();
-	void move(const btVector3 &delta); //Move the object based on its father coordinates
-	// Rotation about an arbitrary axis
-	void rotate(const btVector3 &, btScalar);
-	// Rotation with euler angles
-	void rotate(const btScalar, const btScalar, const btScalar);
-	const btMatrix3x3& getRotation();
-	void resize(btScalar x, btScalar y, btScalar z);
+	void setPosition( Point3 position );
+
+	void setFrame(Frame f);
+	Frame getFrame();
+	//void setPosition(entity *e);
+	void move( Vector3 delta ); //Move the object based on its father coordinates
+	void moveSelf( Vector3 delta ); //Move the object based on it's own coordinate system
+	Point3 getPosition();
+
+	void setRotation(float x, float y, float z);
+	void setRotationX(float x);
+	void setRotationY(float y);
+	void setRotationZ(float z);
+
+	void rotate(float x, float y, float z);
+	void rotateX(float x);
+	void rotateY(float y);
+	void rotateZ(float z);
+
+	Point3 getRotation();
+	float getRotationX();
+	float getRotationY();
+	float getRotationZ();
+
+	void setScale(float x, float y, float z);
+	//void setScale(entity *e);
+	void resize(float x, float y, float z);
+
 	void setColor(float r, float g, float b);
+	//void setColor(entity *e);
+	//void colorize(float r, float g, float b);
+
 	void setModel(Model* model);
 
 	//Toggles
@@ -88,7 +110,7 @@ protected:
 	//AnimatedModel *model;
 
 	// Frame
-	btTransform coords;
+	Frame coords;
 
 //Scale (Parent Related)
 	struct scale_{

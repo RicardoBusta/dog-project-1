@@ -1,13 +1,10 @@
 // Projetar aqui uma interface pra boundbox e obb, comum entre elas
 
-#include <btBulletCollisionCommon.h>
-
 #ifndef PHYSICS_H_
 #define PHYSICS_H_
 
 // Um sistema de física que gerencia apenas bound boxes, por enquanto
 #include "abb.h"
-#include "../physics/BoundingVolume.h"
 //#include "obb.h"
 #include <list>
 

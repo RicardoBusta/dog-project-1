@@ -2,39 +2,51 @@
 
 #include "../base/SDL.h"
 
-BoundingBox::BoundingBox(const btVector3 &position, btScalar width, btScalar height,  btScalar depth, Entity & owner)
-		: BoundingVolume(owner, ABB), pos(position.x(), position.y(), position.z())
+BoundingBox::BoundingBox( Point3 position, float width, float height,  float depth, Entity & owner)
+		: BoundingVolume(owner, ABB)
 {
+	float x, y, z;
+	x = position.getX();
+	y = position.getY();
+	z = position.getZ();
+
+	this->cur_position = new Point3;
+	*this->cur_position = position;
 
 	this->height = height;
 	this->width = width;
 	this->depth = depth;
 
-	max.setX(pos.x()+width/2);
-	max.setY(pos.y()+height/2);
-	max.setZ(pos.z()+depth/2);
+	max.x = x+width/2;
+	max.y = y+height/2;
+	max.z = z+depth/2;
 
-	min.setX(pos.x()-width/2);
-	min.setY(pos.y()-height/2);
-	min.setZ(pos.z()-depth/2);
+	min.x = x-width/2;
+	min.y = y-height/2;
+	min.z = z-depth/2;
 
 	colliding = false;
 }
 
-BoundingBox::BoundingBox( btScalar x, btScalar y, btScalar z, btScalar width, btScalar height,  btScalar depth, Entity & owner)
-		: BoundingVolume(owner, ABB), pos(x, y, z)
+BoundingBox::BoundingBox( float x, float y, float z, float width, float height,  float depth, Entity & owner)
+		: BoundingVolume(owner, ABB)
 {
+	cur_position = new Point3();
+	cur_position->x = x;
+	cur_position->y = y;
+	cur_position->z = z;
+
 	this->height = height;
 	this->width = width;
 	this->depth = depth;
 
-	max.setX(x+width/2);
-	max.setY(y+height/2);
-	max.setZ(z+depth/2);
+	max.x = x+width/2;
+	max.y = y+height/2;
+	max.z = z+depth/2;
 
-	min.setX(x-width/2);
-	min.setY(y-height/2);
-	min.setZ(z-depth/2);
+	min.x = x-width/2;
+	min.y = y-height/2;
+	min.z = z-depth/2;
 
 	colliding = false;
 }
@@ -45,35 +57,35 @@ BoundingBox::~BoundingBox()
 
 void BoundingBox::updateBoundaries()
 {
-	btScalar x,y, z;
-	x = pos.x();
-	y = pos.y();
-	z = pos.z();
+	float x,y, z;
+	x = cur_position->x;
+	y = cur_position->y;
+	z = cur_position->z;
 
-	max.setX(x+width/2);
-	max.setY(y+height/2);
-	max.setZ(z+depth/2);
+	max.x = x+width/2;
+	max.y = y+height/2;
+	max.z = z+depth/2;
 
-	min.setX(x-width/2);
-	min.setY(y-height/2);
-	min.setZ(z-depth/2);
+	min.x = x-width/2;
+	min.y = y-height/2;
+	min.z = z-depth/2;
 }
 
-void BoundingBox::setPosition(const btVector3 &displacement){
-	pos.setValue(displacement.x(), displacement.y(), displacement.z());
+void BoundingBox::setPosition(Point3 const & position){
+	*this->cur_position = position;
 }
 
-const btVector3 & BoundingBox::getMax() const
+Point3 BoundingBox::getMax()
 {
 	return max;
 }
 
-const btVector3 & BoundingBox::getMin() const
+Point3 BoundingBox::getMin()
 {
 	return min;
 }
 
-void BoundingBox::drawFaces(int index, btScalar x, btScalar y, btScalar z,btScalar halfwidth, btScalar halfheight, btScalar halfdepth) const
+void BoundingBox::drawFaces(int index, float x, float y, float z,float halfwidth, float halfheight, float halfdepth) const
 {
 	switch (index){
 		//BACK
@@ -123,10 +135,10 @@ void BoundingBox::drawFaces(int index, btScalar x, btScalar y, btScalar z,btScal
 
 void BoundingBox::draw() const
 {
-	btScalar x, y, z, halfwidth, halfheight, halfdepth;
-	x = this->pos.x();
-	y = this->pos.y();
-	z = this->pos.z();
+	float x, y, z, halfwidth, halfheight, halfdepth;
+	x = this->cur_position->getX();
+	y = this->cur_position->getY();
+	z = this->cur_position->getZ();
 	halfwidth = width /2;
 	halfheight = height/2;
 	halfdepth = depth/2;
@@ -150,7 +162,7 @@ void BoundingBox::draw() const
 
 }
 
-void BoundingBox::setCollide(bool a)
-{
-	colliding =  a;
-}
+	void BoundingBox::setCollide(bool a)
+	{
+		colliding =  a;
+	}

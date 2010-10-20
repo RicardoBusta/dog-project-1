@@ -9,9 +9,7 @@
 #include "../base/SDL.h"
 #include "../contents/Model.h"
 
-Entity::Entity(Entity* p)
-{
-	coords.setIdentity();
+Entity::Entity(Entity* p) {
 	parent = p;
 	if(parent != NULL){
 		parent->sons.push_back(this);
@@ -20,7 +18,9 @@ Entity::Entity(Entity* p)
 	frozen = false;
 	live = true;
 	model = NULL;
-	setPosition(btVector3(0, 0, 0));
+	setPosition( Point3(0,0,0) );
+	setRotation(0,0,0);
+	setScale(1,1,1);
 	setColor(1.0f,1.0f,1.0f);
 }
 
@@ -76,47 +76,93 @@ void Entity::setModel(Model* m){
 	model = m;
 }
 
-void Entity::setPosition( const btVector3 &displacement ){
+void Entity::setPosition( Point3 position ){
 	//Set the position of the object
-	coords.setOrigin(displacement);
+	coords.getOrigin()->setXYZ( position );
 	//ADDED
 	translateBoundings();
 }
 
-const btVector3& Entity::getPosition(){
-	return coords.getOrigin();
-}
-
-void Entity::move(const btVector3 &delta){
-	
-	//Translate the model in the world coordinates
-	coords.setOrigin(coords.getOrigin() + delta);
+void Entity::moveSelf( Vector3 delta ){
+	//Translate the model from it's current coordinates
+	coords.moveOriginT( delta );
 	// ADDED
 	translateBoundings();
 }
 
-void Entity::rotate(const btVector3 &direction, btScalar angle)
-{
-	btQuaternion tmp(direction, angle);
-	tmp *= coords.getRotation();
-	coords.setRotation(tmp);
+void Entity::move( Vector3 delta ){
+	
+	//Translate the model in the world coordinates
+	coords.moveOriginW( delta );
+	// ADDED
+	translateBoundings();
 }
 
-void Entity::rotate(const btScalar x, const btScalar y, const btScalar z)
-{
-	// Order yaw, pitch, row(x, y, z)
-	btQuaternion tmp(z, y, x);
-	tmp *= coords.getRotation();
-	coords.setRotation(tmp);
+Point3 Entity::getPosition(){
+	return *coords.getOrigin();
 }
 
-void Entity::resize(btScalar x, btScalar y, btScalar z)
-{
-	btMatrix3x3 tmp;
-	tmp.setIdentity();
-	tmp.scaled(btVector3(x, y, z));
-	tmp *= coords.getBasis();
-	coords.setBasis(tmp);
+void Entity::setRotation(float x, float y, float z){
+	//Set the rotation of the object
+	this->coords.setRotationX( x );
+	this->coords.setRotationY( y );
+	this->coords.setRotationZ( z );
+}
+
+void Entity::setRotationX(float n){
+	this->coords.setRotationX( n );
+}
+
+void Entity::setRotationY(float n){
+	this->coords.setRotationY( n );
+}
+
+void Entity::setRotationZ(float n){
+	this->coords.setRotationZ( n );
+}
+
+void Entity::rotate(float x, float y, float z){
+	//Rotates the object based on the current position
+	this->coords.rotateX( x );
+	this->coords.rotateY( y );
+	this->coords.rotateZ( z );
+}
+
+void Entity::rotateX(float n){
+	this->coords.rotateX(n);
+}
+
+void Entity::rotateY(float n){
+	this->coords.rotateY(n);
+}
+
+void Entity::rotateZ(float n){
+	this->coords.rotateZ(n);
+}
+
+float Entity::getRotationX(){
+	return this->coords.getRotationX();
+}
+
+float Entity::getRotationY(){
+	return this->coords.getRotationY();
+}
+
+float Entity::getRotationZ(){
+	return this->coords.getRotationZ();
+}
+void Entity::setScale(float x, float y, float z){
+	//Set the object scale
+	this->scale.x = x;
+	this->scale.y = y;
+	this->scale.z = z;
+}
+
+void Entity::resize(float x, float y, float z){
+	//Scales the current object size
+	this->scale.x += x;
+	this->scale.y += y;
+	this->scale.z += z;
 }
 
 void Entity::setColor(float r, float g, float b){
@@ -141,11 +187,9 @@ void Entity::toggleFrozen(){
 void Entity::render(){
 	//Prepare the coordinate system
 	glPushMatrix();
-	btScalar *fToW = new btScalar[15];
-	coords.getOpenGLMatrix(fToW);
-	glMultMatrixf(reinterpret_cast<GLfloat *>(fToW));
+	glMultMatrixf( coords.getMatrixToWorld() );
 
-	// Draw the entity and it's children if it isn't invisible
+	//Draw the entity and it's children if it isn't invisible
 	if(visible){
 		//Draw this object
 		glColor3f(color.r,color.g,color.b);
@@ -170,8 +214,6 @@ void Entity::render(){
 		(*iter)->draw();
 	}
 	#endif
-
-	delete fToW;
 }
 
 bool Entity::isLive() const{
@@ -190,12 +232,11 @@ void Entity::handler(){
 
 }
 
-void Entity::setFrame(const btTransform &f){
-	coords.setBasis(f.getBasis());
-	coords.setOrigin(f.getOrigin());
+void Entity::setFrame(Frame f){
+	coords = f;
 }
 
-const btTransform &Entity::getFrame(){
+Frame Entity::getFrame(){
 	return coords;
 }
 
