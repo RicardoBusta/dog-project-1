@@ -7,6 +7,7 @@
 
 #ifndef VECTOR_H
 #define VECTOR_H
+#include <cmath>
 
 #include "Point3.h"
 

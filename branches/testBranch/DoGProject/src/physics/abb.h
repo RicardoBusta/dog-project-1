@@ -7,33 +7,34 @@
 class BoundingBox : public BoundingVolume {
 		friend class Scene;
 public:
-	BoundingBox(const btVector3 &position, btScalar width, btScalar height,  btScalar depth, Entity & owner);
-	BoundingBox( btScalar x, btScalar y, btScalar z, btScalar width, btScalar height,  btScalar depth, Entity & owner);
+	BoundingBox(Point3 position, float width, float height, float depth, Entity & owner);
+	BoundingBox(float x, float y, float z, float width, float height, float depth, Entity & owner);
 //	BoundingBox(Point3 *position, Point3 max, Point3 min);
 //	BoundingBox(Point3 position, Point3 max, Point3 min);
 	~BoundingBox();
 
 	void draw() const;
-	void drawFaces(int index, btScalar x, btScalar y, btScalar z,btScalar halfwidth, btScalar halfheight, btScalar halfdepth) const;
+	void drawFaces(int index, float x, float y, float z,float halfwidth, float halfheight, float halfdepth) const;
 	void updateBoundaries();
 
-	void setPosition(const btVector3 &displacement);
+	void setPosition(Point3 const & position);
 
-	const btVector3 & getPosition() const;
+	Point3 getCurPosition();
+	float getBoxSize();
 
-	const btVector3 & getMax() const;
-	const btVector3 & getMin() const;
+	Point3 getMax();
+	Point3 getMin();
 
 	void setCollide(bool a);
 
 private:
-	btVector3 pos;
+	Point3 *cur_position;
 	float height;
 	float width;
 	float depth;
 
-	btVector3 max;
-	btVector3 min;
+	Point3 max;
+	Point3 min;
 
 	bool colliding;
 
