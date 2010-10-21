@@ -11,7 +11,10 @@
 
 #include "Common.h"
 #include <SDL/SDL.h>
-#include <SDL/SDL_opengl.h>
+#define GL3_PROTOTYPES 1
+#include <GL3/gl3.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_ttf.h>
 #include <SDL/SDL_mixer.h>

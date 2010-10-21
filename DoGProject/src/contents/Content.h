@@ -9,6 +9,7 @@
 #define CONTENT_H_
 
 #include <string>
+#include <fstream>
 #include <list>
 #include "../base/SDL.h"
 
@@ -16,7 +17,7 @@ using namespace std;
 
 class Scene;
 
-enum CONTENT_{CONTENT_TEXTURE,CONTENT_MODEL,CONTENT_SOUND};
+enum CONTENT_{CONTENT_TEXTURE,CONTENT_MODEL,CONTENT_SOUND, CONTENT_SHADER};
 
 class Content {
 private:
