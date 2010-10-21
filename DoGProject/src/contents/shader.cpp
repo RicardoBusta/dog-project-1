@@ -81,7 +81,7 @@ GLuint Shader::loadShaderProgram(const char *vertShaderFile, const char *fragSha
 		return 0;
 	}
 	
-	loadVertexShader(fragShaderFile);
+	loadFragmentShader(fragShaderFile);
 	glCompileShader(fragShader);
 	
 	glGetShaderiv(fragShader, GL_COMPILE_STATUS, &compiled);
@@ -130,4 +130,14 @@ void Shader::enable()
 void Shader::disable()
 {
 	glUseProgram(0);
+}
+
+GLuint Shader::getShader() const
+{
+	return shaderProgram;
+}
+
+bool Shader::load(std::string &a)
+{
+	return true;
 }
