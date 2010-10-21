@@ -18,6 +18,8 @@
 #include "../contents/model/ModelWeapon.h"
 #include "../contents/model/ModelFromMD2.h"
 
+#include "../contents/model/modelshader.h"
+
 #include "../physics/Physics.h"
 
 DebugScene::DebugScene()
@@ -129,10 +131,14 @@ bool DebugScene::prepare(){
 	ship = new Hero();
 	ship->move( Vector3(0,0,200) );
 	//Model* lol = new ModelShip();
+	Model* lol = new ModelShader("example.vert", "example.frag");
+	ship->setModel(lol);
+	this->entities.push_back(ship);
+	/*
 	Model* lol = new ModelShip();
 	ship->setModel(lol);
 	this->entities.push_back(ship);
-
+	*/
 		//COLLISION TEST
 	bvol2 = new BoundingBox
 			(ship->getPosition().getX(),ship->getPosition().getY(),

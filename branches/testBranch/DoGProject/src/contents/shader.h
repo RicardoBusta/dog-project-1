@@ -23,6 +23,8 @@ public:
 	void enable();
 	// Uninstalls this shader program from the pipeline
 	void disable();
+	bool load(std::string &path);
+	GLuint getShader() const;
 protected:
 	// Preprocesses the string containing the shader code with some special directives defined(We can put #include directives etc)
 	// void preprocessShader(const char * );

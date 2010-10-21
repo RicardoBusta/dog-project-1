@@ -163,7 +163,7 @@ bool SDL::initOpenGL()
 	  */
 	//end
 	  glEnable(GL_COLOR_MATERIAL);
-
+	glEnable(GL_DEPTH_TEST);
 	glShadeModel( GL_SMOOTH );
 
 	projection( SCREEN_WIDTH , SCREEN_HEIGHT );
