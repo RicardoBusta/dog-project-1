@@ -59,8 +59,7 @@ bool DebugScene::load(){
 	newtex = new Texture("nave", "ship.png");
 	newtex = new Texture("enemy", "enemy.png");
 	newtex = new Texture("madeira", "squareTex.jpg");
-	newtex = new Texture("grama", "grass.jpg");
-	newtex = new Texture("objeto", "dumbster.jpg");
+	newtex = new Texture("estrelas", "star_texture.jpg");
 
 	som = new SoundEffect("tiro", "laser.ogg");
 	som->setVolume(40);
@@ -80,30 +79,13 @@ bool DebugScene::prepare(){
 
 	ship = new Hero();
 	ship->move( Vector3(0,0,200) );
-	//Model* lol = new ModelShip();
-	Model* lol = new ModelFromMD2();
-	ship->setModel(lol);
+	Model* ship_model = new ModelShip();
+	ship->setModel(ship_model);
 	this->entities.push_back(ship);
 
-		//COLLISION TEST
-	bvol2 = new BoundingBox
-			(ship->getPosition().getX(),ship->getPosition().getY(),
-					ship->getPosition().getZ(),50.0f,50.0f,50.0f, *world);
-	
-	PhysicsSystem::addVolume(bvol2);
-
 	//Weapon *weapon;
-	int weapon_rows=1;
-	int weapon_columns=11;
-	for(int i=-(10*(weapon_columns/2));i<=(10*(weapon_columns/2));i+=10){
-		for(int j=-(10*(weapon_rows/2));j<=(10*(weapon_rows/2));j+=10){
-		ship->addWeapon( Vector3(i,j,abs(i)) );
-		}
-	}
-	/*
-	Box *gun = new Box(ship);
-
-	gun->setPosition( Point3(0,40,-10) );*/
+	ship->addWeapon( Vector3(-10.0,-10.0, 0 ));
+	ship->addWeapon( Vector3(10.0,-10.0, 0 ));
 
 	// Posicionando a camera
 	camera->moveOriginW( Vector3( 0 , 400 , 600 ) );
@@ -115,7 +97,9 @@ bool DebugScene::prepare(){
 		for(int j=-6;j<=6;j++){
 			cen = new Box(world);
 			cen->move(Vector3(120*j,-100, -i*300-120*abs(j)));
-			cen->setModel(new ModelBox());
+			ModelBox *cen_model = new ModelBox();
+			cen_model->setTexture("estrelas");
+			cen->setModel(cen_model);
 		}
 	}
 
@@ -129,9 +113,8 @@ bool DebugScene::prepare(){
 bool DebugScene::unload(){
 	//todo function to remove all content from the hash map
 	ContentManager::removeContent(CONTENT_TEXTURE, "madeira");
-	ContentManager::removeContent(CONTENT_TEXTURE, "grama");
+	ContentManager::removeContent(CONTENT_TEXTURE, "estrelas");
 	ContentManager::removeContent(CONTENT_TEXTURE, "ship");
-	ContentManager::removeContent(CONTENT_TEXTURE, "stars");
 	ContentManager::removeContent(CONTENT_TEXTURE, "enemy");
 	ContentManager::removeContent(CONTENT_TEXTURE, "objeto");
 	glDisable(GL_TEXTURE_2D);
@@ -157,13 +140,6 @@ void DebugScene::logic(){
 	if( SDL::key[shoot].down() ){
 		ship->handleShoot(&entities);
 	}
-	
-	//
-	//	ISTO DEVE FICAR NO LOOP PRINCIPAL
-	//
-	
-	PhysicsSystem::processPhysics();
-
 
 	handleEntities();
 }
@@ -175,8 +151,6 @@ void DebugScene::render(){
 	glMultMatrixf( camera->getMatrixToThis() );
 	// Render all the elements of the scene
 	list<Entity*>::iterator it;
-
-	bvol2->draw();
 
 	for(it=entities.begin();it!=entities.end();it++){
 			(*it)->render();
