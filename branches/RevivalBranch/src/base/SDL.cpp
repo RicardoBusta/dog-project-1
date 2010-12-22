@@ -94,14 +94,6 @@ bool SDL::setAudio()
     	return false;
     }
 
-    /*
-    //set mp3 support for SDL_Mix
-    if( Mix_Init(MIX_INIT_MP3) & MIX_INIT_MP3 != MIX_INIT_MP3 )
-    {
-    	return false;
-    }
-    */
-
     atexit(Mix_CloseAudio);
 
     // Audio initialized with sucess
@@ -117,19 +109,7 @@ bool SDL::initOpenGL()
 	glEnable(GL_POLYGON_OFFSET_FILL);
 	glEnable(GL_NORMALIZE);
 
-	//LIGHTNING
-	  GLfloat Ambient[]  = { 0.1f,  0.1f,  0.1f, 1.0f};  // Ambient light value
-	  GLfloat Diffuse[]  = { 1.0f,  1.0f,  1.0f, 1.0f};  // Diffuse light value
-	  GLfloat Position[] = { 0.0f,  0.0f,  0.0f, 1.0f};  // Light position
-	  glEnable(GL_LIGHTING);
-	  glEnable(GL_LIGHT0);
-	  glLightfv(GL_LIGHT0, GL_AMBIENT, Ambient); // Set the ambient lighting value for Light0
-	  glLightfv(GL_LIGHT0, GL_DIFFUSE, Diffuse); // Set the diffuse lighting value for Light0
-	  glLightfv(GL_LIGHT0,GL_POSITION,Position);
-	//end
-
 	//FOG
-	  /*
 	  GLfloat density = 0.0005;
 	  GLfloat fogColor[4] = {0.0, 0.6, 0.8, 1.0};
 	  glEnable (GL_FOG);
@@ -137,15 +117,11 @@ bool SDL::initOpenGL()
 	  glFogfv (GL_FOG_COLOR, fogColor);
 	  glFogf (GL_FOG_DENSITY, density);
 	  glHint (GL_FOG_HINT, GL_NICEST);
-	  */
 	//end
 
 	//BLENDING
-	  /*
 	  glEnable(GL_BLEND);
 	  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	  */
-	//end
 	  glEnable(GL_COLOR_MATERIAL);
 
 	glShadeModel( GL_SMOOTH );
@@ -179,17 +155,6 @@ IMAGE* SDL::loadImage( const char* filename )
 
     return otm;
 }
-
-//loads background music from the "filename" ile
-/*MUSIC* SDL::loadBackgroundMusic( char* filename )
-{
-	MUSIC* music = NULL;
-
-	//obs: the file type **MUST** be WAVE, AIFF, RIFF, OGG or VOC
-	music = Mix_LoadMUS(filename);
-	return music;
-}*/
-
 //loads a sound from the "filename" file
 SOUND* SDL::loadSound( char *filename )
 {
@@ -216,9 +181,9 @@ MODEL* SDL::loadModel( char* filename )
 GLuint SDL::loadTexture(const char *fileName)
 {
 	SDL_Surface *texSurface = NULL;		// Imagem da textura
-	GLuint textureHandle = NULL;		// Id opengl da textura
-	GLenum texFormat = NULL;			// Formato da imagem
-	GLint nColors = NULL;				// RGB ou RGBA?
+	GLuint textureHandle 	= 0;		// Id opengl da textura
+	GLenum texFormat 		= 0;		// Formato da imagem
+	GLint nColors 			= 0;		// RGB ou RGBA?
 
 	// Carrega a surface com a imagem
 	texSurface = loadImage(fileName);
@@ -352,49 +317,13 @@ void SDL::actionsGet(){
 	    while (SDL_PollEvent(&event)) {
 	            switch (event.type) {
 	            case SDL_QUIT:
-	            	actions.push_back( CON_QUIT_GAME );
 	                quit = true;
 	                break;
 	            case SDL_MOUSEMOTION:
-	            	actions.push_back( CON_MOUSE_MOTION );
-	                /*
-	                mouse.speed.x = event.button.x-mouse.position.x;
-	                mouse.speed.y = event.button.y-mouse.position.y;
-
-	                mouse.position.x = event.motion.x;
-	                mouse.position.y = event.motion.y;*/
 	                break;
 	            case SDL_MOUSEBUTTONDOWN:
-	            	actions.push_back( CON_MOUSE_DOWN );
-	            	/*
-	                if (event.button.button==SDL_BUTTON_LEFT) {
-	                    mouse.left.isDown=true;
-	                    mouse.left.hit=true;
-	                }
-	                if (event.button.button==SDL_BUTTON_RIGHT) {
-	                    mouse.right.isDown=true;
-	                    mouse.right.hit=true;
-	                }
-	                if (event.button.button==SDL_BUTTON_MIDDLE) {
-	                    mouse.middle.isDown=true;
-	                    mouse.middle.hit=true;
-	                }*/
 	                break;
 	            case SDL_MOUSEBUTTONUP:
-	            	actions.push_back( CON_MOUSE_UP );
-	            	/*
-	                if (event.button.button==SDL_BUTTON_LEFT) {
-	                    mouse.left.isDown=false;
-	                    mouse.left.release=true;
-	                }
-	                if (event.button.button==SDL_BUTTON_RIGHT) {
-	                    mouse.right.isDown=false;
-	                    mouse.right.release=true;
-	                }
-	                if (event.button.button==SDL_BUTTON_MIDDLE) {
-	                    mouse.middle.isDown=false;
-	                    mouse.middle.release=true;
-	                }*/
 	                break;
 	            case SDL_KEYDOWN:
 	            	if(event.key.keysym.sym == SDLK_ESCAPE){
@@ -419,93 +348,9 @@ void SDL::actionsGet(){
 	        }
 }
 
-bool SDL::actionsLeft(){
-		/* Old key detection REMOVE THE NEXT COMMENT TO TURN IT ON */
-	/*
-	// Put the actions in a queue
-	while( SDL_PollEvent( &event )){
-
-		switch( event.type ){
-		case SDL_QUIT:
-			// Quit the game
-			actions.push_back( CON_QUIT_GAME );
-			break;
-
-		case SDL_KEYDOWN:
-        	switch(event.key.keysym.sym){
-				case SDLK_ESCAPE:
-					// Quit the game
-					actions.push_back( CON_QUIT_GAME );
-					break;
-				case SDLK_UP:
-					actions.push_back( CON_UP_ON );
-					break;
-				case SDLK_DOWN:
-					actions.push_back( CON_DOWN_ON );
-					break;
-				case SDLK_RIGHT:
-					actions.push_back( CON_RIGHT_ON );
-					break;
-				case SDLK_LEFT:
-					actions.push_back( CON_LEFT_ON );
-					break;
-				case SDLK_SPACE:
-					actions.push_back( CON_SHOOTING_ON );
-					break;
-				default:
-					//Do Nothing
-					break;
-        	}
-			break;
-
-		case SDL_KEYUP:
-        	switch(event.key.keysym.sym){
-
-        		// Directional
-				case SDLK_UP:
-					actions.push_back( CON_UP_OFF );
-					break;
-				case SDLK_DOWN:
-					actions.push_back( CON_DOWN_OFF );
-					break;
-				case SDLK_RIGHT:
-					actions.push_back( CON_RIGHT_OFF );
-					break;
-				case SDLK_LEFT:
-					actions.push_back( CON_LEFT_OFF );
-					break;
-				case SDLK_SPACE:
-					actions.push_back( CON_SHOOTING_OFF );
-					break;
-				default:
-					//Do Nothing
-					break;
-        	}
-			break;
-
-		case SDL_MOUSEMOTION:
-			break;
-
-		}
-	}
-	//*/
-
-	// Return the size of the queue
-	return (int)actions.size() > 0;
-}
-
-
-ControllerStatus SDL::nextAction(){
-
-	// Returns the first action done
-	if( 0 == (int)actions.size() )
-		return CON_STANDBY;
-	else{
-		// Returns the first and take it out of the pile
-		ControllerStatus nxt = actions.front();
-		actions.pop_front();
-		return nxt;
-	}
+bool SDL::quitGame()
+{
+	return quit;
 }
 
 //Paint the canvas

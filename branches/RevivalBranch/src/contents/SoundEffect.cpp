@@ -5,6 +5,7 @@
  *      Author: felipe
  */
 
+#include "ContentManager.h"
 #include "SoundEffect.h"
 #include "../base/SDL.h"
 #include <SDL/SDL_mixer.h>
@@ -14,7 +15,11 @@ SoundEffect::SoundEffect(std::string label, std::string path)
 	:Content(label,CONTENT_TEXTURE), currentChannel(0)
 {
 	if(path != "")
+	{
 		this->load(path);
+		ContentManager::addContent( this );
+
+	}
 }
 
 SoundEffect::~SoundEffect() {
