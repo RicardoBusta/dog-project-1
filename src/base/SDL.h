@@ -72,8 +72,7 @@ public:
 
 	// Events interface
 	static void actionsGet();
-	static bool actionsLeft();
-	static ControllerStatus nextAction();
+	static bool quitGame();
 
 	// Render functions
 	static void prepareRender();
@@ -96,9 +95,7 @@ public:
 	static int FPS;
 	static unsigned int timer_begin;
 
-
-//by Ricardo, só para testes.
-public:
+	// The quit control
 	static bool quit;
 };
 
