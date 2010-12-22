@@ -27,11 +27,7 @@ ModelBox::~ModelBox() {
 
 void ModelBox::draw()
 {
-	//std::string a("stars");
-	//std::string a("madeira");
-	std::string a("grama");
-
-	Texture *tex = ContentManager::getTexture(a);
+	Texture *tex = ContentManager::getTexture(label);
 	if(tex == NULL)
 	{
 		printf("Textura com erro.\n");
@@ -102,3 +98,9 @@ void ModelBox::randomColors()
 		vb[i] = ((float)(rand()%101))/100.0;
 	}
 }
+
+void ModelBox::setTexture(string tex)
+{
+	this->label=tex;
+}
+

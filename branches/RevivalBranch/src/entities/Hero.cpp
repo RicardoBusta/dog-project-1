@@ -79,8 +79,7 @@ void Hero::addWeapon( Vector3 v ){
 	Weapon *weapon = new Weapon(this);
 	weapons.push_back(weapon);
 	weapon->move(v);
-	Model* lol = new ModelWeapon();
-	lol->setSkin(model->skin);
-	//lol->setSkin(1);
-	weapon->setModel(lol);
+	Model* weapon_model = new ModelWeapon();
+	weapon_model->setSkin(model->skin);
+	weapon->setModel(weapon_model);
 }

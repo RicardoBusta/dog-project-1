@@ -21,6 +21,7 @@ public:
 
 	//Box Properties
 	void setData( float width , float height , float depth );
+	void setTexture(string tex_label);
 
 	void drawFace( int , int , int , int );
 
@@ -30,6 +31,8 @@ public:
 	Point3 vertex[8];
 
 	void draw();
+private:
+	string label;
 };
 
 #endif /* MODELBOX_H_ */
