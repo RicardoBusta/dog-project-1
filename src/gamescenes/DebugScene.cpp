@@ -35,20 +35,12 @@ DebugScene::~DebugScene(){
 void DebugScene::input(){
 	// The main inputs
 	SDL::actionsGet();
-	while( SDL::actionsLeft() ){
-		// The next action
-		switch( SDL::nextAction() ){
-			// Close the game action
-			case CON_QUIT_GAME:
-				// End the scene
-				this->running = false;
-				break;
-
-			default:
-				// Standby
-				break;
-		}
-	}
+	this->running = !SDL::quitGame();
+		if( SDL::key[up].down() )	ship->moveForward();
+		if( SDL::key[down].down() )	ship->moveBackward();
+		if( SDL::key[right].down() )	ship->moveRight();
+		if( SDL::key[left].down() )	ship->moveLeft();
+		if( !( SDL::key[left].down() xor SDL::key[right].down() ) ) ship->handleTilt();
 }
 
 bool DebugScene::load(){
@@ -131,11 +123,6 @@ bool DebugScene::unload(){
 }
 
 void DebugScene::logic(){
-	if( SDL::key[up].down() )	ship->moveForward();
-	if( SDL::key[down].down() )	ship->moveBackward();
-	if( SDL::key[right].down() )	ship->moveRight();
-	if( SDL::key[left].down() )	ship->moveLeft();
-	if( !( SDL::key[left].down() xor SDL::key[right].down() ) ) ship->handleTilt();
 
 	if( SDL::key[shoot].down() ){
 		ship->handleShoot(&entities);
