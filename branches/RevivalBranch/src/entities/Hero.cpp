@@ -13,7 +13,7 @@
 Hero::Hero(Entity* p):Entity(p) {
 	entityType = ENTITY_PLAYER;
 	shootCoolDown = 0;
-	speed = 5;
+	speed = 15;
 	this->addBoundings(new BoundingBox
 					(this->getPosition(),122.0f,50.0f,150.0f, *this));		// CREATES A BOUNDING AND ADD IT
 }
@@ -50,7 +50,7 @@ void Hero::moveRight(){
 	}
 }
 void Hero::handleTilt(){
-	float tiltspeed=2;
+	float tiltspeed=1;
 	if(getRotationZ() > tiltspeed){
 		rotateZ(-tiltspeed);
 	}else if(getRotationZ() < -tiltspeed){

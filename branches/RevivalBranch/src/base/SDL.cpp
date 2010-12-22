@@ -111,7 +111,7 @@ bool SDL::initOpenGL()
 
 	//FOG
 	  GLfloat density = 0.0005;
-	  GLfloat fogColor[4] = {0.0, 0.6, 0.8, 1.0};
+	  GLfloat fogColor[4] = {0.0, 0.0, 0.0, 1.0};
 	  glEnable (GL_FOG);
 	  glFogi (GL_FOG_MODE, GL_EXP2);
 	  glFogfv (GL_FOG_COLOR, fogColor);
