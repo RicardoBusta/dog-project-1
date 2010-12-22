@@ -21,7 +21,7 @@ Weapon::~Weapon() {
 }
 
 void Weapon::shoot(list<Entity*> *bullets){
-	Projectile *p = new Projectile( Vector3(0,0,-10) , parent->getParent());
+	Projectile *p = new Projectile( Vector3(0,0,-23) , parent->getParent());
 	p->setFrame(parent->getFrame()^getFrame());
 	ModelWeapon *lol = new ModelWeapon();
 	lol->setSkin(1);

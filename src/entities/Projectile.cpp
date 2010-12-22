@@ -12,7 +12,7 @@ Projectile::Projectile(Vector3 d, Entity* p):Particle(p) {
 	direction = new Vector3;
 	*direction = d;
 	//lifeTime = 25;
-	lifeTime = 50;
+	lifeTime = 100;
 	addBoundings(new BoundingBox
 						(this->getPosition(),40.0f,40.0f,40.0f, *this));
 }

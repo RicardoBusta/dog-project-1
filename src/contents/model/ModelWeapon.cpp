@@ -12,6 +12,7 @@
 ModelWeapon::ModelWeapon() {
 	r = 5;
 	l = 10;
+	label="enemy";
 }
 
 ModelWeapon::~ModelWeapon() {
@@ -48,14 +49,18 @@ void ModelWeapon::borderTriangle(float x1, float y1, float z1, float x2, float y
 	glVertex3f(x3,y3,z3);
 }
 
+void ModelWeapon::setTexture(string tex)
+{
+	this->label=tex;
+}
+
 void ModelWeapon::draw(){
-	std::string a;
 	if(skin==0){
-		a = "nave";
+		label = "nave";
 	}else{
-		a = "enemy";
+		label = "enemy";
 	}
-		Texture *tex = ContentManager::getTexture(a);
+		Texture *tex = ContentManager::getTexture(this->label);
 		if(tex == NULL)
 		{
 			printf("Textura com erro.\n");
@@ -64,9 +69,9 @@ void ModelWeapon::draw(){
 
 		glPushMatrix();
 		glBegin(GL_TRIANGLES);
-		for(float a=0;a<360;a+=36){
-			float a1 = rad(a);
-			float a2 = rad(a + 36);
+		for(float i=0;i<360;i+=36){
+			float a1 = rad(i);
+			float a2 = rad(i + 36);
 			borderTriangle(	0,0,0,
 							r*cos(a2),r*sin(a2),0,
 							r*cos(a1),r*sin(a1),0

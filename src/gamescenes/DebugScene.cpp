@@ -80,8 +80,8 @@ bool DebugScene::prepare(){
 	ship->addWeapon( Vector3(10.0,-10.0, 0 ));
 
 	// Posicionando a camera
-	camera->moveOriginW( Vector3( 0 , 400 , 600 ) );
-	camera->setRotationX( -45 );
+	camera->moveOriginW( Vector3( 0 , 800 , 0 ) );
+	camera->setRotationX( -90 );
 
 	Box* cen;
 	//Model* boxm = new ModelBox(); assim basta 1 modelo, mas ai todas as caixas terão a mesma cor
@@ -124,7 +124,8 @@ bool DebugScene::unload(){
 
 void DebugScene::logic(){
 
-	if( SDL::key[shoot].down() ){
+	if( SDL::key[shoot].down() )
+	{
 		ship->handleShoot(&entities);
 	}
 
