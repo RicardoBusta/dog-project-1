@@ -27,8 +27,6 @@ DebugScene::DebugScene()
 	left = SDLK_LEFT;
 	right = SDLK_RIGHT;
 	shoot = SDLK_SPACE;
-
-
 }
 
 DebugScene::~DebugScene(){
@@ -46,51 +44,6 @@ void DebugScene::input(){
 				this->running = false;
 				break;
 
-			/* OLD SCENE BUTTON HANDLING. NOW HANDLED BY SDL. REMOVE COMMENT TO TURN IT BACK ON */
-			/*
-			// Directional
-			case CON_UP_ON:
-				up = true;
-				ship->addAction( CON_UP_ON );
-				break;
-			case CON_UP_OFF:
-				up = false;
-				ship->addAction( CON_UP_OFF );
-				break;
-			case CON_DOWN_ON:
-				down = true;
-				ship->addAction( CON_DOWN_ON );
-				break;
-			case CON_DOWN_OFF:
-				down = false;
-				ship->addAction( CON_DOWN_OFF );
-				break;
-			case CON_LEFT_ON:
-				left = true;
-				ship->addAction( CON_LEFT_ON );
-				break;
-			case CON_LEFT_OFF:
-				left = false;
-				ship->addAction( CON_LEFT_OFF );
-				break;
-			case CON_RIGHT_ON:
-				right = true;
-				ship->addAction( CON_RIGHT_ON );
-				break;
-			case CON_RIGHT_OFF:
-				right = false;
-				ship->addAction( CON_RIGHT_OFF );
-				break;
-			case CON_SHOOTING_ON:
-				shoot = true;
-				ship->addAction( CON_SHOOTING_ON );
-				break;
-			case CON_SHOOTING_OFF:
-				shoot= false;
-				ship->addAction( CON_SHOOTING_OFF );
-				break;
-				 //
-				//*/
 			default:
 				// Standby
 				break;
@@ -104,12 +57,10 @@ bool DebugScene::load(){
 	SoundEffect *som;
 
 	newtex = new Texture("nave", "ship.png");
-	//newtex = new Texture("stars", "star_texture.jpg");
 	newtex = new Texture("enemy", "enemy.png");
 	newtex = new Texture("madeira", "squareTex.jpg");
 	newtex = new Texture("grama", "grass.jpg");
 	newtex = new Texture("objeto", "dumbster.jpg");
-
 
 	som = new SoundEffect("tiro", "laser.ogg");
 	som->setVolume(40);
@@ -125,7 +76,6 @@ bool DebugScene::load(){
 bool DebugScene::prepare(){
 	world = new Entity;
 	this->entities.push_back( world );
-	// Preparando os elementos
 
 
 	ship = new Hero();
