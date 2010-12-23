@@ -1,0 +1,12 @@
+resources/textures/squareTex.jpg
+Sucesso no carregamento da textura.
+Textura carregada com label: madeira
+E com handle: 1
+resources/textures/ship.png
+Sucesso no carregamento da textura.
+Textura carregada com label: nave
+E com handle: 2
+resources/textures/star_texture.jpg
+Sucesso no carregamento da textura.
+Textura carregada com label: stars
+E com handle: 3
