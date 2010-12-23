@@ -26,9 +26,7 @@ public:
 	bool unload();
 
 	// GameLoop
-	void input();
-	void logic();
-	void render();
+	void specificLogic();
 	void clean();
 
 	// Result of the scene
@@ -36,11 +34,10 @@ public:
 
 private:
 	// Some test info
-	Hero* ship;
 	Entity* world;
 	BoundingVolume *bvol2;
 
-	int up,down,left,right,shoot;
+
 };
 
 #endif /* DEBUGSCENE_H_ */

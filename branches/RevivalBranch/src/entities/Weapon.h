@@ -16,7 +16,7 @@ public:
 	Weapon(Entity* parent=NULL);
 	virtual ~Weapon();
 
-	void shoot(list<Entity*> *bullets);
+	Projectile* shoot();
 
 	void handler();
 };

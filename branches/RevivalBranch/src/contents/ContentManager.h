@@ -42,7 +42,7 @@ public:
 	static Content* getContent(CONTENT_, std::string );	// Retorna um content, NULL caso inexistente
 	static Texture* getTexture( std::string );
 	//static Model* getModel( std::string );
-	//static SoundEffect* getSoundEffect( std::string );
+	static SoundEffect* getSoundEffect( std::string );
 	static bool removeContent(CONTENT_, std::string );	// Remove um content, false caso nao remova
 
 private:

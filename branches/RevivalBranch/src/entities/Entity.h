@@ -62,12 +62,8 @@ public:
 	float getRotationZ();
 
 	void setScale(float x, float y, float z);
-	//void setScale(entity *e);
 	void resize(float x, float y, float z);
-
 	void setColor(float r, float g, float b);
-	//void setColor(entity *e);
-	//void colorize(float r, float g, float b);
 
 	void setModel(Model* model);
 

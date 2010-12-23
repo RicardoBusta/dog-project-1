@@ -12,22 +12,20 @@
 #include "../contents/model/ModelShip.h"
 
 Weapon::Weapon(Entity* p):Entity(p) {
-	// TODO Auto-generated constructor stub
 
 }
 
 Weapon::~Weapon() {
-	// TODO Auto-generated destructor stub
 }
 
-void Weapon::shoot(list<Entity*> *bullets){
+Projectile* Weapon::shoot(){
 	Projectile *p = new Projectile( Vector3(0,0,-23) , parent->getParent());
 	p->setFrame(parent->getFrame()^getFrame());
 	ModelWeapon *lol = new ModelWeapon();
 	lol->setSkin(1);
 	//p->setModel(new ModelBullet());
 	p->setModel(lol);
-	bullets->push_back(p);
+	return p;
 }
 
 void Weapon::handler(){

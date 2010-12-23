@@ -18,12 +18,10 @@ SoundEffect::SoundEffect(std::string label, std::string path)
 	{
 		this->load(path);
 		ContentManager::addContent( this );
-
 	}
 }
 
 SoundEffect::~SoundEffect() {
-	// TODO Auto-generated destructor stub
 }
 
 bool SoundEffect::load(std::string &filename)
