@@ -29,9 +29,13 @@ public:
 	bool isRunning() const;
 
 	// GameLoop
-	virtual void input() = 0;
+
+	void input();						// Most general inputs		|   INPUTS
+	virtual void specificInput() = 0;	// Specific scene inputs	|
+
 	virtual void logic()  = 0;
 	virtual void render() = 0;
+
 	// Result of the scene
 	virtual SceneMessage result() = 0;
 

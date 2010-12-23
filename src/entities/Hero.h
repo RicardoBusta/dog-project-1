@@ -9,6 +9,7 @@
 #define HERO_H_
 
 #include "Entity.h"
+#include "Projectile.h"
 
 class Weapon;
 
@@ -37,7 +38,7 @@ public:
 	void moveLeft();
 	void moveRight();
 	void handleTilt();
-	void handleShoot(list<Entity*> *bullets);
+	void handleShoot(list<Entity*> *entities , list<Projectile**> *friendly );
 };
 
 #endif /* HERO_H_ */

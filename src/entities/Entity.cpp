@@ -188,6 +188,7 @@ void Entity::render(){
 	//Prepare the coordinate system
 	glPushMatrix();
 	glMultMatrixf( coords.getMatrixToWorld() );
+	glScalef( scale.x , scale.y , scale.z );
 
 	//Draw the entity and it's children if it isn't invisible
 	if(visible){

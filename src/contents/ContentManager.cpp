@@ -26,6 +26,13 @@ Texture* ContentManager::getTexture(std::string label)
 	return NULL;
 }
 
+SoundEffect* ContentManager::getSoundEffect(std::string label)
+{
+	if( searchContent(CONTENT_SOUND, label) )
+		return reinterpret_cast<SoundEffect *>(it->second);
+	return NULL;
+}
+
 bool ContentManager::removeContent(CONTENT_ type, std::string label)	// Remove um content, false caso nao remova
 {
 	bool success = searchContent(type, label);

@@ -50,7 +50,7 @@ void Hero::moveRight(){
 	}
 }
 void Hero::handleTilt(){
-	float tiltspeed=1;
+	float tiltspeed=4;
 	if(getRotationZ() > tiltspeed){
 		rotateZ(-tiltspeed);
 	}else if(getRotationZ() < -tiltspeed){
@@ -60,17 +60,22 @@ void Hero::handleTilt(){
 	}
 }
 
-void Hero::handleShoot(list<Entity*> *bullets){
+void Hero::handleShoot(list<Entity*> *entities , list<Projectile**> *friendly ){
+
 	if (shootCoolDown<=0){
-		//model->skin = 1 - model->skin;
+
 		list<Weapon*>::iterator it;
-		for(it=weapons.begin();it!=weapons.end();it++){
-			(*it)->shoot(bullets);
+		for(it=weapons.begin();it!=weapons.end();it++)
+		{
+			Projectile** novo = new Projectile*;
+			*novo = (*it)->shoot();
+			entities->push_back(*novo);
+			friendly->push_back(novo);
 		}
+
 		shootCoolDown = 10;
 
-		//TODO remodelar de forma que não seja necessário fazer esse cast
-		SoundEffect *tiro = reinterpret_cast<SoundEffect *>(ContentManager::getContent(CONTENT_SOUND, "tiro"));
+		SoundEffect *tiro = ContentManager::getSoundEffect("tiro");
 		tiro->play(PLAY_ONCE);
 	}
 }

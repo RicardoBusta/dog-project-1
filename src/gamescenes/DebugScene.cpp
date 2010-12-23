@@ -22,29 +22,13 @@
 
 DebugScene::DebugScene()
 {
-	up = SDLK_UP;
-	down = SDLK_DOWN;
-	left = SDLK_LEFT;
-	right = SDLK_RIGHT;
-	shoot = SDLK_SPACE;
 }
 
 DebugScene::~DebugScene(){
 }
 
-void DebugScene::input(){
-	// The main inputs
-	SDL::actionsGet();
-	this->running = !SDL::quitGame();
-		if( SDL::key[up].down() )	ship->moveForward();
-		if( SDL::key[down].down() )	ship->moveBackward();
-		if( SDL::key[right].down() )	ship->moveRight();
-		if( SDL::key[left].down() )	ship->moveLeft();
-		if( !( SDL::key[left].down() xor SDL::key[right].down() ) ) ship->handleTilt();
-}
-
 bool DebugScene::load(){
-	glEnable(GL_TEXTURE_2D);
+
 	Texture* newtex;
 	SoundEffect *som;
 
@@ -122,29 +106,9 @@ bool DebugScene::unload(){
 	return true;
 }
 
-void DebugScene::logic(){
+void DebugScene::specificLogic(){
 
-	if( SDL::key[shoot].down() )
-	{
-		ship->handleShoot(&entities);
-	}
 
-	handleEntities();
-}
-
-void DebugScene::render(){
-	// Render start
-	SDL::prepareRender();
-	//Position the objects in the camera
-	glMultMatrixf( camera->getMatrixToThis() );
-	// Render all the elements of the scene
-	list<Entity*>::iterator it;
-
-	for(it=entities.begin();it!=entities.end();it++){
-			(*it)->render();
-	}
-	// Swap the buffers
-	SDL::swapBuffers();
 }
 
 SceneMessage DebugScene::result(){

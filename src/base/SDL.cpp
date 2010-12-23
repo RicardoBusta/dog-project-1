@@ -108,6 +108,7 @@ bool SDL::initOpenGL()
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_POLYGON_OFFSET_FILL);
 	glEnable(GL_NORMALIZE);
+	glEnable(GL_TEXTURE_2D);
 
 	//FOG
 	  GLfloat density = 0.0005;
@@ -136,7 +137,8 @@ void SDL::projection( int width , int height )
 
 	glLoadIdentity();
 	//glOrtho( 0.0,width, 0.0,height , -FRUSTUM_DEPTH, FRUSTUM_DEPTH);
-	glFrustum (-width/20,width/20, -height/20,height/20, 50,6000);
+	//glFrustum (-width/20,width/20, -height/20,height/20, 50,6000);
+	glOrtho(-width,width, -height,height, 50,6000);
 
    glMatrixMode(GL_MODELVIEW);
 }

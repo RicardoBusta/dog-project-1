@@ -20,7 +20,7 @@ ModelFromMD2::ModelFromMD2() {
 
 	string a("objeto");
 	Texture *tex = ContentManager::getTexture(a);
-	Obj->SetTexture(tex->getHandle());//*/
+	Obj->SetTexture(tex->getHandle());
 }
 
 ModelFromMD2::~ModelFromMD2() {

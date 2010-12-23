@@ -14,6 +14,16 @@ Scene::Scene(){
 Scene::~Scene(){
 }
 
+void Scene::input()
+{
+	// The main inputs
+	SDL::actionsGet();
+	this->running = !SDL::quitGame();
+
+	// The specifics inputs of the scene
+	this->specificInput();
+}
+
 SceneMessage Scene::run(){
 	// Read necessary data
 	load();
