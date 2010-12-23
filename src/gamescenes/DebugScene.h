@@ -34,7 +34,6 @@ public:
 
 private:
 	// Some test info
-	Entity* world;
 	BoundingVolume *bvol2;
 
 
