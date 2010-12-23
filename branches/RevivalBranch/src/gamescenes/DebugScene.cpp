@@ -29,18 +29,22 @@ DebugScene::~DebugScene(){
 
 bool DebugScene::load(){
 
+	// Loading the necessary data
 	Texture* newtex;
 	SoundEffect *som;
 
+	// Textures
 	newtex = new Texture("nave", "ship.png");
 	newtex = new Texture("enemy", "enemy.png");
 	newtex = new Texture("madeira", "squareTex.jpg");
 	newtex = new Texture("estrelas", "star_texture.jpg");
 
+	// Shot sound
 	som = new SoundEffect("tiro", "laser.ogg");
 	som->setVolume(40);
 	ContentManager::addContent(som);
 
+	// Background music
 	som = new SoundEffect("fundo", "background.ogg");
 	som->setVolume(100);
 	ContentManager::addContent(som);
@@ -49,29 +53,17 @@ bool DebugScene::load(){
 }
 
 bool DebugScene::prepare(){
-	world = new Entity;
-	this->entities.push_back( world );
+	// Double pointers guarantee that there will be no problem when an object
+	// is remove from one list
+	world = new Entity*;
+	*world = new Entity;
+	this->entities.push_back( *world );
 
-
-	ship = new Hero();
-	ship->move( Vector3(0,0,200) );
-	Model* ship_model = new ModelShip();
-	ship->setModel(ship_model);
-	this->entities.push_back(ship);
-
-	//Weapon *weapon;
-	ship->addWeapon( Vector3(-10.0,-10.0, 0 ));
-	ship->addWeapon( Vector3(10.0,-10.0, 0 ));
-
-	// Posicionando a camera
-	camera->moveOriginW( Vector3( 0 , 800 , 0 ) );
-	camera->setRotationX( -90 );
-
+	// World creation
 	Box* cen;
-	//Model* boxm = new ModelBox(); assim basta 1 modelo, mas ai todas as caixas terão a mesma cor
 	for( int i = 0 ; i < 6 ; i++ ){
 		for(int j=-6;j<=6;j++){
-			cen = new Box(world);
+			cen = new Box(*world);
 			cen->move(Vector3(120*j,-100, -i*300-120*abs(j)));
 			ModelBox *cen_model = new ModelBox();
 			cen_model->setTexture("estrelas");
@@ -79,8 +71,23 @@ bool DebugScene::prepare(){
 		}
 	}
 
-	//TODO remodelar de forma que não seja necessário fazer esse cast
-	SoundEffect *fundo =  reinterpret_cast<SoundEffect *>(ContentManager::getContent(CONTENT_SOUND, "fundo"));
+	// Hero Creation
+	ship = new Hero();
+	ship->move( Vector3(0,0,200) );
+	Model* ship_model = new ModelShip();
+	ship->setModel(ship_model);
+	this->entities.push_back(ship);
+
+	// Adding the weapons
+	ship->addWeapon( Vector3(-10.0,-10.0, 0 ));
+	ship->addWeapon( Vector3(10.0,-10.0, 0 ));
+
+	// Positioning the camera
+	camera->moveOriginW( Vector3( 0 , 800 , 0 ) );
+	camera->setRotationX( -90 );
+
+	// Playing the music background
+	SoundEffect *fundo =  ContentManager::getSoundEffect("fundo");
 	fundo->play(INF_LOOP);
 
 	return true;
@@ -93,7 +100,6 @@ bool DebugScene::unload(){
 	ContentManager::removeContent(CONTENT_TEXTURE, "ship");
 	ContentManager::removeContent(CONTENT_TEXTURE, "enemy");
 	ContentManager::removeContent(CONTENT_TEXTURE, "objeto");
-
 	return true;
 }
 

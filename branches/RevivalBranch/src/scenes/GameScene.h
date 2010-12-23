@@ -26,14 +26,17 @@ public:
 protected:
 	// Main properties of a game
 	Frame* camera;
-	Hero* ship;
 
 	// All the scene entities
 	list<Entity*> entities;
 
+	// The entities in a classified manner
+	Entity** world;
+	Hero* ship;
 	list<Projectile**> friendly;
 	list<Projectile**> unfriendly;
-	//list<Enemy*> enemys;
+	//list<Enemy**> enemys;
+	//list<Item**> items;
 
 
 
