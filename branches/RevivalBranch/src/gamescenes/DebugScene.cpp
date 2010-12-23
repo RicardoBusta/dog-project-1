@@ -93,15 +93,6 @@ bool DebugScene::unload(){
 	ContentManager::removeContent(CONTENT_TEXTURE, "ship");
 	ContentManager::removeContent(CONTENT_TEXTURE, "enemy");
 	ContentManager::removeContent(CONTENT_TEXTURE, "objeto");
-	glDisable(GL_TEXTURE_2D);
-
-	list<Entity*>::iterator it;
-
-	while (!entities.empty()){
-			it = entities.begin();
-			delete (*it);
-			entities.pop_front();
-		}
 
 	return true;
 }
