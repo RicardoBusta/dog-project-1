@@ -11,6 +11,7 @@
 #include "Content.h"
 
 #include "../base/SDL.h"
+#include "../base/md2.h"
 #include "../math/Frame.h"
 #include "../math/Point3.h"
 #include "../math/Vector3.h"
@@ -22,12 +23,14 @@ public:
 	Model();
 	virtual ~Model();
 
-	virtual void draw()=0;
+	void draw();
 
 	bool load(std::string &);
 
 	void setSkin(int skin);
 	int skin;
+private:
+	struct MD2Data data;
 };
 
 #endif /* MODEL_H_ */
